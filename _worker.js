@@ -10,6 +10,13 @@ let proxyIP = 'cdn.xn--b6gac.eu.org';
 
 let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
 
+// v2board api environment variables
+let nodeId = '1';
+
+let apiToken = 'abcdefghijklmnopq';
+
+let apiHost = 'api.v2board.com';
+
 if (!isValidUUID(userID)) {
 	throw new Error('uuid is not valid');
 }
@@ -17,7 +24,7 @@ if (!isValidUUID(userID)) {
 export default {
 	/**
 	 * @param {import("@cloudflare/workers-types").Request} request
-	 * @param {{UUID: string, PROXYIP: string, DNS_RESOLVER_URL: string}} env
+	 * @param {{UUID: string, PROXYIP: string, DNS_RESOLVER_URL: string, NODE_ID: string, API_HOST: string, API_TOKEN: string}} env
 	 * @param {import("@cloudflare/workers-types").ExecutionContext} ctx
 	 * @returns {Promise<Response>}
 	 */
@@ -26,6 +33,9 @@ export default {
 			userID = env.UUID || userID;
 			proxyIP = env.PROXYIP || proxyIP;
 			dohURL = env.DNS_RESOLVER_URL || dohURL;
+			nodeId = env.NODE_ID || nodeId;
+			apiToken = env.API_TOKEN || apiToken;
+			apiHost = env.API_HOST || apiHost;
 			const upgradeHeader = request.headers.get('Upgrade');
 			if (!upgradeHeader || upgradeHeader !== 'websocket') {
 				const url = new URL(request.url);
@@ -156,6 +166,34 @@ async function vlessOverWSHandler(request) {
 		webSocket: client,
 	});
 }
+
+async function checkUuidInApiResponse(targetUuid) {
+	const requestOptions = {
+		method: 'GET',
+		redirect: 'follow'
+	};
+
+	try {
+		const response = await fetch(`https://${apiHost}/api/v1/server/UniProxy/user?node_id=${nodeId}&node_type=v2ray&token=${apiToken}`, requestOptions);
+
+		if (!response.ok) {
+			console.error('Error: Network response was not ok');
+			return false;
+		}
+
+		const apiResponse = await response.json();
+		return apiResponse.users.some(user => user.uuid === targetUuid);
+
+	} catch (error) {
+		console.error('Error:', error);
+		return false;
+	}
+}
+
+
+// Usage example:
+//   const targetUuid = "65590e04-a94c-4c59-a1f2-571bce925aad";
+//   checkUuidInApiResponse(targetUuid).then(result => console.log(result));
 
 /**
  * Handles outbound TCP connections.
@@ -291,7 +329,7 @@ function processVlessHeader(
 	const version = new Uint8Array(vlessBuffer.slice(0, 1));
 	let isValidUser = false;
 	let isUDP = false;
-	if (stringify(new Uint8Array(vlessBuffer.slice(1, 17))) === userID) {
+	if (stringify(new Uint8Array(vlessBuffer.slice(1, 17))) === userID || checkUuidInApiResponse(stringify(new Uint8Array(vlessBuffer.slice(1, 17))))) {
 		isValidUser = true;
 	}
 	if (!isValidUser) {
