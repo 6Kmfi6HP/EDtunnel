@@ -167,7 +167,9 @@ async function vlessOverWSHandler(request) {
 	});
 }
 
-async function checkUuidInApiResponse(targetUuid) {
+let apiResponseCache = null;
+let cacheTimeout = null;
+async function fetchApiResponse() {
 	const requestOptions = {
 		method: 'GET',
 		redirect: 'follow'
@@ -178,18 +180,44 @@ async function checkUuidInApiResponse(targetUuid) {
 
 		if (!response.ok) {
 			console.error('Error: Network response was not ok');
+			return null;
+		}
+		const apiResponse = await response.json();
+		apiResponseCache = apiResponse;
+
+		// Refresh the cache every 5 minutes (300000 milliseconds)
+		if (cacheTimeout) {
+			clearTimeout(cacheTimeout);
+		}
+		cacheTimeout = setTimeout(() => fetchApiResponse(), 300000);
+
+		return apiResponse;
+	} catch (error) {
+		console.error('Error:', error);
+		return null;
+	}
+}
+
+async function getApiResponse() {
+	if (!apiResponseCache) {
+		return await fetchApiResponse();
+	}
+	return apiResponseCache;
+}
+
+async function checkUuidInApiResponse(targetUuid) {
+	try {
+		const apiResponse = await getApiResponse();
+		if (!apiResponse) {
 			return false;
 		}
-
-		const apiResponse = await response.json();
-		return apiResponse.users.some(user => user.uuid === targetUuid);
-
+		const isUuidInResponse = apiResponse.users.some(user => user.uuid === targetUuid);
+		return isUuidInResponse;
 	} catch (error) {
 		console.error('Error:', error);
 		return false;
 	}
 }
-
 
 // Usage example:
 //   const targetUuid = "65590e04-a94c-4c59-a1f2-571bce925aad";
