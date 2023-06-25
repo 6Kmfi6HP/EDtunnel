@@ -11,11 +11,11 @@ let proxyIP = 'cdn.xn--b6gac.eu.org';
 let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
 
 // v2board api environment variables
-let nodeId = '1';
+let nodeId = ''; // 1
 
-let apiToken = 'abcdefghijklmnopq';
+let apiToken = ''; //abcdefghijklmnopqrstuvwxyz123456
 
-let apiHost = 'api.v2board.com';
+let apiHost = ''; // api.v2board.com
 
 if (!isValidUUID(userID)) {
 	throw new Error('uuid is not valid');
@@ -24,7 +24,7 @@ if (!isValidUUID(userID)) {
 export default {
 	/**
 	 * @param {import("@cloudflare/workers-types").Request} request
-	 * @param {{UUID: string, PROXYIP: string, DNS_RESOLVER_URL: string, NODE_ID: string, API_HOST: string, API_TOKEN: string}} env
+	 * @param {{UUID: string, PROXYIP: string, DNS_RESOLVER_URL: string, NODE_ID: int, API_HOST: string, API_TOKEN: string}} env
 	 * @param {import("@cloudflare/workers-types").ExecutionContext} ctx
 	 * @returns {Promise<Response>}
 	 */
@@ -206,6 +206,11 @@ async function getApiResponse() {
 }
 
 async function checkUuidInApiResponse(targetUuid) {
+	// Check if any of the environment variables are empty
+	if (!nodeId || !apiToken || !apiHost) {
+		return true;
+	}
+
 	try {
 		const apiResponse = await getApiResponse();
 		if (!apiResponse) {
