@@ -23,3 +23,7 @@ GitHub Repository for [https://github.com/zizifn/edgetunnel](https://github.com/
 2. Alternatively, you can click the button below to deploy directly.
 
    [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/3Kmfi6HP/EDtunnel)
+
+## Lazy to deploy
+
+`aHR0cHM6Ly9vc3MudjJyYXlzZS5jb20vcHJveGllcy9kYXRhLzIwMjMtMDYtMjAvZFFOQTk3LnlhbWw=` (clash config)
