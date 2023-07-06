@@ -27,3 +27,8 @@ GitHub Repository for [https://github.com/zizifn/edgetunnel](https://github.com/
 ## Lazy to deploy
 
 `aHR0cHM6Ly9vc3MudjJyYXlzZS5jb20vcHJveGllcy9kYXRhLzIwMjMtMDYtMjAvZFFOQTk3LnlhbWw=` (clash config)
+
+## Usage
+
+frist, open your pages.dev domain `https://edtunnel.pages.dev/` in your browser, then you can see the following page:
+The path `/uuid your seetting` to get the clash config and vless:// link.
