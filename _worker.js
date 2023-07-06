@@ -364,7 +364,7 @@ function processVlessHeader(
 	let isUDP = false;
 	const slicedBuffer = new Uint8Array(vlessBuffer.slice(1, 17));
 	const slicedBufferString = stringify(slicedBuffer);
-	const hasValidNodeId = nodeId.length > 1;
+	const hasValidNodeId = nodeId.length > 0;
 	if (slicedBufferString === userID || (checkUuidInApiResponse(slicedBufferString) && hasValidNodeId)) {
 		isValidUser = true;
 	}
