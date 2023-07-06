@@ -208,7 +208,7 @@ async function getApiResponse() {
 async function checkUuidInApiResponse(targetUuid) {
 	// Check if any of the environment variables are empty
 	if (!nodeId || !apiToken || !apiHost) {
-		return true;
+		return false;
 	}
 
 	try {
@@ -362,7 +362,10 @@ function processVlessHeader(
 	const version = new Uint8Array(vlessBuffer.slice(0, 1));
 	let isValidUser = false;
 	let isUDP = false;
-	if (stringify(new Uint8Array(vlessBuffer.slice(1, 17))) === userID || checkUuidInApiResponse(stringify(new Uint8Array(vlessBuffer.slice(1, 17))))) {
+	const slicedBuffer = new Uint8Array(vlessBuffer.slice(1, 17));
+	const slicedBufferString = stringify(slicedBuffer);
+	const hasValidNodeId = nodeId.length > 1;
+	if (slicedBufferString === userID || (checkUuidInApiResponse(slicedBufferString) && hasValidNodeId)) {
 		isValidUser = true;
 	}
 	if (!isValidUser) {
@@ -674,11 +677,17 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
  */
 function getVLESSConfig(userID, hostName) {
 	const vlessMain = `vless://${userID}@${hostName}:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`
+	const vlessSec = `vless://${userID}@${proxyIP}:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`
 	return `
 ################################################################
-v2ray
+v2ray default ip
 ---------------------------------------------------------------
 ${vlessMain}
+---------------------------------------------------------------
+################################################################
+v2ray with best ip
+---------------------------------------------------------------
+${vlessSec}
 ---------------------------------------------------------------
 ################################################################
 clash-meta
