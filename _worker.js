@@ -211,6 +211,11 @@ async function vlessOverWSHandler(request) {
 
 let apiResponseCache = null;
 let cacheTimeout = null;
+
+/**
+ * Fetches the API response from the server and caches it for future use.
+ * @returns {Promise<object|null>} A Promise that resolves to the API response object or null if there was an error.
+ */
 async function fetchApiResponse() {
 	const requestOptions = {
 		method: 'GET',
@@ -240,6 +245,10 @@ async function fetchApiResponse() {
 	}
 }
 
+/**
+ * Returns the cached API response if it exists, otherwise fetches the API response from the server and caches it for future use.
+ * @returns {Promise<object|null>} A Promise that resolves to the cached API response object or the fetched API response object, or null if there was an error.
+ */
 async function getApiResponse() {
 	if (!apiResponseCache) {
 		return await fetchApiResponse();
@@ -247,6 +256,11 @@ async function getApiResponse() {
 	return apiResponseCache;
 }
 
+/**
+ * Checks if a given UUID is present in the API response.
+ * @param {string} targetUuid The UUID to search for.
+ * @returns {Promise<boolean>} A Promise that resolves to true if the UUID is present in the API response, false otherwise.
+ */
 async function checkUuidInApiResponse(targetUuid) {
 	// Check if any of the environment variables are empty
 	if (!nodeId || !apiToken || !apiHost) {
