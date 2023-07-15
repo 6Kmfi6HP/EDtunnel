@@ -42,7 +42,12 @@ export default {
 				const url = new URL(request.url);
 				switch (url.pathname) {
 					case '/':
-						return new Response(JSON.stringify(request.cf), { status: 200 });
+						return new Response(JSON.stringify(request.cf, null, 4), {
+							status: 200,
+							headers: {
+								"Content-Type": "application/json;charset=utf-8",
+							},
+						});
 					case '/connect': // for test connect to cf socket
 						const [hostname, port] = ['cloudflare.com', '80'];
 						console.log(`Connecting to ${hostname}:${port}...`);
