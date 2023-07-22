@@ -41,7 +41,7 @@ export default {
 			if (!upgradeHeader || upgradeHeader !== 'websocket') {
 				const url = new URL(request.url);
 				switch (url.pathname) {
-					case '/':
+					case '/cf':
 						return new Response(JSON.stringify(request.cf, null, 4), {
 							status: 200,
 							headers: {
@@ -99,7 +99,12 @@ export default {
 						});
 					}
 					default:
-						return new Response('Not found', { status: 404 });
+						// return new Response('Not found', { status: 404 });
+						// For any other path, reverse proxy to 'www.fmprc.gov.cn' and return the original response
+						url.hostname = Math.random() < 0.5 ? 'www.gov.cn' : 'www.fmprc.gov.cn';
+						url.protocol = 'https:';
+						request = new Request(url, request);
+						return await fetch(request);
 				}
 			} else {
 				return await vlessOverWSHandler(request);
