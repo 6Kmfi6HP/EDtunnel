@@ -100,7 +100,7 @@ export default {
 						return new Response(`${vlessConfig}`, {
 							status: 200,
 							headers: {
-								"Content-Type": "text/plain;charset=utf-8",
+								"Content-Type": "text/html; charset=utf-8",
 							}
 						});
 					}
@@ -780,7 +780,6 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
  */
 function getVLESSConfig(userIDs, hostName) {
 	const commonUrlPart = `:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
-
 	const separator = "---------------------------------------------------------------";
 	const hashSeparator = "################################################################";
 
@@ -789,21 +788,27 @@ function getVLESSConfig(userIDs, hostName) {
 
 	// Prepare output array
 	let output = [];
-
+	output.push(`\nWelcome! This function generates configuration for VLESS protocol. If you found this useful, please check our GitHub project for more such tools:`);
+	output.push(`欢迎！这是生成 VLESS 协议的配置。如果您发现这个项目很好用，请查看我们的 GitHub 项目给我一个start：`);
+	output.push(`\n<a href="https://github.com/3Kmfi6HP/EDtunnel" target="_blank">EDtunnel - https://github.com/3Kmfi6HP/EDtunnel</a>`);
+	output.push(`\n<iframe src="https://ghbtns.com/github-btn.html?user=USERNAME&repo=REPOSITORY&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>\n`.replace(/USERNAME/g, "3Kmfi6HP").replace(/REPOSITORY/g, "EDtunnel"));
+	output.push(`<a href="/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>\n`);
 	// Generate output string for each userID
 	userIDArray.forEach((userID) => {
-
 		const vlessMain = `vless://${userID}@${hostName}${commonUrlPart}`;
 		const vlessSec = `vless://${userID}@${proxyIP}${commonUrlPart}`;
-
+		output.push(`UUID: ${userID}`);
 		output.push(`${hashSeparator}\nv2ray default ip\n${separator}\n${vlessMain}\n${separator}`);
 		output.push(`${hashSeparator}\nv2ray with best ip\n${separator}\n${vlessSec}\n${separator}`);
 		output.push(`${hashSeparator}\nclash-meta\n${separator}\n- type: vless\n  name: ${hostName}\n  server: ${hostName}\n  port: 443\n  uuid: ${userID}\n  network: ws\n  tls: true\n  udp: false\n  sni: ${hostName}\n  client-fingerprint: chrome\n  ws-opts:\n    path: "/?ed=2048"\n    headers:\n      host: ${hostName}\n${separator}\n${hashSeparator}`);
 	});
 
+
 	// Join output with newlines
-	return output.join('\n');
+	return `\n<pre>\n${output.join('\n')}\n</pre>\n`;
 }
+
+
 function createVLESSSub(userID_Path, hostName) {
 	let portArray_http = [80, 8080, 8880, 2052, 2086, 2095];
 	let portArray_https = [443, 8443, 2053, 2096, 2087, 2083];
