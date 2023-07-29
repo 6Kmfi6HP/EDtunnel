@@ -12,7 +12,7 @@ jobs:
       NAME: ${{ secrets.GH_USERNAME }}
       TOKEN: ${{ secrets.TOKEN }}
       REMOTE_NAME: origin
-      BRANCH_BASE_NAME: baipiao
+      BRANCH_BASE_NAME: proxyip
       BRANCH_COUNT: 300
 
     steps:
