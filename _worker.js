@@ -788,11 +788,14 @@ function getVLESSConfig(userIDs, hostName) {
 
 	// Prepare output array
 	let output = [];
-	output.push(`\nWelcome! This function generates configuration for VLESS protocol. If you found this useful, please check our GitHub project for more such tools:`);
+	output.push(`\n<p align="center">
+	<img src="https://cloudflare-ipfs.com/ipfs/bafybeigd6i5aavwpr6wvnwuyayklq3omonggta4x2q7kpmgafj357nkcky" alt="图片描述" style="margin-bottom: -50px;">
+`);
+	output.push(`\nWelcome! This function generates configuration for VLESS protocol. If you found this useful, please check our GitHub project for more:`);
 	output.push(`欢迎！这是生成 VLESS 协议的配置。如果您发现这个项目很好用，请查看我们的 GitHub 项目给我一个start：`);
 	output.push(`\n<a href="https://github.com/3Kmfi6HP/EDtunnel" target="_blank">EDtunnel - https://github.com/3Kmfi6HP/EDtunnel</a>`);
 	output.push(`\n<iframe src="https://ghbtns.com/github-btn.html?user=USERNAME&repo=REPOSITORY&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>\n`.replace(/USERNAME/g, "3Kmfi6HP").replace(/REPOSITORY/g, "EDtunnel"));
-	output.push(`<a href="/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>\n`);
+	output.push(`<a href="/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>  </p>\n`);
 	// Generate output string for each userID
 	userIDArray.forEach((userID) => {
 		const vlessMain = `vless://${userID}@${hostName}${commonUrlPart}`;
