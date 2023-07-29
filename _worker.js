@@ -798,15 +798,18 @@ function getVLESSConfig(userIDs, hostName) {
 
 	// Prepare output array
 	let output = [];
-	output.push(`\n<p align="center">
+	let header = [];
+
+	header.push(`\n<p align="center">
 	<img src="https://cloudflare-ipfs.com/ipfs/bafybeigd6i5aavwpr6wvnwuyayklq3omonggta4x2q7kpmgafj357nkcky" alt="图片描述" style="margin-bottom: -50px;">
 `);
-	output.push(`\nWelcome! This function generates configuration for VLESS protocol. If you found this useful, please check our GitHub project for more:`);
-	output.push(`欢迎！这是生成 VLESS 协议的配置。如果您发现这个项目很好用，请查看我们的 GitHub 项目给我一个start：`);
-	output.push(`\n<a href="https://github.com/3Kmfi6HP/EDtunnel" target="_blank">EDtunnel - https://github.com/3Kmfi6HP/EDtunnel</a>`);
-	output.push(`\n<iframe src="https://ghbtns.com/github-btn.html?user=USERNAME&repo=REPOSITORY&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>\n`.replace(/USERNAME/g, "3Kmfi6HP").replace(/REPOSITORY/g, "EDtunnel"));
-	output.push(`<a href="//${hostName}/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>\n<a href="https://subconverter.do.xn--b6gac.eu.org/sub?target=clash&url=https://${hostName}/sub/${userIDArray[0]}?format=clash&insert=false&emoji=true&list=true&tfo=false&scv=true&fdn=false&sort=false&new_name=true" target="_blank">Clash 节点订阅连接</a></p>\n`);
-	output.push(``);
+	header.push(`\n<b style=" font-size: 15px;" >Welcome! This function generates configuration for VLESS protocol. If you found this useful, please check our GitHub project for more:</b>\n`);
+	header.push(`<b style=" font-size: 15px;" >欢迎！这是生成 VLESS 协议的配置。如果您发现这个项目很好用，请查看我们的 GitHub 项目给我一个start：</b>\n`);
+	header.push(`\n<a href="https://github.com/3Kmfi6HP/EDtunnel" target="_blank">EDtunnel - https://github.com/3Kmfi6HP/EDtunnel</a>\n`);
+	header.push(`\n<iframe src="https://ghbtns.com/github-btn.html?user=USERNAME&repo=REPOSITORY&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>\n\n`.replace(/USERNAME/g, "3Kmfi6HP").replace(/REPOSITORY/g, "EDtunnel"));
+	header.push(`<a href="//${hostName}/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>\n<a href="https://subconverter.do.xn--b6gac.eu.org/sub?target=clash&url=https://${hostName}/sub/${userIDArray[0]}?format=clash&insert=false&emoji=true&list=false&tfo=false&scv=true&fdn=false&sort=false&new_name=true" target="_blank">Clash 节点订阅连接</a></p>\n`);
+	header.push(``);
+
 	// Generate output string for each userID
 	userIDArray.forEach((userID) => {
 		const vlessMain = `vless://${userID}@${hostName}${commonUrlPart}`;
@@ -814,8 +817,9 @@ function getVLESSConfig(userIDs, hostName) {
 		output.push(`UUID: ${userID}`);
 		output.push(`${hashSeparator}\nv2ray default ip\n${separator}\n${vlessMain}\n${separator}`);
 		output.push(`${hashSeparator}\nv2ray with best ip\n${separator}\n${vlessSec}\n${separator}`);
-		output.push(`${hashSeparator}\nclash-meta\n${separator}\n- type: vless\n  name: ${hostName}\n  server: ${hostName}\n  port: 443\n  uuid: ${userID}\n  network: ws\n  tls: true\n  udp: false\n  sni: ${hostName}\n  client-fingerprint: chrome\n  ws-opts:\n    path: "/?ed=2048"\n    headers:\n      host: ${hostName}\n${separator}\n${hashSeparator}`);
 	});
+	output.push(`${hashSeparator}\n# Clash Proxy Provider 配置格式(configuration format)\nproxy-groups:\n  - name: UseProvider\n	type: select\n	use:\n	  - provider1\n	proxies:\n	  - Proxy\n	  - DIRECT\nproxy-providers:\n  provider1:\n	type: http\n	url: https://${hostName}/sub/${userIDArray[0]}?format=clash\n	interval: 3600\n	path: ./provider1.yaml\n	health-check:\n	  enable: true\n	  interval: 600\n	  # lazy: true\n	  url: http://www.gstatic.com/generate_204\n\n${hashSeparator}`);
+
 	// HTML Head with CSS
 	const htmlHead = `
     <head>
@@ -847,6 +851,22 @@ function getVLESSConfig(userIDs, hostName) {
             padding: 15px;
             margin: 10px 0;
         }
+		/* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #333;
+                color: #f0f0f0;
+            }
+
+            a {
+                color: #9db4ff;
+            }
+
+            pre {
+                background-color: #282a36;
+                border-color: #6272a4;
+            }
+        }
         </style>
     </head>
     `;
@@ -856,7 +876,10 @@ function getVLESSConfig(userIDs, hostName) {
     <html>
     ${htmlHead}
     <body>
-    <pre>${output.join('\n')}</pre>
+    <pre style="
+    background-color: transparent;
+    border: none;
+">${header.join('')}</pre><pre>${output.join('\n')}</pre>
     </body>
 </html>`;
 }
@@ -875,7 +898,7 @@ function createVLESSSub(userID_Path, hostName) {
 	// Generate output string for each userID
 	userIDArray.forEach((userID) => {
 		// Check if the hostName is a Cloudflare Pages domain, if not, generate HTTP configurations
-		// reson: pages.dev not support http only https
+		// reasons: pages.dev not support http only https
 		if (!hostName.includes('pages.dev')) {
 			// Iterate over all ports for http
 			portArray_http.forEach((port) => {
@@ -884,7 +907,7 @@ function createVLESSSub(userID_Path, hostName) {
 
 				// For each proxy IP, generate a VLESS configuration and add to output
 				proxyIPs.forEach((proxyIP) => {
-					const vlessSecHttp = `vless://${userID}@${proxyIP}${commonUrlPart_http}`;
+					const vlessSecHttp = `vless://${userID}@${proxyIP}${commonUrlPart_http}-${proxyIP}-EDtunnel`;
 					output.push(`${vlessMainHttp}`);
 					output.push(`${vlessSecHttp}`);
 				});
@@ -897,7 +920,7 @@ function createVLESSSub(userID_Path, hostName) {
 
 			// For each proxy IP, generate a VLESS configuration and add to output
 			proxyIPs.forEach((proxyIP) => {
-				const vlessSecHttps = `vless://${userID}@${proxyIP}${commonUrlPart_https}`;
+				const vlessSecHttps = `vless://${userID}@${proxyIP}${commonUrlPart_https}-${proxyIP}-EDtunnel`;
 				output.push(`${vlessMainHttps}`);
 				output.push(`${vlessSecHttps}`);
 			});
