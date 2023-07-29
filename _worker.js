@@ -824,19 +824,22 @@ function createVLESSSub(userID_Path, hostName) {
 
 	// Generate output string for each userID
 	userIDArray.forEach((userID) => {
-		// Iterate over all ports for http
-		portArray_http.forEach((port) => {
-			const commonUrlPart_http = `:${port}?encryption=none&security=none&fp=random&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}-HTTP`;
-			const vlessMainHttp = `vless://${userID}@${hostName}${commonUrlPart_http}`;
+		// Check if the hostName is a Cloudflare Pages domain, if not, generate HTTP configurations
+		// reson: pages.dev not support http only https
+		if (!hostName.includes('pages.dev')) {
+			// Iterate over all ports for http
+			portArray_http.forEach((port) => {
+				const commonUrlPart_http = `:${port}?encryption=none&security=none&fp=random&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}-HTTP`;
+				const vlessMainHttp = `vless://${userID}@${hostName}${commonUrlPart_http}`;
 
-			// For each proxy IP, generate a VLESS configuration and add to output
-			proxyIPs.forEach((proxyIP) => {
-				const vlessSecHttp = `vless://${userID}@${proxyIP}${commonUrlPart_http}`;
-				output.push(`${vlessMainHttp}`);
-				output.push(`${vlessSecHttp}`);
+				// For each proxy IP, generate a VLESS configuration and add to output
+				proxyIPs.forEach((proxyIP) => {
+					const vlessSecHttp = `vless://${userID}@${proxyIP}${commonUrlPart_http}`;
+					output.push(`${vlessMainHttp}`);
+					output.push(`${vlessSecHttp}`);
+				});
 			});
-		});
-
+		}
 		// Iterate over all ports for https
 		portArray_https.forEach((port) => {
 			const commonUrlPart_https = `:${port}?encryption=none&security=tls&sni=${hostName}&fp=random&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}-HTTPS`;
