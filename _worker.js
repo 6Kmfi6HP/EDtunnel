@@ -105,14 +105,24 @@ export default {
 						});
 					}
 					case `/sub/${userID_Path}`: {
-						const vlessConfig = createVLESSSub(userID, request.headers.get('Host'));
-						return new Response(`${vlessConfig}`, {
+						const url = new URL(request.url);
+						const searchParams = url.searchParams;
+						let vlessConfig = createVLESSSub(userID, request.headers.get('Host'));
+
+						// If 'format' query param equals to 'clash', convert config to base64
+						if (searchParams.get('format') === 'clash') {
+							vlessConfig = btoa(vlessConfig);
+						}
+
+						// Construct and return response object
+						return new Response(vlessConfig, {
 							status: 200,
 							headers: {
 								"Content-Type": "text/plain;charset=utf-8",
 							}
 						});
 					}
+
 					default:
 						// return new Response('Not found', { status: 404 });
 						// For any other path, reverse proxy to 'www.fmprc.gov.cn' and return the original response
@@ -795,7 +805,8 @@ function getVLESSConfig(userIDs, hostName) {
 	output.push(`欢迎！这是生成 VLESS 协议的配置。如果您发现这个项目很好用，请查看我们的 GitHub 项目给我一个start：`);
 	output.push(`\n<a href="https://github.com/3Kmfi6HP/EDtunnel" target="_blank">EDtunnel - https://github.com/3Kmfi6HP/EDtunnel</a>`);
 	output.push(`\n<iframe src="https://ghbtns.com/github-btn.html?user=USERNAME&repo=REPOSITORY&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>\n`.replace(/USERNAME/g, "3Kmfi6HP").replace(/REPOSITORY/g, "EDtunnel"));
-	output.push(`<a href="/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>  </p>\n`);
+	output.push(`<a href="//${hostName}/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>\n<a href="https://subconverter.do.xn--b6gac.eu.org/sub?target=clash&url=https://${hostName}/sub/${userIDArray[0]}?format=clash&insert=false&emoji=true&list=true&tfo=false&scv=true&fdn=false&sort=false&new_name=true" target="_blank">Clash 节点订阅连接</a></p>\n`);
+	output.push(``);
 	// Generate output string for each userID
 	userIDArray.forEach((userID) => {
 		const vlessMain = `vless://${userID}@${hostName}${commonUrlPart}`;
@@ -805,10 +816,49 @@ function getVLESSConfig(userIDs, hostName) {
 		output.push(`${hashSeparator}\nv2ray with best ip\n${separator}\n${vlessSec}\n${separator}`);
 		output.push(`${hashSeparator}\nclash-meta\n${separator}\n- type: vless\n  name: ${hostName}\n  server: ${hostName}\n  port: 443\n  uuid: ${userID}\n  network: ws\n  tls: true\n  udp: false\n  sni: ${hostName}\n  client-fingerprint: chrome\n  ws-opts:\n    path: "/?ed=2048"\n    headers:\n      host: ${hostName}\n${separator}\n${hashSeparator}`);
 	});
+	// HTML Head with CSS
+	const htmlHead = `
+    <head>
+        <title>EDtunnel: VLESS configuration</title>
+        <meta name="description" content="This is a tool for generating VLESS protocol configurations. Give us a star on GitHub https://github.com/3Kmfi6HP/EDtunnel if you found it useful!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 10px;
+        }
 
+        a {
+            color: #1a0dab;
+            text-decoration: none;
+        }
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+		
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        </style>
+    </head>
+    `;
 
-	// Join output with newlines
-	return `\n<pre>\n${output.join('\n')}\n</pre>\n`;
+	// Join output with newlines, wrap inside <html> and <body>
+	return `
+    <html>
+    ${htmlHead}
+    <body>
+    <pre>${output.join('\n')}</pre>
+    </body>
+</html>`;
 }
 
 
