@@ -28,6 +28,70 @@ GitHub Repository for [https://github.com/zizifn/edgetunnel](https://github.com/
 
 `aHR0cHM6Ly9vc3MudjJyYXlzZS5jb20vcHJveGllcy9kYXRhLzIwMjMtMDYtMjAvZFFOQTk3LnlhbWw=` (clash config)
 
+## UUID Setting (Optional)
+
+1. When deploy in cloudflare pages, you can set uuid in `wrangler.toml` file. variable name is `UUID`.
+
+2. When deploy in worker.dev, you can set uuid in `_worker.js` file. variable name is `userID`.
+
+### UUID Setting Example
+
+1. single uuid environment variable
+
+   ```.environment
+   UUID = "uuid here your want to set"
+   ```
+
+2. multiple uuid environment variable
+
+   ```.environment
+   UUID = "uuid1,uuid2,uuid3"
+   ```
+
+   note: uuid1, uuid2, uuid3 are separated by commas`,`.
+   when you set multiple uuid, you can wiill use `https://edtunnel.pages.dev/uuid1` to get the clash config and vless:// link.
+
+## subscribe vless:// link (Optional)
+
+1. visit `https://edtunnel.pages.dev/uuid your set` to get the subscribe link.
+
+2. visit `https://edtunnel.pages.dev/sub/uuid your set` to get the subscribe content with `uuid your set` path.
+
+   note: `uuid your set` is the uuid you set in UUID enviroment or `wrangler.toml`, `_worker.js` file.
+   when you set multiple uuid, you can wiill use `https://edtunnel.pages.dev/sub/uuid1` to get the subscribe content with `uuid1` path.(only support first uuid in multiple uuid set)
+
+3. visit `https://edtunnel.pages.dev/sub/uuid your set/?format=clash` to get the subscribe content with `uuid your set` path and `clash` format. content will return with base64 encode.
+
+   note: `uuid your set` is the uuid you set in UUID enviroment or `wrangler.toml`, `_worker.js` file.
+   when you set multiple uuid, you can wiill use `https://edtunnel.pages.dev/sub/uuid1/?format=clash` to get the subscribe content with `uuid1` path and `clash` format.(only support first uuid in multiple uuid set)
+
+## multiple port support (Optional)
+
+   <!-- let portArray_http = [80, 8080, 8880, 2052, 2086, 2095];
+	let portArray_https = [443, 8443, 2053, 2096, 2087, 2083]; -->
+
+For a list of Cloudflare supported ports, please refer to the [official documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/ports).
+
+By default, the port is 80 and 443. If you want to add more ports, you can use the following ports:
+
+```text
+80, 8080, 8880, 2052, 2086, 2095, 443, 8443, 2053, 2096, 2087, 2083
+http port: 80, 8080, 8880, 2052, 2086, 2095
+https port: 443, 8443, 2053, 2096, 2087, 2083
+```
+
+if you deploy in cloudflare pages, https port is not supported. Simply add multiple ports node drictly use subscribe link, subscribe content will return all Cloudflare supported ports.
+
+## proxyIP (Optional)
+
+1. When deploy in cloudflare pages, you can set proxyIP in `wrangler.toml` file. variable name is `PROXYIP`.
+
+2. When deploy in worker.dev, you can set proxyIP in `_worker.js` file. variable name is `proxyIP`.
+
+note: `proxyIP` is the ip or domain you want to set. this means that the proxyIP is used to route traffic through a proxy rather than directly to a website that is using Cloudflare's (CDN). if you don't set this variable, connection to the Cloudflare IP will be cancelled (or blocked)...
+
+resons: Outbound TCP sockets to Cloudflare IP ranges are temporarily blocked, please refer to the [tcp-sockets documentation](https://developers.cloudflare.com/workers/runtime-apis/tcp-sockets/#considerations)
+
 ## Usage
 
 frist, open your pages.dev domain `https://edtunnel.pages.dev/` in your browser, then you can see the following page:
