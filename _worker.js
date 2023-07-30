@@ -832,13 +832,13 @@ function getVLESSConfig(userIDs, hostName) {
         <meta property="og:title" content="EDtunnel - VLESS configuration and subscribe output" />
         <meta property="og:description" content="Use cloudflare pages and worker severless to implement vless protocol" />
         <meta property="og:url" content="https://${hostName}/" />
-        <meta property="og:image" content="https://cloudflare-ipfs.com/ipfs/bafybeigd6i5aavwpr6wvnwuyayklq3omonggta4x2q7kpmgafj357nkcky" />
+        <meta property="og:image" content="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(`vless://${userIDs.split(',')[0]}@${hostName}${commonUrlPart}`)}" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="EDtunnel - VLESS configuration and subscribe output" />
         <meta name="twitter:description" content="Use cloudflare pages and worker severless to implement vless protocol" />
         <meta name="twitter:url" content="https://${hostName}/" />
         <meta name="twitter:image" content="https://cloudflare-ipfs.com/ipfs/bafybeigd6i5aavwpr6wvnwuyayklq3omonggta4x2q7kpmgafj357nkcky" />
-        <meta property="og:image:width" content="2000" />
+        <meta property="og:image:width" content="1500" />
         <meta property="og:image:height" content="1500" />
 
         <style>
