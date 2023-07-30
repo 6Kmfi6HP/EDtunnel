@@ -8,6 +8,8 @@
 
 [![Repository](https://img.shields.io/badge/View%20on-GitHub-blue.svg)](https://github.com/zizifn/edgetunnel)
 
+> 注意：此中文文档由 GPT 生成，在部署和配置过程中若出现问题，建议参考原英文文档以获取准确信息。
+
 ## 在 pages.dev 部署
 
 1. 观看 YouTube 视频教程:
@@ -24,7 +26,7 @@
 
    [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/3Kmfi6HP/EDtunnel)
 
-## 如何快速部署
+## 如何快速使用
 
 `aHR0cHM6Ly9vc3MudjJyYXlzZS5jb20vcHJveGllcy9kYXRhLzIwMjMtMDYtMjAvZFFOQTk3LnlhbWw=` (clash 配置)
 
