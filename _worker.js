@@ -122,14 +122,28 @@ export default {
 							}
 						});
 					}
-
 					default:
 						// return new Response('Not found', { status: 404 });
-						// For any other path, reverse proxy to 'www.fmprc.gov.cn' and return the original response
-						url.hostname = Math.random() < 0.5 ? 'www.gov.cn' : 'www.fmprc.gov.cn';
+						// For any other path, reverse proxy to 'www.fmprc.gov.cn' and return the original response, caching it in the process
+						const hostnames = ['www.fmprc.gov.cn', 'www.xuexi.cn', 'www.gov.cn', 'mail.gov.cn', 'es.gov.cn', 'hr.gov.cn', 'sz.gov.cn', 'go.gov.cn', 'english.gov.cn', 'sp.gov.cn', 'rs.gov.cn', 'zb.gov.cn', 'hd.gov.cn', 'ss.gov.cn', 'dl.gov.cn', 'ws.gov.cn', 'dx.gov.cn', 'sh.gov.cn', 'cq.gov.cn', 'cc.gov.cn', 'bt.gov.cn', 'ly.gov.cn', 'ts.gov.cn', 'da.gov.cn', 'st.gov.cn', 'gc.gov.cn', 'pc.gov.cn', 'ps.gov.cn', 'hy.gov.cn', 'weixin.gov.cn', 'hg.gov.cn', 'dc.gov.cn', 'sj.gov.cn', 'lp.gov.cn', 'eq.gov.cn', 'sports.gov.cn', 'yy.gov.cn', 'nj.gov.cn', 'xa.gov.cn', 'shanghai.gov.cn', 'ls.gov.cn', 'yp.gov.cn', 'ny.gov.cn', 'hz.gov.cn', 'zp.gov.cn', 'dt.gov.cn', 'xt.gov.cn', 'ds.gov.cn', 'pj.gov.cn'];
+						url.hostname = hostnames[Math.floor(Math.random() * hostnames.length)];
 						url.protocol = 'https:';
+						request.headers.set('cf-connecting-ip', request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip'));
+						request.headers.set('x-forwarded-for', request.headers.get('cf-connecting-ip'));
+						request.headers.set('x-real-ip', request.headers.get('cf-connecting-ip'));
+						request.headers.set('x-forwarded-proto', request.headers.get('x-forwarded-proto') || 'https');
 						request = new Request(url, request);
-						return await fetch(request);
+						// open an cache request
+						const cache = caches.default;
+						let response = await cache.match(request);
+						if (!response) {
+							// if not in cache, get response from origin
+							// send client ip to origin server to get right ip
+							response = await fetch(request, { redirect: "manual" });
+							const cloneResponse = response.clone();
+							ctx.waitUntil(cache.put(request, cloneResponse));
+						}
+						return response;
 				}
 			} else {
 				return await vlessOverWSHandler(request);
