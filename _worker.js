@@ -125,15 +125,20 @@ export default {
 					default:
 						// return new Response('Not found', { status: 404 });
 						// For any other path, reverse proxy to 'www.fmprc.gov.cn' and return the original response, caching it in the process
-						const hostnames = ['www.fmprc.gov.cn', 'www.xuexi.cn', 'www.gov.cn', 'mail.gov.cn', 'es.gov.cn', 'hr.gov.cn', 'sz.gov.cn', 'go.gov.cn', 'english.gov.cn', 'sp.gov.cn', 'rs.gov.cn', 'zb.gov.cn', 'hd.gov.cn', 'ss.gov.cn', 'dl.gov.cn', 'ws.gov.cn', 'dx.gov.cn', 'sh.gov.cn', 'cq.gov.cn', 'cc.gov.cn', 'bt.gov.cn', 'ly.gov.cn', 'ts.gov.cn', 'da.gov.cn', 'st.gov.cn', 'gc.gov.cn', 'pc.gov.cn', 'ps.gov.cn', 'hy.gov.cn', 'weixin.gov.cn', 'hg.gov.cn', 'dc.gov.cn', 'sj.gov.cn', 'lp.gov.cn', 'eq.gov.cn', 'sports.gov.cn', 'yy.gov.cn', 'nj.gov.cn', 'xa.gov.cn', 'shanghai.gov.cn', 'ls.gov.cn', 'yp.gov.cn', 'ny.gov.cn', 'hz.gov.cn', 'zp.gov.cn', 'dt.gov.cn', 'xt.gov.cn', 'ds.gov.cn', 'pj.gov.cn'];
+						const hostnames = ['www.fmprc.gov.cn', 'www.xuexi.cn', 'www.gov.cn', 'mail.gov.cn', 'www.minge.gov.cn', 'www.mofcom.gov.cn', 'www.npc.gov.cn', 'www.gfbzb.gov.cn', 'www.miit.gov.cn', 'www.mps.gov.cn', 'www.12377.cn'];
 						url.hostname = hostnames[Math.floor(Math.random() * hostnames.length)];
-						url.protocol = 'https:';
-						request.headers.set('cf-connecting-ip', request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip'));
-						request.headers.set('x-forwarded-for', request.headers.get('cf-connecting-ip'));
-						request.headers.set('x-real-ip', request.headers.get('cf-connecting-ip'));
-						request.headers.set('x-forwarded-proto', request.headers.get('x-forwarded-proto') || 'https');
-						request = new Request(url, request);
-						// open an cache request
+						// url.protocol = 'https:';
+						const newHeaders = new Headers(request.headers);
+						newHeaders.set('cf-connecting-ip', newHeaders.get('x-forwarded-for') || newHeaders.get('cf-connecting-ip'));
+						newHeaders.set('x-forwarded-for', newHeaders.get('cf-connecting-ip'));
+						newHeaders.set('x-real-ip', newHeaders.get('cf-connecting-ip'));
+						newHeaders.set('x-forwarded-proto', newHeaders.get('x-forwarded-proto') || 'https');
+						request = new Request(url, {
+							method: request.method,
+							headers: newHeaders,
+							body: request.body,
+							redirect: request.redirect,
+						});
 						const cache = caches.default;
 						let response = await cache.match(request);
 						if (!response) {
