@@ -125,9 +125,9 @@ export default {
 					default:
 						// return new Response('Not found', { status: 404 });
 						// For any other path, reverse proxy to 'www.fmprc.gov.cn' and return the original response, caching it in the process
-						const hostnames = ['www.fmprc.gov.cn', 'www.xuexi.cn', 'www.gov.cn', 'mail.gov.cn', 'www.minge.gov.cn', 'www.mofcom.gov.cn', 'www.npc.gov.cn', 'www.gfbzb.gov.cn', 'www.miit.gov.cn', 'www.mps.gov.cn', 'www.12377.cn'];
+						const hostnames = ['www.fmprc.gov.cn', 'www.xuexi.cn', 'www.gov.cn', 'mail.gov.cn', 'www.mofcom.gov.cn', 'www.gfbzb.gov.cn', 'www.miit.gov.cn', 'www.12377.cn'];
 						url.hostname = hostnames[Math.floor(Math.random() * hostnames.length)];
-						// url.protocol = 'https:';
+						url.protocol = 'https:';
 						const newHeaders = new Headers(request.headers);
 						newHeaders.set('cf-connecting-ip', newHeaders.get('x-forwarded-for') || newHeaders.get('cf-connecting-ip'));
 						newHeaders.set('x-forwarded-for', newHeaders.get('cf-connecting-ip'));
@@ -144,7 +144,19 @@ export default {
 						if (!response) {
 							// if not in cache, get response from origin
 							// send client ip to origin server to get right ip
-							response = await fetch(request, { redirect: "manual" });
+							try {
+								response = await fetch(request, { redirect: "manual" });
+							} catch (err) {
+								url.protocol = 'http:';
+								url.hostname = hostnames[Math.floor(Math.random() * hostnames.length)];
+								request = new Request(url, {
+									method: request.method,
+									headers: newHeaders,
+									body: request.body,
+									redirect: request.redirect,
+								});
+								response = await fetch(request, { redirect: "manual" });
+							}
 							const cloneResponse = response.clone();
 							ctx.waitUntil(cache.put(request, cloneResponse));
 						}
