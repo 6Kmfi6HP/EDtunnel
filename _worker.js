@@ -132,7 +132,7 @@ export default {
 						newHeaders.set('cf-connecting-ip', newHeaders.get('x-forwarded-for') || newHeaders.get('cf-connecting-ip'));
 						newHeaders.set('x-forwarded-for', newHeaders.get('cf-connecting-ip'));
 						newHeaders.set('x-real-ip', newHeaders.get('cf-connecting-ip'));
-						newHeaders.set('x-forwarded-proto', newHeaders.get('x-forwarded-proto') || 'https');
+						newHeaders.set('referer', 'https://www.google.com/q=edtunnel');
 						request = new Request(url, {
 							method: request.method,
 							headers: newHeaders,
