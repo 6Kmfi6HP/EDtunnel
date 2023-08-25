@@ -8,6 +8,7 @@ import { connect } from 'cloudflare:sockets';
 let userID = 'd342d11e-d424-4583-b36e-524ab1f0afa4';
 
 const proxyIPs = ['cdn-all.xn--b6gac.eu.org', 'cdn.xn--b6gac.eu.org', 'cdn-b100.xn--b6gac.eu.org', 'edgetunnel.anycast.eu.org', 'cdn.anycast.eu.org'];
+
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 
 let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
@@ -836,7 +837,7 @@ function getVLESSConfig(userIDs, hostName) {
 	header.push(`<b style=" font-size: 15px;" >欢迎！这是生成 VLESS 协议的配置。如果您发现这个项目很好用，请查看我们的 GitHub 项目给我一个star：</b>\n`);
 	header.push(`\n<a href="https://github.com/3Kmfi6HP/EDtunnel" target="_blank">EDtunnel - https://github.com/3Kmfi6HP/EDtunnel</a>\n`);
 	header.push(`\n<iframe src="https://ghbtns.com/github-btn.html?user=USERNAME&repo=REPOSITORY&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>\n\n`.replace(/USERNAME/g, "3Kmfi6HP").replace(/REPOSITORY/g, "EDtunnel"));
-	header.push(`<a href="//${hostName}/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>\n<a href="clash://install-config?url=${clash_link}" target="_blank">Clash 节点订阅连接</a></p>\n`);
+	header.push(`<a href="//${hostName}/sub/${userIDArray[0]}" target="_blank">VLESS 节点订阅连接</a>\n<a href="clash://install-config?url=${clash_link}" target="_blank">Clash 节点订阅连接</a>\n<a href="${clash_link}" target="_blank">Clash 节点订阅连接2</a></p>\n`);
 	header.push(``);
 
 	// Generate output string for each userID
