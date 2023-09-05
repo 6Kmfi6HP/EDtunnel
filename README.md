@@ -26,7 +26,7 @@ GitHub Repository for [https://github.com/zizifn/edgetunnel](https://github.com/
 
 ## Lazy to deploy
 
-`aHR0cHM6Ly9vc3MudjJyYXlzZS5jb20vcHJveGllcy9kYXRhLzIwMjMtMDYtMjAvZFFOQTk3LnlhbWw=` (clash config)
+`aHR0cHM6Ly9vc3MudjJyYXlzZS5jb20vcHJveGllcy9kYXRhLzIwMjMtMDctMzAvRnJFS1lvQS50eHQ=` (free clash.meta subscribe config)
 
 ## UUID Setting (Optional)
 
