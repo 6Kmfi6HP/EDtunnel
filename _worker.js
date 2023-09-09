@@ -191,11 +191,11 @@ function getOutbound(curPos) {
 function canOutboundUDPVia(protocolName) {
 	switch (protocolName) {
 		case 'freedom':
-			return platformAPI.associate != null;
+			return platformAPI.associate != null; // Check if the 'associate' property is not null for the 'freedom' protocol
 		case 'vless':
-			return true;
+			return true; // The 'vless' protocol can always use UDP for outbound connections
 	}
-	return false;
+	return false; // If the protocol name does not match any of the cases above, return false by default
 }
 
 /**
@@ -209,19 +209,22 @@ function canOutboundUDPVia(protocolName) {
  * }} env - The environmental variables object.
  */
 export function setConfigFromEnv(request, env) {
-	// get the request path query string
-	// /?ed=2048&sni=historic-leather-goat-oxford.trycloudflare.com&uuid=6f24031c-ce7a-4f65-a3dd-a33a9e2b542c&path=/?ed=2048
+	// Parse the URL of the incoming request
 	const url = new URL(request.url);
-	const path = url.pathname;
-	const query = url.searchParams;
-	// const ed = query.get('ed');
-	const sni = query.get('sni');
-	const uuid = query.get('uuid');
-	const vlessPath = query.get('path');
+	const path = url.pathname; // Get the path from the URL
+	const query = url.searchParams; // Get the query parameters from the URL
+	const sni = query.get('sni'); // Get the 'sni' parameter from the query
+	const uuid = query.get('uuid'); // Get the 'uuid' parameter from the query
+	const vlessPath = query.get('path'); // Get the 'path' parameter from the query
+
+	// Log the extracted values for debugging purposes
 	console.log(`path: ${path} sni: ${sni} uuid: ${uuid} vlessPath: ${vlessPath}`);
-	// make á vless:// url from the request example:  vless://uuid@domain.name:port?type=ws&security=tls
-	// for this, use 443 port for vless and 80 for vless over ws
-	const vlessUrl = `vless://${uuid}@${sni}:443?type=ws&security=tls&path=${vlessPath}`;
+
+	// Create a vless:// URL based on the request parameters
+	// Example: vless://uuid@domain.name:port?type=ws&security=tls
+	// Default port is 443 for vless and 80 for vless over ws
+	const vlessUrl = env.VLESS || `vless://${uuid}@${sni}:443?type=ws&security=tls&path=${vlessPath}`;
+
 
 	globalConfig.userID = env.UUID || globalConfig.userID;
 
@@ -249,7 +252,7 @@ export function setConfigFromEnv(request, env) {
 	// Example: vless://uuid@domain.name:port?type=ws&security=tls
 	// if VLESS is set, use it, otherwise use the vlessUrl from the request
 	// 
-	if (env.VLESS || vlessUrl) {
+	if (vlessUrl) {
 		try {
 			const {
 				uuid,
@@ -352,17 +355,21 @@ export default {
 	 */
 	async fetch(request, env, ctx) {
 		if (env.LOGPOST) {
+			// Redirect console logs to a specified endpoint, if LOGPOST environment variable is set
 			redirectConsoleLog(env.LOGPOST, crypto.randomUUID());
 		}
 		try {
+			// Set configuration from environment variables
 			setConfigFromEnv(request, env);
 			const upgradeHeader = request.headers.get('Upgrade');
 			if (!upgradeHeader || upgradeHeader !== 'websocket') {
 				const url = new URL(request.url);
 				switch (url.pathname) {
 					case '/cf':
+						// Return Cloudflare-specific data as a JSON response
 						return new Response(JSON.stringify(request.cf), { status: 200 });
 					case `/${globalConfig.userID}`: {
+						// Return VLESS configuration based on the 'Host' header
 						const vlessConfig = getVLESSConfig(request.headers.get('Host'));
 						return new Response(`${vlessConfig}`, {
 							status: 200,
@@ -372,6 +379,7 @@ export default {
 						});
 					}
 					case `/sub/${globalConfig.userID}`: {
+						// Generate VLESS subscription config based on user ID and 'Host' header
 						const url = new URL(request.url);
 						const searchParams = url.searchParams;
 						let vlessConfig = createVLESSSub(globalConfig.userID, request.headers.get('Host'));
@@ -390,18 +398,20 @@ export default {
 						});
 					}
 					default:
-						return new Response('EMOTIONAL DAMAGE TUNNEL', { status: 206 });
+						// Return a response indicating an unknown path
+						return new Response('EMOTIONAL DAMAGE', { status: 206 });
 				}
 			} else {
 				/** @type {import("@cloudflare/workers-types").WebSocket[]} */
 				// @ts-ignore
+				// Handle WebSocket connections
 				const webSocketPair = new WebSocketPair();
 				const [client, webSocket] = Object.values(webSocketPair);
 
 				webSocket.accept();
 				const earlyDataHeader = request.headers.get('sec-websocket-protocol') || '';
 				const statusCode = vlessOverWSHandler(webSocket, earlyDataHeader);
-
+				// Return a WebSocket response with the specified status code and client WebSocket
 				return new Response(null, {
 					status: statusCode,
 					// @ts-ignore
@@ -409,6 +419,7 @@ export default {
 				});
 			}
 		} catch (err) {
+			// Handle and return any errors as a response
 			/** @type {Error} */ let e = err;
 			return new Response(e.toString());
 		}
@@ -424,24 +435,21 @@ export default {
 export function redirectConsoleLog(logServer, instanceId) {
 	let logID = 0;
 	const oldConsoleLog = console.log;
+
 	console.log = async (data) => {
 		oldConsoleLog(data);
+
 		if (data == null) {
 			return;
 		}
 
-		let msg;
-		if (data instanceof Object) {
-			msg = JSON.stringify(data);
-		} else {
-			msg = String(data);
-		}
+		const msg = JSON.stringify(data);
 
 		try {
 			await fetch(logServer, {
 				method: 'POST',
-				headers: { 'Content-Type': "text/plain;charset=UTF-8" },
-				body: instanceId + ` ${logID++} ` + msg
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ instanceId, logID: logID++, message: msg })
 			});
 		} catch (err) {
 			oldConsoleLog(err.message);
@@ -450,13 +458,19 @@ export function redirectConsoleLog(logServer, instanceId) {
 }
 
 try {
+	// Dynamically import the 'cloudflare:sockets' module
 	const module = await import('cloudflare:sockets');
+
+	// Define a new connect function on the platformAPI object
 	platformAPI.connect = async (address, port) => {
+		// Call the 'connect' method from the imported module, passing the address and port
 		return module.connect({ hostname: address, port: port });
 	};
 
+	// Define a newWebSocket function on the platformAPI object
 	platformAPI.newWebSocket = (url) => new WebSocket(url);
 } catch (error) {
+	// Handle any error that occurs during the import or setting of platformAPI functions
 	console.log('Not on Cloudflare Workers!');
 }
 
@@ -799,33 +813,43 @@ async function handleOutBound(vlessRequest, rawClientData, webSocket, vlessRespo
 
 /**
  * Make a source out of a UDP socket, wrap each datagram with vless UDP packing.
- * Each receive datagram will be prepended with a 16-bit big-endian length field.
+ * Each received datagram will be prepended with a 16-bit big-endian length field.
  * 
- * @param {*} udpClient The UDP socket to read from.
- * @param {(info: string)=> void} log The logging function.
+ * @param {UDPClient} udpClient The UDP socket to read from.
+ * @param {(info: string) => void} log The logging function.
  * @returns {ReadableStream} Datagrams received will be wrapped and made available in this stream.
  */
 function makeReadableUDPStream(udpClient, log) {
 	return new ReadableStream({
 		start(controller) {
+			// Set up an event listener for incoming UDP datagrams
 			udpClient.onmessage((message, info) => {
+				// Log the received datagram information (you can uncomment this if needed)
 				// log(`Received ${info.size} bytes from UDP://${info.address}:${info.port}`)
-				// Prepend length to each UDP datagram
+
+				// Prepend the length of the datagram as a 16-bit big-endian header
 				const header = new Uint8Array([(info.size >> 8) & 0xff, info.size & 0xff]);
 				const encodedChunk = joinUint8Array(header, message);
+
+				// Enqueue the wrapped datagram into the ReadableStream
 				controller.enqueue(encodedChunk);
 			});
+
+			// Set up an error handler for the UDP socket
 			udpClient.onerror((error) => {
+				// Log the UDP error and propagate it to the controller
 				log('UDP Error: ', error);
 				controller.error(error);
 			});
 		},
 		cancel(reason) {
+			// Log that the UDP ReadableStream has been closed and safely close the UDP socket
 			log(`UDP ReadableStream closed:`, reason);
 			safeCloseUDP(udpClient);
 		},
 	});
 }
+
 
 /**
  * Make a sink out of a UDP socket, the input stream assumes valid vless UDP packing.
@@ -889,10 +913,13 @@ function makeWritableUDPStream(udpClient, addressRemote, portRemote, log) {
 	});
 }
 
+// This function is used to safely close a UDP socket.
 function safeCloseUDP(socket) {
 	try {
+		// Close the socket.
 		socket.close();
 	} catch (error) {
+		// If an error occurs while closing the socket, log the error to the console.
 		console.error('safeCloseUDP error', error);
 	}
 }
@@ -1246,30 +1273,66 @@ function safeCloseWebSocket(socket) {
  * @returns {Uint8Array} The merged Uint8Array.
  */
 export function joinUint8Array(array1, array2) {
-	let result = new Uint8Array(array1.byteLength + array2.byteLength);
-	result.set(array1);
-	result.set(array2, array1.byteLength);
-	return result;
+	let result = new Uint8Array(array1.byteLength + array2.byteLength); // Create a new Uint8Array with the combined length of array1 and array2
+	result.set(array1); // Copy the values from array1 into the result array
+	result.set(array2, array1.byteLength); // Copy the values from array2 into the result array starting at the index of array1's byte length
+	return result; // Return the merged Uint8Array
 }
 
 
+// Create an array 'byteToHex' to map byte values to their hexadecimal representation
 const byteToHex = [];
+
+// Populate 'byteToHex' with hexadecimal representations for values 0 to 255
 for (let i = 0; i < 256; ++i) {
 	byteToHex.push((i + 256).toString(16).slice(1));
 }
+
+/**
+ * Convert a byte array to a UUID string representation.
+ * 
+ * @param {Uint8Array} arr - The input byte array.
+ * @param {number} offset - The starting offset within the byte array (default is 0).
+ * @returns {string} The UUID string.
+ */
 function unsafeStringify(arr, offset = 0) {
-	return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+	// Construct the UUID string by concatenating hexadecimal representations of bytes
+	return (
+		byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] +
+		byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" +
+		byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" +
+		byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" +
+		byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" +
+		byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] +
+		byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] +
+		byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]
+	).toLowerCase();
 }
+
+/**
+ * Convert a byte array to a valid UUID string representation.
+ * Throws an error if the generated string is not a valid UUID.
+ * 
+ * @param {Uint8Array} arr - The input byte array.
+ * @param {number} offset - The starting offset within the byte array (default is 0).
+ * @returns {string} The valid UUID string.
+ * @throws {TypeError} If the generated string is not a valid UUID.
+ */
 function stringify(arr, offset = 0) {
+	// Generate the UUID string using 'unsafeStringify'
 	const uuid = unsafeStringify(arr, offset);
+
+	// Check if the generated UUID string is valid
 	if (!isValidUUID(uuid)) {
 		throw TypeError("Stringified UUID is invalid");
 	}
+
 	return uuid;
 }
 
 /**
  * Establishes a SOCKS5 connection with the given socket, username, password, address type, remote address, and remote port.
+ *
  * @param {{readable: ReadableStream, writable: {getWriter: () => {write: (data) => void, releaseLock: () => void}}}} socket - The socket to connect to.
  * @param {string} username - The username for authentication (if required).
  * @param {string} password - The password for authentication (if required).
@@ -1317,7 +1380,7 @@ async function socks5Connect(socket, username, password, addressType, addressRem
 		throw new Error("No accepted authentication methods");
 	}
 
-	// if return 0x0502
+	// Perform authentication if requested by the server
 	if (res[1] === 0x02) {
 		log("Socks5: Server asks for authentication");
 		if (!username || !password) {
