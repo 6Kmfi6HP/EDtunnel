@@ -34,7 +34,7 @@ GitHub Repository for [https://github.com/zizifn/edgetunnel](https://github.com/
 
 2. When deploy in worker.dev, you can set uuid in `_worker.js` file. variable name is `userID`. `wrangler.toml` file is also supported. (recommended) in case deploy in webpages, you can not set uuid in `wrangler.toml` file. in this case, you can also set uuid in `UUID` enviroment variable.
 
-note: `UUID` is the uuid you want to set. pages.dev and worker.dev all of them method supported, but depend on your deploy method.
+Note: `UUID` is the uuid you want to set. pages.dev and worker.dev all of them method supported, but depend on your deploy method.
 
 ### UUID Setting Example
 
@@ -51,7 +51,7 @@ note: `UUID` is the uuid you want to set. pages.dev and worker.dev all of them m
    ```
 
    note: uuid1, uuid2, uuid3 are separated by commas`,`.
-   when you set multiple uuid, you can will use `https://edtunnel.pages.dev/uuid1` to get the clash config and vless:// link.
+   when you set multiple uuid, you can use `https://edtunnel.pages.dev/uuid1` to get the clash config and vless:// link.
 
 ## subscribe vless:// link (Optional)
 
@@ -60,7 +60,7 @@ note: `UUID` is the uuid you want to set. pages.dev and worker.dev all of them m
 2. visit `https://edtunnel.pages.dev/sub/uuid your set` to get the subscribe content with `uuid your set` path.
 
    note: `uuid your set` is the uuid you set in UUID enviroment or `wrangler.toml`, `_worker.js` file.
-   when you set multiple uuid, you can will use `https://edtunnel.pages.dev/sub/uuid1` to get the subscribe content with `uuid1` path.(only support first uuid in multiple uuid set)
+   when you set multiple uuid, you can use `https://edtunnel.pages.dev/sub/uuid1` to get the subscribe content with `uuid1` path.(only support first uuid in multiple uuid set)
 
 3. visit `https://edtunnel.pages.dev/sub/uuid your set/?format=clash` to get the subscribe content with `uuid your set` path and `clash` format. content will return with base64 encode.
 
