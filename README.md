@@ -69,6 +69,14 @@ Note: `UUID` is the uuid you want to set. pages.dev and worker.dev all of them m
    note: `uuid your set` is the uuid you set in UUID enviroment or `wrangler.toml`, `_worker.js` file.
    when you set multiple uuid, you can will use `https://edtunnel.pages.dev/sub/uuid1/?format=clash` to get the subscribe content with `uuid1` path and `clash` format.(only support first uuid in multiple uuid set)
 
+## subscribe Cloudflare bestip(pure ip) link
+
+1. visit `https://edtunnel.pages.dev/bestip/uuid your set` to get subscribe info.
+
+2. cpoy subscribe url link `https://edtunnel.pages.dev/bestip/uuid your set` to any clients(clash/v2rayN/v2rayNG) you want to use.
+
+3. done. if have any questions please join [@edtunnel](https://t.me/edtunnel)
+
 ## multiple port support (Optional)
 
    <!-- let portArray_http = [80, 8080, 8880, 2052, 2086, 2095];

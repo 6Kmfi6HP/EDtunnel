@@ -26,14 +26,11 @@ export default {
 	 * @returns {Promise<Response>}
 	 */
 	async fetch(request, env, ctx) {
-		uuid_validator(request);
+		// uuid_validator(request);
 		try {
 			userID = env.UUID || userID;
 			proxyIP = env.PROXYIP || proxyIP;
 			dohURL = env.DNS_RESOLVER_URL || dohURL;
-			// nodeId = env.NODE_ID || nodeId;
-			// apiToken = env.API_TOKEN || apiToken;
-			// apiHost = env.API_HOST || apiHost;
 			let userID_Path = userID;
 			if (userID.includes(',')) {
 				userID_Path = userID.split(',')[0];
@@ -62,12 +59,10 @@ export default {
 						const url = new URL(request.url);
 						const searchParams = url.searchParams;
 						let vlessConfig = createVLESSSub(userID, request.headers.get('Host'));
-
 						// If 'format' query param equals to 'clash', convert config to base64
 						if (searchParams.get('format') === 'clash') {
 							vlessConfig = btoa(vlessConfig);
 						}
-
 						// Construct and return response object
 						return new Response(vlessConfig, {
 							status: 200,
@@ -75,6 +70,13 @@ export default {
 								"Content-Type": "text/plain;charset=utf-8",
 							}
 						});
+					}
+					case `/bestip/${userID_Path}`: {
+						const bestiplink = `https://sub.xf.free.hr/auto?host=${request.headers.get('Host')}&uuid=${userID_Path}`
+						const reqHeaders = new Headers(request.headers);
+						const bestipresponse = await fetch(bestiplink, { redirect: 'manual', headers: reqHeaders, });
+						// Construct and return response object
+						return bestipresponse
 					}
 					default:
 						// return new Response('Not found', { status: 404 });
