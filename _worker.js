@@ -218,7 +218,7 @@ export function setConfigFromEnv(request, env) {
 	const vlessPath = query.get('path'); // Get the 'path' parameter from the query
 
 	// Log the extracted values for debugging purposes
-	console.log(`path: ${path} sni: ${sni} uuid: ${uuid} vlessPath: ${vlessPath}`);
+	// console.log(`path: ${path} sni: ${sni} uuid: ${uuid} vlessPath: ${vlessPath}`);
 
 	// Create a vless:// URL based on the request parameters
 	// Example: vless://uuid@domain.name:port?type=ws&security=tls
