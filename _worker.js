@@ -60,11 +60,11 @@ export default {
 						const searchParams = url.searchParams;
 						let vlessConfig = createVLESSSub(userID, request.headers.get('Host'));
 						// If 'format' query param equals to 'clash', convert config to base64
-						if (searchParams.get('format') === 'clash') {
-							vlessConfig = btoa(vlessConfig);
+						if (searchParams.get('format') === 'text') {
+							vlessConfig = vlessConfig;
 						}
 						// Construct and return response object
-						return new Response(vlessConfig, {
+						return new Response(btoa(vlessConfig), {
 							status: 200,
 							headers: {
 								"Content-Type": "text/plain;charset=utf-8",
@@ -725,7 +725,7 @@ function getVLESSConfig(userIDs, hostName) {
 	// Prepare output array
 	let output = [];
 	let header = [];
-	const sublink = `https://${hostName}/sub/${userIDArray[0]}?format=clash`
+	const sublink = `https://${hostName}/sub/${userIDArray[0]}`
 	const clash_link = `https://subconverter.do.xn--b6gac.eu.org/sub?target=clash&url=${encodeURIComponent(sublink)}&insert=false&emoji=true&list=false&tfo=false&scv=true&fdn=false&sort=false&new_name=true`;
 	header.push(`\n<p align="center"><img src="https://cloudflare-ipfs.com/ipfs/bafybeigd6i5aavwpr6wvnwuyayklq3omonggta4x2q7kpmgafj357nkcky" alt="图片描述" style="margin-bottom: -50px;">`);
 	header.push(`\n<b style=" font-size: 15px;" >Welcome! This function generates configuration for VLESS protocol. If you found this useful, please check our GitHub project for more:</b>\n`);
