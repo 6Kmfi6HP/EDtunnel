@@ -72,7 +72,7 @@ export default {
 						});
 					}
 					case `/bestip/${userID_Path}`: {
-						const bestiplink = `https://sub.xf.free.hr/auto?host=${request.headers.get('Host')}&uuid=${userID_Path}`
+						const bestiplink = `https://sub.xijingping.gay/auto?host=${request.headers.get('Host')}&uuid=${userID_Path}`
 						const reqHeaders = new Headers(request.headers);
 						const bestipresponse = await fetch(bestiplink, { redirect: 'manual', headers: reqHeaders, });
 						// Construct and return response object
