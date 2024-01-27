@@ -1,17 +1,17 @@
 {
-    "name": "edtunnel",
-    "version": "1.0.0",
-    "description": "A tunnel for the edgetunnel project to allow deployed applications to cloudflare pages and workers to be accessed via a custom domain.",
-    "main": "_worker.js",
-    "scripts": {
-        "deploy": "wrangler deploy",
-        "build": "wrangler deploy --dry-run --outdir=minify --minify",
-        "dev": "wrangler dev --remote"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "@cloudflare/workers-types": "^4.20230710.1",
-        "wrangler": "^3.2.0"
-    }
+  "name": "edtunnel",
+  "version": "1.0.0",
+  "description": "A tunnel for the edgetunnel project to allow deployed applications to cloudflare pages and workers to be accessed via a custom domain.",
+  "main": "_worker.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "build": "wrangler deploy --dry-run",
+    "dev": "wrangler dev --remote"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230710.1",
+    "wrangler": "^3.2.0"
+  }
 }
