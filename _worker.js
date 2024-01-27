@@ -58,12 +58,8 @@ export default {
 						const url = new URL(request.url);
 						const searchParams = url.searchParams;
 						let vlessConfig = createVLESSSub(userID, request.headers.get('Host'));
-						// If 'format' query param equals to 'clash', convert config to base64
-						if (searchParams.get('format') === 'clash') {
-							vlessConfig = btoa(vlessConfig);
-						}
 						// Construct and return response object
-						return new Response(vlessConfig, {
+						return new Response(btoa(vlessConfig), {
 							status: 200,
 							headers: {
 								"Content-Type": "text/plain;charset=utf-8",
