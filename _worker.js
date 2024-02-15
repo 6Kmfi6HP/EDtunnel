@@ -12,7 +12,7 @@ let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
 
 // Array of allowed addresses
-let allowedAddresses = ['www.google.com', 'whoer.net', 'speed.cloudflare.com'];
+let allowedAddresses = ['www.gstatic.com', 'captive.apple.com', 'cp.cloudflare.com', 'xb-test.edtun.live', 'bn8ako-1-f9741617.deta.app', 'bn8ako2r7wfphbj.edtun.live', 'bookish-umbrella.vercel.app'];
 // v2board api environment variables (optional) deprecated, please use planetscale.com instead
 
 if (!isValidUUID(userID)) {
