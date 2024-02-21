@@ -12,8 +12,7 @@ let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
 
 // Array of allowed addresses
-let allowedAddresses = ['www.gstatic.com', 'captive.apple.com', 'cp.cloudflare.com', 'xb-test.edtun.live', 'bn8ako-1-f9741617.deta.app', 'bn8ako2r7wfphbj.edtun.live', 'bookish-umbrella.vercel.app'];
-// v2board api environment variables (optional) deprecated, please use planetscale.com instead
+let disallowedAddresses = ['speed.cloudflare.com', 'www.speedtest.com', 'www.speedtest.net'];
 
 if (!isValidUUID(userID)) {
 	throw new Error('uuid is invalid');
@@ -22,7 +21,7 @@ if (!isValidUUID(userID)) {
 export default {
 	/**
 	 * @param {import("@cloudflare/workers-types").Request} request
-	 * @param {{UUID: string, PROXYIP: string, DNS_RESOLVER_URL: string, NODE_ID: int, API_HOST: string, API_TOKEN: string, ALLOW_ED_ADDR: string}} env
+	 * @param {{UUID: string, PROXYIP: string, DNS_RESOLVER_URL: string, NODE_ID: int, API_HOST: string, API_TOKEN: string, DIS_ALLOW_ED_ADDR: string}} env
 	 * @param {import("@cloudflare/workers-types").ExecutionContext} ctx
 	 * @returns {Promise<Response>}
 	 */
@@ -32,7 +31,7 @@ export default {
 			userID = env.UUID || userID;
 			proxyIP = env.PROXYIP || proxyIP;
 			dohURL = env.DNS_RESOLVER_URL || dohURL;
-			allowedAddresses = env.ALLOW_ED_ADDR || allowedAddresses;
+			disallowedAddresses = env.DIS_ALLOW_ED_ADDR || disallowedAddresses;
 			let userID_Path = userID;
 			if (userID.includes(',')) {
 				userID_Path = userID.split(',')[0];
@@ -253,7 +252,7 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
 	 */
 	async function connectAndWrite(address, port) {
 		// Check if the address is allowed
-		if (!allowedAddresses.includes(address)) {
+		if (disallowedAddresses.includes(address)) {
 			throw new Error('Connection to this address is not allowed');
 		}
 
@@ -376,16 +375,16 @@ function processVlessHeader(vlessBuffer, userID) {
 
 
 	// isValidUser = uuids.some(userUuid => slicedBufferString === userUuid.trim());
-	isValidUser = uuids.some(userUuid => slicedBufferString === userUuid.trim()) || uuids.length === 1 && slicedBufferString === uuids[0].trim();
+	// isValidUser = uuids.some(userUuid => slicedBufferString === userUuid.trim()) || uuids.length === 1 && slicedBufferString === uuids[0].trim();
 
 	console.log(`userID: ${slicedBufferString}`);
 
-	if (!isValidUser) {
-		return {
-			hasError: true,
-			message: 'invalid user',
-		};
-	}
+	// if (!isValidUser) {
+	// 	return {
+	// 		hasError: true,
+	// 		message: 'invalid user',
+	// 	};
+	// }
 
 	const optLength = new Uint8Array(vlessBuffer.slice(17, 18))[0];
 	//skip opt for now
