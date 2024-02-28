@@ -188,8 +188,6 @@ async function vlessOverWSHandler(request) {
 			if (hasError) {
 				// controller.error(message);
 				throw new Error(message); // cf seems has bug, controller.error will not end stream
-				// webSocket.close(1000, message);
-				return;
 			}
 
 			// If UDP and not DNS port, close it
