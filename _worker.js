@@ -73,12 +73,7 @@ export default {
 					case `/bestip/${userID_Path}`: {
 						const bestSubConfig = await fetch(`https://sub.xf.free.hr/auto?host=${request.headers.get('Host')}&uuid=${userID}`);
 						// Construct and return response object
-						return new Response(bestSubConfig, {
-							status: 200,
-							headers: {
-								"Content-Type": "text/plain;charset=utf-8",
-							}
-						});
+						return bestSubConfig;
 					};
 					default:
 						// return new Response('Not found', { status: 404 });
