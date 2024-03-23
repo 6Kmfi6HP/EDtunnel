@@ -71,8 +71,9 @@ export default {
 						});
 					};
 					case `/bestip/${userID_Path}`: {
-						const bestSubConfig = await fetch(`https://sub.xf.free.hr/auto?host=${request.headers.get('Host')}&uuid=${userID}`);
-						// Construct and return response object
+						const userAgent = request.headers.get('User-Agent');
+						const url = `https://sub.xf.free.hr/auto?host=${request.headers.get('Host')}&uuid=${userID}&path=/`;
+						const bestSubConfig = await fetch(url, { headers: { 'User-Agent': userAgent } });
 						return bestSubConfig;
 					};
 					default:
