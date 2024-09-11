@@ -10,6 +10,9 @@ custom_domain = true
 [[routes]]
 pattern = "ava.game.naver.com.id.flyintech.my.id"
 custom_domain = true
+[[routes]]
+pattern = "updates.netflix.com.id.flyintech.my.id"
+custom_domain = true
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
