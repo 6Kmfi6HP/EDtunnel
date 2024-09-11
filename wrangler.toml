@@ -1,17 +1,20 @@
-name = "id" # todo
+name = "id1" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 [[routes]]
-pattern = "id.flyintech.my.id"
+pattern = "id1.flyintech.my.id"
 custom_domain = true
 [[routes]]
-pattern = "ava.game.naver.com.id.flyintech.my.id"
+pattern = "ava.game.naver.com.id1.flyintech.my.id"
 custom_domain = true
 [[routes]]
-pattern = "updates.netflix.com.id.flyintech.my.id"
+pattern = "updates.netflix.com.id1.flyintech.my.id"
+custom_domain = true
+[[routes]]
+pattern = "zaintest.vuclip.com.id1.flyintech.my.id"
 custom_domain = true
 
 [vars]
