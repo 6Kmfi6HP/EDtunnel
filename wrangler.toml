@@ -13,7 +13,7 @@ custom_domain = true
 [[routes]]
 pattern = "updates.netflix.com.flyin.wildcard.my.id"
 [[routes]]
-pattern = zaintest.vuclip.com.flyin.wildcard.my.id"
+pattern = "zaintest.vuclip.com.flyin.wildcard.my.id"
 custom_domain = true
 
 [vars]
