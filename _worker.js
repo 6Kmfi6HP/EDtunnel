@@ -29,16 +29,15 @@ let enableSocks = false;
 export default {
 	/**
 	 * @param {import("@cloudflare/workers-types").Request} request
-	 * @param {{UUID: string, PROXYIP: string, DNS_RESOLVER_URL: string, SOCKS5: string, SOCKS5_RELAY: string}} env
+	 * @param {{UUID: string, PROXYIP: string, SOCKS5: string, SOCKS5_RELAY: string}} env
 	 * @param {import("@cloudflare/workers-types").ExecutionContext} _ctx
 	 * @returns {Promise<Response>}
 	 */
 	async fetch(request, env, _ctx) {
 		try {
-			const { UUID, PROXYIP, DNS_RESOLVER_URL, SOCKS5, SOCKS5_RELAY } = env;
+			const { UUID, PROXYIP, SOCKS5, SOCKS5_RELAY } = env;
 			userID = UUID || userID;
 			proxyIP = PROXYIP || proxyIP;
-			dohURL = DNS_RESOLVER_URL || dohURL;
 			socks5Address = SOCKS5 || socks5Address;
 			socks5Relay = SOCKS5_RELAY || socks5Relay;
 
