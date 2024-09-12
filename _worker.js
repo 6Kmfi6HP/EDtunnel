@@ -16,6 +16,7 @@ let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 
 // Example:  user:pass@host:port  or  host:port
 let socks5Address = '';
+// socks5Relay is true, will proxy all traffic to socks5Address, otherwise socks5Address only be used for cloudflare ips
 let socks5Relay = false;
 
 if (!isValidUUID(userID)) {
