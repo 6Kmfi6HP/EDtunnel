@@ -26,8 +26,7 @@ jobs:
 
       - name: Obfuscate code
         run: |
-          javascript-obfuscator _worker.js --output _worker.obfuscated.js
-          mv _worker.obfuscated.js _worker.js
+          javascript-obfuscator index.js --output _worker.js
 
       - name: Commit changes
         run: |
