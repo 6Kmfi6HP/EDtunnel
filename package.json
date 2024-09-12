@@ -6,12 +6,14 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "build": "wrangler deploy --dry-run",
-    "dev": "wrangler dev --remote"
+    "dev": "wrangler dev --remote",
+    "obfuscate": "javascript-obfuscator _worker.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230710.1",
+    "javascript-obfuscator": "^4.1.1",
     "wrangler": "^3.2.0"
   }
 }
