@@ -8,26 +8,36 @@ on:
 jobs:
   obfuscate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "16"
 
       - name: Install dependencies
         run: npm install -g javascript-obfuscator
 
       - name: Obfuscate code
         run: |
-          javascript-obfuscator index.js --output _worker.js
+          javascript-obfuscator _worker.js --output _worker.obfuscated.js
+          mv _worker.obfuscated.js _worker.js
 
       - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add _worker.js
           git commit -m "Obfuscate _worker.js" || echo "No changes to commit"
-          git push
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
