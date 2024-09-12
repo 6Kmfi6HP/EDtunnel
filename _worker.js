@@ -15,7 +15,7 @@ let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 // let proxyIP = "[2a01:4f8:c2c:123f:64:5:6810:c55a]"
 
 // Example:  user:pass@host:port  or  host:port
-let socks5Address = 'mute0857:Zxc13579@216.146.25.215:10858';
+let socks5Address = '';
 let socks5Relay = false;
 
 if (!isValidUUID(userID)) {
