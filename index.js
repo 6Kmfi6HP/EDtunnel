@@ -41,6 +41,8 @@ export default {
 			proxyIP = PROXYIP || proxyIP;
 			socks5Address = SOCKS5 || socks5Address;
 			socks5Relay = SOCKS5_RELAY || socks5Relay;
+			sha224Password = env.SHA224 || env.SHA224PASS || sha256.sha224(userID);
+
 
 			if (socks5Address) {
 				try {
@@ -859,7 +861,7 @@ async function parseTrojanHeader(buffer) {
 	}
 
 	const password = new TextDecoder().decode(buffer.slice(0, 56));
-	if (password !== Sha256.sha224(userID)) {
+	if (password !== sha224Password) {
 		return { hasError: true, message: "Invalid password" };
 	}
 

@@ -32,6 +32,10 @@ ask question and cloudflare ips: [https://t.me/edtunnel](https://t.me/edtunnel)
 
 2. Clone this repository deploy in cloudflare pages.
 
+3. Add `nodejs_compat` at setting Compatibility flags
+
+![note](image/image.png)
+
 ## Deploy in worker.dev
 
 1. Copy `_worker.js` code from [here](https://github.com/6Kmfi6HP/EDtunnel/blob/main/_worker.js).
@@ -40,9 +44,38 @@ ask question and cloudflare ips: [https://t.me/edtunnel](https://t.me/edtunnel)
 
    [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/6Kmfi6HP/EDtunnel)
 
+3. Noneed add `nodejs_compat` at setting Compatibility flags
+
+## How to change UUID
+
+1. edit `wrangler.toml` file `UUID` variable(not recommended at public repo)
+2. edit `UUID` in cloudflare dashboard secret enviroment variable (recommended)
+
+## Support Environment Variables
+
+| Variable       | Required | Example                                 | Description                        |
+| -------------- | -------- | --------------------------------------- | ---------------------------------- |
+| `UUID`         | No       | `12345678-1234-1234-1234-123456789012`  | Unique identifier                  |
+| `PROXYIP`      | No       | `1.1.1.1` or `cdn.xn--b6gac.eu.org`     | Redirct cloudflare ips to ProxyIP  |
+| `SOCKS5`       | No       | `1.1.1.1:1080` or `user:pass@host:port` | SOCKS5 proxy cloudflare ips        |
+| `SOCKS5_RELAY` | No       | `true` or `false`                       | Enable SOCKS5 relaying all traffic |
+
+### Enviroment variable setting workers
+
+![workes](image/image-1.png)
+
+### Enviroment variable setting pages
+
+![pages](image/image-2.png)
+
+## How to use trojan
+
+1. the `UUID` enviroment variable is `trojan` password
+2. v2ray path is `/trojan`
+
 ## Lazy to deploy
 
-`aHR0cHM6Ly9vc3MudjJyYXlzZS5jb20vcHJveGllcy9kYXRhLzIwMjMtMDctMzAvRnJFS1lvQS50eHQ=` (free clash.meta subscribe config)
+subscribe link`https://sub.xf.free.hr/auto` (auto detect client config)
 
 ## UUID Setting (Optional)
 
