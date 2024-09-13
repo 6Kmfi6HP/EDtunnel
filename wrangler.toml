@@ -8,10 +8,10 @@ compatibility_date = "2023-05-26"
 pattern = "indo.gratisan.my.id"
 custom_domain = true
 [[routes]]
-pattern "shopee.co.id.indo.gratisan.my.id"
+pattern = "shopee.co.id.indo.gratisan.my.id"
 custom_domain= true
 [[routes]]
-pattern "cf.shopee.co.id.indo.gratisan.my.id"
+pattern = "cf.shopee.co.id.indo.gratisan.my.id"
 custom_domain = true
 [[routes]]
 pattern = "cv.shopee.sg.indo.gratisan.my.id"
