@@ -19,7 +19,7 @@ let socks5Address = '';
 // socks5Relay is true, will proxy all traffic to socks5Address, otherwise socks5Address only be used for cloudflare ips
 let socks5Relay = false;
 
-let sha224Password;
+let sha224Password = '';
 
 if (!isValidUUID(userID)) {
 	throw new Error('uuid is not valid');
