@@ -171,7 +171,7 @@ async function ProtocolOverWSHandler(request, protocol) {
 			if (protocol === 'vless') {
 				processedHeader = processProtocolHeader(chunk, userID);
 			} else if (protocol === 'trojan') {
-				processedHeader = await parseTrojanHeader(chunk);
+				processedHeader = parseTrojanHeader(chunk);
 			} else {
 				throw new Error('Invalid protocol');
 			}
@@ -852,7 +852,7 @@ function socks5AddressParser(address) {
 }
 
 
-async function parseTrojanHeader(buffer) {
+function parseTrojanHeader(buffer) {
 	if (buffer.byteLength < 58) {
 		return { hasError: true, message: "Invalid data length" };
 	}
