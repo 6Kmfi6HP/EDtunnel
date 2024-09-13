@@ -4,6 +4,8 @@ name = "cf-worker-ws-dev" # todo
 #main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+node_compat = true
+workers_dev = true
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
