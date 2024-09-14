@@ -1,11 +1,15 @@
-name = "cf-worker-ws-dev" # todo
+name = "gcp-id" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-node_compat = true
-workers_dev = true
+[[routes]]
+pattern = "id1.id-vpnvip.my.id"
+custom_domain = true 
+[[routes]]
+pattern = "quiz.int.video.com.id1.id-vpnvip.my.id"
+custom_domain = true 
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
@@ -14,4 +18,4 @@ workers_dev = true
 # NODE_ID = "1"
 # API_TOKEN = "example_dev_token"
 # API_HOST = "api.v2board.com"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea,89b64978-6244-4bf3-bf64-67ade4ce5c8f,d342d11e-d424-4583-b36e-524ab1f0afa4"
+UUID = "af5505b7-4dbd-4861-9adb-1c17fcd05c32"
