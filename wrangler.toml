@@ -1,23 +1,23 @@
-name = "indo" # todo
+name = "sgdo" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 [[routes]]
-pattern = "indo.gratisan.my.id"
+pattern = "sgdo.gratisan.my.id"
 custom_domain = true
 [[routes]]
-pattern = "shopee.co.id.indo.gratisan.my.id"
+pattern = "shopee.co.id.sgdo.gratisan.my.id"
 custom_domain= true
 [[routes]]
-pattern = "cf.shopee.co.id.indo.gratisan.my.id"
+pattern = "cf.shopee.co.id.sgdo.gratisan.my.id"
 custom_domain = true
 [[routes]]
-pattern = "cv.shopee.sg.indo.gratisan.my.id"
+pattern = "cv.shopee.sg.sgdo.gratisan.my.id"
 custom_domain= true
 [[routes]]
-pattern = "cvs-deo.shopeemobile.com.indo.gratisan.my.id"
+pattern = "cvs-deo.shopeemobile.com.sgdo.gratisan.my.id"
 custom_domain = true
 
 [vars]
