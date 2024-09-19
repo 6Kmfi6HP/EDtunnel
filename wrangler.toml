@@ -1,4 +1,4 @@
-name = "SG" # todo
+name = "sgamzn" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
@@ -10,43 +10,43 @@ workers_dev = true
 pattern = "sg.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "api.joox.com.sg.uingtunnel.me"
+pattern = "api.joox.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "support.zoom.us.sg.uingtunnel.me"
+pattern = "support.zoom.us.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "blog.webex.com.sg.uingtunnel.me"
+pattern = "blog.webex.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "ava.game.naver.com.sg.uingtunnel.me"
+pattern = "ava.game.naver.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "df.game.naver.com.sg.uingtunnel.me"
+pattern = "df.game.naver.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "investors.spotify.com.sg.uingtunnel.me"
+pattern = "investors.spotify.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "account.pmang.game.naver.com.sg.uingtunnel.me"
+pattern = "account.pmang.game.naver.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "we5.web.whatsapp.com.sg.uingtunnel.me"
+pattern = "we5.web.whatsapp.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "access.iflix.com.sg.uingtunnel.me"
+pattern = "access.iflix.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "graph.instagram.com.sg.uingtunnel.me"
+pattern = "graph.instagram.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "edge-ig-mqtt-p4-shv-01-cgk1.facebook.com.sg.uingtunnel.me"
+pattern = "edge-ig-mqtt-p4-shv-01-cgk1.facebook.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "quiz.vidio.com.sg.uingtunnel.me"
+pattern = "quiz.vidio.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "cache.netflix.com.sg.uingtunnel.me"
+pattern = "cache.netflix.com.sgamzn.uingtunnel.me"
 custom_domain = true
 
 [vars]
