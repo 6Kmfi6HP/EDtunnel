@@ -7,10 +7,10 @@ compatibility_date = "2023-05-26"
 node_compat = true
 workers_dev = true
 [[routes]]
-pattern = "sg.uingtunnel.me"
+pattern = "sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "api.joox.com.sgamzn.uingtunnel.me"
+pattern = "www.joox.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
 pattern = "support.zoom.us.sgamzn.uingtunnel.me"
@@ -31,13 +31,13 @@ custom_domain = true
 pattern = "account.pmang.game.naver.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
-pattern = "we5.web.whatsapp.com.sgamzn.uingtunnel.me"
-custom_domain = true
-[[routes]]
-pattern = "access.iflix.com.sgamzn.uingtunnel.me"
-custom_domain = true
-[[routes]]
 pattern = "graph.instagram.com.sgamzn.uingtunnel.me"
+custom_domain = true
+[[routes]]
+pattern = "apiproxy.iflix.com.sgamzn.uingtunnel.me"
+custom_domain = true
+[[routes]]
+pattern = "zaintest.vuclip.com.sgamzn.uingtunnel.me"
 custom_domain = true
 [[routes]]
 pattern = "edge-ig-mqtt-p4-shv-01-cgk1.facebook.com.sgamzn.uingtunnel.me"
