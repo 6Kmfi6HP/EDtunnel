@@ -46,6 +46,15 @@ ask question and cloudflare ips: [https://t.me/edtunnel](https://t.me/edtunnel)
 
 3. Noneed add `nodejs_compat` at setting Compatibility flags
 
+## How to use non 443 port as proxyIP
+
+1. got to `https://proxyip.edtunnel.best/` paste your `ProxyIP:proxyport` and click `Check` button.
+2. if `Proxy IP` is `true`, you can use this `ProxyIP:proxyport` as `ProxyIP`
+3. if `Proxy IP` is `false`, you can see `Origin` is `443` this means the port can be accessed website.
+4. edit worker `PROXYIP` variable example `211.230.110.231:50008`
+
+Note: the proxyIP with port may not vaild some cloudflare site that use http only.
+
 ## How to change UUID
 
 1. edit `wrangler.toml` file `UUID` variable(not recommended at public repo)
@@ -53,12 +62,12 @@ ask question and cloudflare ips: [https://t.me/edtunnel](https://t.me/edtunnel)
 
 ## Support Environment Variables
 
-| Variable       | Required | Example                                 | Description                        |
-| -------------- | -------- | --------------------------------------- | ---------------------------------- |
-| `UUID`         | No       | `12345678-1234-1234-1234-123456789012`  | Unique identifier                  |
-| `PROXYIP`      | No       | `1.1.1.1` or `cdn.xn--b6gac.eu.org`     | Redirct cloudflare ips to ProxyIP  |
-| `SOCKS5`       | No       | `1.1.1.1:1080` or `user:pass@host:port` | SOCKS5 proxy cloudflare ips        |
-| `SOCKS5_RELAY` | No       | `true` or `false`                       | Enable SOCKS5 relaying all traffic |
+| Variable       | Required | Example                                                                                                     | Description                        |
+| -------------- | -------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `UUID`         | No       | `12345678-1234-1234-1234-123456789012`                                                                      | Unique identifier                  |
+| `PROXYIP`      | No       | `1.1.1.1` or `cdn.xn--b6gac.eu.org` or with port `1.1.1.1:9443` or `[2a01:4f8:c2c:123f:64:5:6810:c55a]:443` | Redirct cloudflare ips to ProxyIP  |
+| `SOCKS5`       | No       | `1.1.1.1:1080` or `user:pass@host:port`                                                                     | SOCKS5 proxy cloudflare ips        |
+| `SOCKS5_RELAY` | No       | `true` or `false`                                                                                           | Enable SOCKS5 relaying all traffic |
 
 ### Enviroment variable setting workers
 

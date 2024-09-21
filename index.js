@@ -5,10 +5,15 @@ import { connect } from 'cloudflare:sockets';
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = 'd342d11e-d424-4583-b36e-524ab1f0afa4';
 
-const proxyIPs = ['cdn.xn--b6gac.eu.org', 'cdn-all.xn--b6gac.eu.org', 'workers.cloudflare.cyou'];
+const proxyIPs = ['cdn.xn--b6gac.eu.org:443', 'cdn-all.xn--b6gac.eu.org:443', 'workers.cloudflare.cyou:443'];
 
 // if you want to use ipv6 or single proxyIP, please add comment at this line and remove comment at the next line
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
+// how to make sure the proxyIP with port is valid?
+// go to https://proxyip.edtunnel.best/ , input your proxyIP:proxyPort, and click "Check" button
+// if the port is valid, value "Proxy IP" is true, otherwise false and the value "Origin" must be 443
+let proxyPort = proxyIP.includes(':') ? proxyIP.split(':')[1] : '443';
+
 // use single proxyip instead of random
 // let proxyIP = 'cdn.xn--b6gac.eu.org';
 // ipv6 proxyIP example remove comment to use
@@ -38,10 +43,16 @@ export default {
 		try {
 			const { UUID, PROXYIP, SOCKS5, SOCKS5_RELAY } = env;
 			userID = UUID || userID;
-			proxyIP = PROXYIP || proxyIP;
 			socks5Address = SOCKS5 || socks5Address;
 			socks5Relay = SOCKS5_RELAY || socks5Relay;
-
+			if (PROXYIP) {
+				[proxyIP, proxyPort = '443'] = PROXYIP.split(':');
+			} else {
+				proxyPort = proxyIP.includes(':') ? proxyIP.split(':')[1] : '443';
+				proxyIP = proxyIP.split(':')[0];
+			}
+			console.log('ProxyIP:', proxyIP);
+			console.log('ProxyPort:', proxyPort);
 			if (socks5Address) {
 				try {
 					parsedSocks5Address = socks5AddressParser(socks5Address);
@@ -171,18 +182,15 @@ async function ProtocolOverWSHandler(request) {
 			if (hasError) {
 				// controller.error(message);
 				throw new Error(message); // cf seems has bug, controller.error will not end stream
-				// webSocket.close(1000, message);
-				return;
 			}
-			// if UDP but port not DNS port, close it
+			// Handle UDP connections for DNS (port 53) only
 			if (isUDP) {
 				if (portRemote === 53) {
 					isDns = true;
 				} else {
-					// controller.error('UDP proxy only enable for DNS which is port 53');
-					throw new Error('UDP proxy only enable for DNS which is port 53'); // cf seems has bug, controller.error will not end stream
-					return;
+					throw new Error('UDP proxy is only enabled for DNS (port 53)');
 				}
+				return; // Early return after setting isDns or throwing error
 			}
 			// ["version", "附加信息长度 N"]
 			const ProtocolResponseHeader = new Uint8Array([ProtocolVersion[0], 0]);
@@ -248,7 +256,6 @@ async function trojanOverWSHandler(request) {
 			portWithRandomLog = `${portRemote}--${Math.random()} tcp`;
 			if (hasError) {
 				throw new Error(message);
-				return;
 			}
 			handleTCPOutBound(remoteSocketWapper, addressRemote, portRemote, rawClientData, webSocket, log, addressType);
 		},
@@ -306,7 +313,7 @@ async function handleTCPOutBound(remoteSocket, addressType, addressRemote, portR
 		if (enableSocks) {
 			tcpSocket = await connectAndWrite(addressRemote, portRemote, true);
 		} else {
-			tcpSocket = await connectAndWrite(proxyIP || addressRemote, portRemote);
+			tcpSocket = await connectAndWrite(proxyIP || addressRemote, proxyPort || portRemote);
 		}
 		// no matter retry success or not, close websocket
 		tcpSocket.closed.catch(error => {

@@ -7,6 +7,7 @@
     "deploy": "wrangler deploy",
     "build": "wrangler deploy --dry-run",
     "dev": "wrangler dev --remote",
+    "dev-local": "wrangler dev index.js --remote",
     "obfuscate": "javascript-obfuscator _worker.js"
   },
   "author": "",
