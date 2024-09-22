@@ -5,7 +5,7 @@ import { connect } from 'cloudflare:sockets';
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = 'd342d11e-d424-4583-b36e-524ab1f0afa4';
 
-const proxyIPs = ['cdn.xn--b6gac.eu.org:443', 'cdn-all.xn--b6gac.eu.org:443', 'workers.cloudflare.cyou:443'];
+const proxyIPs = ['cdn.xn--b6gac.eu.org:443', 'cdn-all.xn--b6gac.eu.org:443'];
 
 // if you want to use ipv6 or single proxyIP, please add comment at this line and remove comment at the next line
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
@@ -1136,7 +1136,7 @@ const ed = 'RUR0dW5uZWw=';
  * @returns {string}
  */
 function getConfig(userIDs, hostName) {
-	const commonUrlPart = `:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
+	const commonUrlPart = `?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
 
 	// Split the userIDs into an array
 	const userIDArray = userIDs.split(",");
@@ -1309,8 +1309,8 @@ function getConfig(userIDs, hostName) {
   `;
 
 	const configOutput = userIDArray.map((userID) => {
-		const protocolMain = atob(pt) + '://' + userID + atob(at) + hostName + commonUrlPart;
-		const protocolSec = atob(pt) + '://' + userID + atob(at) + proxyIP + commonUrlPart;
+		const protocolMain = atob(pt) + '://' + userID + atob(at) + hostName + ":443" + commonUrlPart;
+		const protocolSec = atob(pt) + '://' + userID + atob(at) + proxyIP + ":" + proxyPort + commonUrlPart;
 		return `
       <div class="container config-item">
         <h2>UUID: ${userID}</h2>
@@ -1365,7 +1365,7 @@ function GenSub(ไอดีผู้ใช้_เส้นทาง, ชื่�
 				const ส่วนUrl = `${ชื่อโฮสต์}-HTTP-${พอร์ต}`;
 				const protocolหลักHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl;
 				return proxyIPs.flatMap((proxyIP) => {
-					const protocolรองHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + proxyIP + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl + '-' + proxyIP + '-' + atob(ed);
+					const protocolรองHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + proxyIP + ':' + proxyPort + ส่วนUrlทั่วไปHttp + ส่วนUrl + '-' + proxyIP + '-' + atob(ed);
 					return [protocolหลักHttp, protocolรองHttp];
 				});
 			}
@@ -1376,7 +1376,7 @@ function GenSub(ไอดีผู้ใช้_เส้นทาง, ชื่�
 			const ส่วนUrl = `${ชื่อโฮสต์}-HTTPS-${พอร์ต}`;
 			const protocolหลักHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl;
 			return proxyIPs.flatMap((proxyIP) => {
-				const protocolรองHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + proxyIP + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl + '-' + proxyIP + '-' + atob(ed);
+				const protocolรองHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + proxyIP + ':' + proxyPort + ส่วนUrlทั่วไปHttps + ส่วนUrl + '-' + proxyIP + '-' + atob(ed);
 				return [protocolหลักHttps, protocolรองHttps];
 			});
 		});
