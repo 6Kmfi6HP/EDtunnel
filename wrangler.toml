@@ -13,7 +13,7 @@ custom_domain = true
 pattern = "ava.game.naver.com.id.keusik-urug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "app.gopay.co.id.keusik-urug.my.id"
+pattern = "app.gopay.co.id.id.keusik-urug.my.id"
 custom_domain = true
 
 [vars]
