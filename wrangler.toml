@@ -10,7 +10,7 @@ workers_dev = true
 pattern = "sg.keusik-urug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "ava.game.naver.com.madam.keusik-urug.my.id"
+pattern = "ava.game.naver.com.sg.keusik-urug.my.id"
 custom_domain = true
 
 [vars]
