@@ -12,8 +12,11 @@ custom_domain = true
 [[routes]]
 pattern = "ava.game.naver.com.id.keusik-urug.my.id"
 custom_domain = true
+[[routes]]
+pattern = "app.gopay.co.id.keusik-urug.my.id"
+custom_domain = true
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
-PROXYIP = " 172.232.238.169:443"
+PROXYIP = "23.36.242.32:443"
 UUID = "c269fc74-bb93-49ce-82e9-a7d954a03869"
