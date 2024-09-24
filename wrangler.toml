@@ -7,7 +7,7 @@ compatibility_date = "2023-05-26"
 node_compat = true
 workers_dev = true
 [[routes]]
-pattern = "madam.keusik-urug.my.id"
+pattern = "sg.keusik-urug.my.id"
 custom_domain = true
 [[routes]]
 pattern = "ava.game.naver.com.madam.keusik-urug.my.id"
