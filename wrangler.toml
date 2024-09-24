@@ -15,5 +15,5 @@ custom_domain = true
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
-PROXYIP = "23.36.242.32:443"
+PROXYIP = "46.254.92.87:443"
 UUID = "88797ac2-bc9d-4e48-bfd2-58ce62f02446"
