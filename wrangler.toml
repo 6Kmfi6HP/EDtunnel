@@ -7,13 +7,13 @@ compatibility_date = "2023-05-26"
 node_compat = true
 workers_dev = true
 [[routes]]
-pattern = "id.keusik-urug.my.id"
+pattern = "sg.keusik-urug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "ava.game.naver.com.id.keusik-urug.my.id"
+pattern = "ava.game.naver.com.sg.keusik-urug.my.id"
 custom_domain = true
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
-PROXYIP = "46.254.92.87:443"
+PROXYIP = "52.74.101.26:443"
 UUID = "88797ac2-bc9d-4e48-bfd2-58ce62f02446"
