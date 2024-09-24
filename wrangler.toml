@@ -1,4 +1,4 @@
-name = "madam" # todo
+name = "id" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
@@ -7,13 +7,13 @@ compatibility_date = "2023-05-26"
 node_compat = true
 workers_dev = true
 [[routes]]
-pattern = "sg.keusik-urug.my.id"
+pattern = "id.keusik-urug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "ava.game.naver.com.sg.keusik-urug.my.id"
+pattern = "ava.game.naver.com.id.keusik-urug.my.id"
 custom_domain = true
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
-PROXYIP = "128.199.124.195:443"
-UUID = "88797ac2-bc9d-4e48-bfd2-58ce62f02446"
+PROXYIP = " 172.232.238.169:443"
+UUID = "c269fc74-bb93-49ce-82e9-a7d954a03869"
