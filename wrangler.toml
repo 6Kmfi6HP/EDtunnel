@@ -1,4 +1,4 @@
-name = "cf-worker-ws-dev" # todo
+name = "id" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
@@ -6,8 +6,17 @@ main = "_worker.js"
 compatibility_date = "2023-05-26"
 node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "id.keusik-urug.my.id"
+custom_domain = true
+[[routes]]
+pattern = "ava.game.naver.com.id.keusik-urug.my.id"
+custom_domain = true
+[[routes]]
+pattern = "app.gopay.co.id.id.keusik-urug.my.id"
+custom_domain = true
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
-PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+PROXYIP = "23.36.242.32:443"
+UUID = "c269fc74-bb93-49ce-82e9-a7d954a03869"
