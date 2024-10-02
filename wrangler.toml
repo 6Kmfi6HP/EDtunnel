@@ -1,13 +1,20 @@
-name = "cf-worker-ws-dev" # todo
+name = "server-sg" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+[[routes]]
+pattern = "wintunsupport.xyz"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.wintunsupport.xyz"
+custom_domain = true
 node_compat = true
 workers_dev = true
+
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
 PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "c3506665-c33e-40e7-9d2f-9b84e992fc46"
