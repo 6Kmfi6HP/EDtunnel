@@ -17,5 +17,5 @@ pattern = "quiz.vidio.com.sg.heravpn.my.id"
 custom_domain = true
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
-PROXYIP = "198.143.37.178"
+PROXYIP = "198.143.37.178:443"
 UUID = "9157c96e-4bfd-4858-9fd1-07ab8112d17f"
