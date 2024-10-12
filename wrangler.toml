@@ -1,4 +1,4 @@
-name = "cf-worker-ws-dev" # todo
+name = "server-sg" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
@@ -6,8 +6,16 @@ main = "_worker.js"
 compatibility_date = "2023-05-26"
 node_compat = true
 workers_dev = true
-
+[[routes]]
+pattern = "sg.heravpn.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.sg.heravpn.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.vidio.com.sg.heravpn.my.id"
+custom_domain = true
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
-PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+PROXYIP = "192.9.138.241:443"
+UUID = "9157c96e-4bfd-4858-9fd1-07ab8112d17f"
