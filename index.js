@@ -46,7 +46,11 @@ export default {
 			socks5Address = SOCKS5 || socks5Address;
 			socks5Relay = SOCKS5_RELAY || socks5Relay;
 			if (PROXYIP) {
-				[proxyIP, proxyPort = '443'] = PROXYIP.split(':');
+				// Split PROXYIP into an array of proxy addresses
+				const proxyAddresses = PROXYIP.split(',').map(addr => addr.trim());
+				// Randomly select one proxy address
+				const selectedProxy = proxyAddresses[Math.floor(Math.random() * proxyAddresses.length)];
+				[proxyIP, proxyPort = '443'] = selectedProxy.split(':');
 			} else {
 				proxyPort = proxyIP.includes(':') ? proxyIP.split(':')[1] : '443';
 				proxyIP = proxyIP.split(':')[0];
@@ -55,7 +59,11 @@ export default {
 			console.log('ProxyPort:', proxyPort);
 			if (socks5Address) {
 				try {
-					parsedSocks5Address = socks5AddressParser(socks5Address);
+					// Split SOCKS5 into an array of addresses
+					const socks5Addresses = socks5Address.split(',').map(addr => addr.trim());
+					// Randomly select one SOCKS5 address
+					const selectedSocks5 = socks5Addresses[Math.floor(Math.random() * socks5Addresses.length)];
+					parsedSocks5Address = socks5AddressParser(selectedSocks5);
 					enableSocks = true;
 				} catch (err) {
 					console.log(err.toString());
@@ -313,7 +321,7 @@ async function handleTCPOutBound(remoteSocket, addressType, addressRemote, portR
 		if (enableSocks) {
 			tcpSocket = await connectAndWrite(addressRemote, portRemote, true);
 		} else {
-			tcpSocket = await connectAndWrite(proxyIP || addressRemote, proxyPort || portRemote);
+			tcpSocket = await connectAndWrite(proxyIP || addressRemote, proxyPort || portRemote, false);
 		}
 		// no matter retry success or not, close websocket
 		tcpSocket.closed.catch(error => {
