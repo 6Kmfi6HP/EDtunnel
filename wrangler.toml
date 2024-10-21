@@ -4,15 +4,12 @@ compatibility_date = "2023-05-26"
 [[routes]]
 pattern = "sg1.nuzme.my.id"
 custom_domain = true
-workers_dev = true
 [[routes]]
 pattern = "quiz.int.vidio.com.sg1.nuzme.my.id"
 custom_domain = true
-workers_dev = true
 [[routes]]
 pattern = "quiz.vidio.com.sg1.nuzme.my.id"
 custom_domain = true
-workers_dev = true
 # node_compat = true
 
 [vars]
