@@ -18,6 +18,6 @@ custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "d3aefb22-fc37-4559-88d0-0037e80c4f69"
+UUID = "Dendi-ID"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
