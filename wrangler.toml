@@ -3,9 +3,18 @@ main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "shop.basen7.web.id"
+custom_domain = true 
+[[routes]]
+pattern = "quiz.int.vidio.com.shop.basen7.web.id"
+custom_domain = true 
+[[routes]]
+pattern = "quiz.vidio.com.shop.basen7.web.id"
+custom_domain = true 
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "cf6260dd-e57e-4f2b-9b12-55c94f739a86,92deee86-65f2-4e14-95d7-4166577d652c,0d36e619-e66f-471b-8519-1c878142b39b,949c1590-791d-49f3-93df-82c9819fa81d"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
