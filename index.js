@@ -196,12 +196,39 @@ async function handleDefaultPath(url, request) {
 				  font-style: italic;
 				  color: #666;
 			  }
+			  .file-actions {
+				  display: flex;
+				  gap: 10px;
+			  }
+			  .delete-btn {
+				  color: #ff4444;
+				  cursor: pointer;
+				  background: none;
+				  border: none;
+				  padding: 5px;
+			  }
+			  .delete-btn:hover {
+				  color: #ff0000;
+			  }
+			  .clear-all-btn {
+				  background-color: #ff4444;
+				  color: white;
+				  border: none;
+				  padding: 10px 15px;
+				  border-radius: 4px;
+				  cursor: pointer;
+				  margin-bottom: 20px;
+			  }
+			  .clear-all-btn:hover {
+				  background-color: #ff0000;
+			  }
 		  </style>
 	  </head>
 	  <body>
 		  <div class="container">
 			  <h1>Cloud Drive</h1>
 			  <p>Welcome to your personal cloud storage. Here are your uploaded files:</p>
+			  <button id="clearAllBtn" class="clear-all-btn">Clear All Files</button>
 			  <ul id="fileList" class="file-list">
 			  </ul>
 			  <div id="uploadArea" class="upload-area">
@@ -217,12 +244,34 @@ async function handleDefaultPath(url, request) {
 				  const fileList = document.getElementById('fileList');
 				  const savedFiles = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
 				  fileList.innerHTML = '';
-				  savedFiles.forEach(file => {
+				  savedFiles.forEach((file, index) => {
 					  const li = document.createElement('li');
-					  li.innerHTML = \`<span class="file-icon">📄</span><a href="https://ipfs.io/ipfs/\${file.Url.split('/').pop()}" class="file-link" target="_blank">\${file.Name}</a>\`;
+					  li.innerHTML = \`
+						  <span class="file-icon">📄</span>
+						  <a href="https://ipfs.io/ipfs/\${file.Url.split('/').pop()}" class="file-link" target="_blank">\${file.Name}</a>
+						  <div class="file-actions">
+							  <button class="delete-btn" onclick="deleteFile(\${index})">
+								  <span class="file-icon">❌</span>
+							  </button>
+						  </div>
+					  \`;
 					  fileList.appendChild(li);
 				  });
 			  }
+
+			  function deleteFile(index) {
+				  const savedFiles = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
+				  savedFiles.splice(index, 1);
+				  localStorage.setItem('uploadedFiles', JSON.stringify(savedFiles));
+				  loadFileList();
+			  }
+
+			  document.getElementById('clearAllBtn').addEventListener('click', () => {
+				  if (confirm('Are you sure you want to clear all files?')) {
+					  localStorage.removeItem('uploadedFiles');
+					  loadFileList();
+				  }
+			  });
 
 			  loadFileList();
 
