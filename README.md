@@ -8,7 +8,7 @@ EDtunnel 是一个基于 Cloudflare Workers 和 Pages 的代理工具，支持�
 
 EDtunnel is a proxy tool based on Cloudflare Workers and Pages, supporting multiple protocols and configuration options.
 
-[![Repository](https://img.shields.io/badge/View%20on-GitHub-blue.svg)](https://github.com/zizifn/edgetunnel)
+[![Repository](https://img.shields.io/badge/View%20on-GitHub-blue.svg)](https://github.com/6Kmfi6HP/EDtunnel)
 [![Telegram](https://img.shields.io/badge/Discuss-Telegram-blue.svg)](https://t.me/edtunnel)
 
 ## ✨ 特性 | Features
@@ -215,10 +215,10 @@ SOCKS5_RELAY=true
 
 ## 💬 获取帮助 | Get Help
 
-- Telegram 群组 | Telegram Group: [EDtunnel](https://t.me/edtunnel)
-- GitHub 仓库 | Repository: [edgetunnel](https://github.com/zizifn/edgetunnel)
-- 问题反馈 | Issue Report: [创建新问题 | Create New Issue](https://github.com/zizifn/edgetunnel/issues)
-- 功能建议 | Feature Request: [提交建议 | Submit Request](https://github.com/zizifn/edgetunnel/discussions)
+- Telegram 群组 | Telegram Group: [EDtunnel Group](https://t.me/edtunnel)
+- GitHub 仓库 | Repository: [EDtunnel](https://github.com/6Kmfi6HP/EDtunnel)
+- 问题反馈 | Issue Report: [创建新问题 | Create New Issue](https://github.com/6Kmfi6HP/EDtunnel/issues)
+- 功能建议 | Feature Request: [提交建议 | Submit Request](https://github.com/6Kmfi6HP/EDtunnel/discussions)
 
 ## 📝 贡献指南 | Contributing
 
