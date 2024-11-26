@@ -1,178 +1,239 @@
 # EDtunnel
 
 <p align="center">
-  <img src="https://ipfs.io/ipfs/bafybeigd6i5aavwpr6wvnwuyayklq3omonggta4x2q7kpmgafj357nkcky" alt="edgetunnel" style="margin-bottom: -50px;">
+  <img src="https://raw.githubusercontent.com/6Kmfi6HP/EDtunnel/refs/heads/main/image/logo.png" alt="edgetunnel" style="margin-bottom: -50px;">
 </p>
 
-GitHub Repository for [https://github.com/zizifn/edgetunnel](https://github.com/zizifn/edgetunnel)
+EDtunnel 是一个基于 Cloudflare Workers 和 Pages 的代理工具，支持多种协议和配置选项。
 
-ask question and cloudflare ips: [https://t.me/edtunnel](https://t.me/edtunnel)
+EDtunnel is a proxy tool based on Cloudflare Workers and Pages, supporting multiple protocols and configuration options.
 
 [![Repository](https://img.shields.io/badge/View%20on-GitHub-blue.svg)](https://github.com/zizifn/edgetunnel)
+[![Telegram](https://img.shields.io/badge/Discuss-Telegram-blue.svg)](https://t.me/edtunnel)
 
-## available branches and explain
+## ✨ 特性 | Features
 
-| Branch Name   | Description                                                   |
-| ------------- | ------------------------------------------------------------- |
-| remote-socks5 | Branch for remote SOCKS5 proxy pool used implementation       |
-| socks5        | Branch for SOCKS5 proxyIP implementation                      |
-| vless         | Branch for outbound VLESS protocol implementation             |
-| vless2        | Branch for alternative outbound VLESS protocol implementation |
-| code1         | Branch for code1 feature development                          |
-| code2         | Branch for code2 alternative feature development              |
-| dns           | Branch for DNS alternative related development                |
-| main          | Main branch for the project                                   |
-| pages         | New version for deployment on Cloudflare Pages                |
+- 支持 Cloudflare Workers 和 Pages 部署
+- 支持多 UUID 配置
+- 支持自定义代理 IP 和端口
+- 支持 SOCKS5 代理
+- 提供自动配置订阅链接
+- 简单易用的部署流程
 
-## Deploy in pages.dev
+- Support for Cloudflare Workers and Pages deployment
+- Multiple UUID configuration support
+- Custom proxy IP and port support
+- SOCKS5 proxy support
+- Automatic configuration subscription link
+- Simple and easy deployment process
 
-1. See YouTube Video:
+## 🚀 快速部署 | Quick Deployment
 
-   [https://www.youtube.com/watch?v=8I-yTNHB0aw](https://www.youtube.com/watch?v=8I-yTNHB0aw)
+### 在 Pages.dev 部署 | Deploy on Pages.dev
 
-2. Clone this repository deploy in cloudflare pages.
+1. 观看部署教程视频 | Watch deployment tutorial video：
+   [YouTube Tutorial](https://www.youtube.com/watch?v=8I-yTNHB0aw)
 
-<!-- 3. Add `nodejs_compat` at setting Compatibility flags -->
+2. 克隆此仓库并在 Cloudflare Pages 中部署 | Clone this repository and deploy in Cloudflare Pages
 
-<!-- ![note](image/image.png) -->
+### 在 Worker.dev 部署 | Deploy on Worker.dev
 
-## Deploy in worker.dev
+1. 从[这里](https://github.com/6Kmfi6HP/EDtunnel/blob/main/_worker.js)复制 `_worker.js` 代码 | Copy `_worker.js` code from [here](https://github.com/6Kmfi6HP/EDtunnel/blob/main/_worker.js)
 
-1. Copy `_worker.js` code from [here](https://github.com/6Kmfi6HP/EDtunnel/blob/main/_worker.js).
-
-2. Alternatively, you can click the button below to deploy directly.
+2. 或者点击下方按钮一键部署 | Or click the button below to deploy directly:
 
    [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/6Kmfi6HP/EDtunnel)
 
-<!-- 3. Noneed add `nodejs_compat` at setting Compatibility flags -->
+## ⚙️ 配置说明 | Configuration Guide
 
-## How to use non 443 port as proxyIP
+### 环境变量配置 | Environment Variables
 
-1. copy `ProxyIP:proxyport` to `https://proxyip.edtunnel.best/` and click `Check` button.
-2. if `Proxy IP` is `true`, you can use this `ProxyIP:proxyport` as `ProxyIP`
-3. if `Proxy IP` is `false`, you can see `Origin` is `443` this means the port can be accessed website.
-4. edit worker `PROXYIP` variable example `211.230.110.231:50008`
+| 变量名 (Variable) | 是否必需 (Required) | 示例 (Example) | 说明 (Description) |
+|------------------|-------------------|---------------|-------------------|
+| `UUID` | 否 (No) | 单个 (Single): `12345678-1234-1234-1234-123456789012`<br>多个 (Multiple): `uuid1,uuid2,uuid3` | 用户识别码 / User identification |
+| `PROXYIP` | 否 (No) | `1.1.1.1` 或 (or) `example.com`<br>多个 (Multiple): `1.1.1.1:9443,2.2.2.2:8443` | 自定义代理IP和端口 / Custom proxy IP and port |
+| `SOCKS5` | 否 (No) | `user:pass@host:port`<br>多个 (Multiple): `user1:pass1@host1:port1,user2:pass2@host2:port2` | SOCKS5代理配置 / SOCKS5 proxy configuration |
+| `SOCKS5_RELAY` | 否 (No) | `true` 或 (or) `false` | 启用SOCKS5流量转发 / Enable SOCKS5 traffic relay |
 
-Note: the proxyIP with port may not vaild some cloudflare site that use http only.
+### 非443端口配置 | Non-443 Port Configuration
 
-## How to change UUID
+1. 访问 (Visit) `https://proxyip.edtunnel.best/`
+2. 输入 (Enter) `ProxyIP:proxyport` 并点击检查 (and click Check)
+3. 当显示 (When showing) `Proxy IP: true` 时可用 (it's available)
+4. 在 Worker 中配置 (Configure in Worker): `PROXYIP=211.230.110.231:50008`
 
-1. edit `wrangler.toml` file `UUID` variable(not recommended at public repo)
-2. edit `UUID` in cloudflare dashboard secret enviroment variable (recommended)
+注意：带端口的代理IP可能在某些仅支持HTTP的Cloudflare站点上无效。
+Note: Proxy IPs with ports may not work on HTTP-only Cloudflare sites.
 
-## Support Environment Variables
+### UUID 配置方法 | UUID Configuration
 
-| Variable       | Required | Example                                                                                                                                                                       | Description                        |
-| -------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| `UUID`         | No       | `12345678-1234-1234-1234-123456789012`                                                                                                                                        | Unique identifier                  |
-| `PROXYIP`      | No       | `1.1.1.1` or `cdn.xn--b6gac.eu.org` or with port `1.1.1.1:9443` or `[2a01:4f8:c2c:123f:64:5:6810:c55a]:443` or use multiple proxyIPs `1.1.1.1:80,2.2.2.2:443,example.com:443` | Redirect cloudflare ips to ProxyIP |
-| `SOCKS5`       | No       | `1.1.1.1:1080` or `user:pass@host:port`                                                                                                                                       | SOCKS5 proxy cloudflare ips        |
-| `SOCKS5_RELAY` | No       | `true` or `false`                                                                                                                                                             | Enable SOCKS5 relaying all traffic |
+#### 方法一 | Method 1
+在 `wrangler.toml` 文件中设置（不推荐在公共仓库中使用）
+Set in `wrangler.toml` file (not recommended for public repositories)
 
-### Enviroment variable setting workers.dev
+```toml
+[vars]
+UUID = "your-uuid-here"
+```
 
-![workers](image/image-1.png)
+#### 方法二 | Method 2
+在 Cloudflare Dashboard 的环境变量中设置（推荐方式）
+Set in Cloudflare Dashboard environment variables (recommended method)
 
-### Enviroment variable setting pages.dev
+## ⚠️ 重要提示：多项配置分隔符 | Important Note: Multiple Configuration Separator
 
-![pages](image/image-2.png)
+所有多项配置必须使用英文逗号(,)分隔，不能使用中文逗号(，)
+All multiple configurations MUST use English comma(,) as separator, NOT Chinese comma(，)
 
-<!-- ## How to use trojan
+✅ 正确示例 | Correct Examples:
+```bash
+# UUID多个配置 | Multiple UUID
+UUID=uuid1,uuid2,uuid3
 
-1. the `UUID` enviroment variable is `trojan` password
-2. v2ray path is `/trojan` -->
+# SOCKS5多个代理 | Multiple SOCKS5 proxies
+SOCKS5=192.168.1.1:1080,192.168.1.2:1080
 
-## Lazy to deploy
+# PROXYIP多个地址 | Multiple PROXYIP
+PROXYIP=1.1.1.1:443,2.2.2.2:443
+```
 
-subscribe link`https://sub.xf.free.hr/auto` (auto detect client config)
+❌ 错误示例 | Wrong Examples:
+```bash
+# 错误：使用中文逗号 | Wrong: Using Chinese comma
+UUID=uuid1，uuid2，uuid3
 
-## UUID Setting (Optional)
+# 错误：使用中文逗号 | Wrong: Using Chinese comma
+SOCKS5=192.168.1.1:1080，192.168.1.2:1080
+```
 
-1. When deploy in cloudflare pages, you can set uuid in `wrangler.toml` file. variable name is `UUID`. `wrangler.toml` file is also supported. (recommended) in case deploy in webpages, you can not set uuid in `wrangler.toml` file.
+## 📱 快速使用 | Quick Start
 
-2. When deploy in worker.dev, you can set uuid in `_worker.js` file. variable name is `userID`. `wrangler.toml` file is also supported. (recommended) in case deploy in webpages, you can not set uuid in `wrangler.toml` file. in this case, you can also set uuid in `UUID` enviroment variable.
+### 自动配置订阅 | Auto Configuration Subscribe
 
-Note: `UUID` is the uuid you want to set. pages.dev and worker.dev all of them method supported, but depend on your deploy method.
+使用以下链接获取自动配置 | Use the following link for auto configuration:
+```
+https://sub.xf.free.hr/auto
+```
 
-### UUID Setting Example
+### 查看配置 | View Configuration
 
-1. single uuid environment variable
+- 访问您的域名 | Visit your domain: `https://your-domain.pages.dev`
+- 使用特定UUID | Use specific UUID: `/sub/[uuid]`
+- 查看完整配置 | View full configuration: 直接访问域名根路径 (visit domain root path)
+- 获取订阅内容 | Get subscription content: 访问 `/sub/[uuid]` (visit `/sub/[uuid]`)
 
-   ```.environment
-   UUID = "uuid here your want to set"
+## 🔧 高级配置 | Advanced Configuration
+
+### 多UUID支持 | Multiple UUID Support
+
+您可以通过以下方式配置多个UUID | You can configure multiple UUIDs in these ways:
+
+1. 环境变量方式 | Via environment variables:
+   ```
+   UUID=uuid1,uuid2,uuid3
    ```
 
-2. multiple uuid environment variable
-
-   ```.environment
+2. 配置文件方式 | Via configuration file:
+   ```toml
+   [vars]
    UUID = "uuid1,uuid2,uuid3"
    ```
 
-   note: uuid1, uuid2, uuid3 are separated by commas`,`.
-   when you set multiple uuid, you can use `https://edtunnel.pages.dev/uuid1` to get the clash config and vless:// link.
+### SOCKS5代理配置 | SOCKS5 Proxy Configuration
 
-## subscribe vless:// link (Optional)
+支持以下格式 | Supports the following formats:
+- 基础格式 | Basic format: `host:port`
+- 认证格式 | Authentication format: `username:password@host:port`
+- 多代理格式（使用英文逗号分隔）| Multiple proxies (separated by English comma): `proxy1,proxy2,proxy3`
 
-1. visit `https://edtunnel.pages.dev/uuid your set` to get the subscribe link.
+#### 配置示例 | Configuration Examples:
 
-2. visit `https://edtunnel.pages.dev/sub/uuid your set` to get the subscribe content with `uuid your set` path.
+1. 单个代理 | Single Proxy:
+```bash
+# 基础格式 | Basic format
+SOCKS5=192.168.1.1:1080
 
-   Note: `uuid_your_set` is the uuid you set in UUID enviroment or `wrangler.toml`, `_worker.js` file.
-   when you set multiple uuid, you can use `https://edtunnel.pages.dev/sub/uuid1` to get the subscribe content with `uuid1` path.(only support first uuid in multiple uuid set)
-
-3. visit `https://edtunnel.pages.dev/sub/uuid_your_set/?format=clash` to get the subscribe content with `uuid_your_set` path and `clash` format. content will return with base64 encode.
-
-   Note: `uuid_your_set` is the uuid you set in UUID enviroment or `wrangler.toml`, `_worker.js` file.
-   when you set multiple uuid, you can will use `https://edtunnel.pages.dev/sub/uuid1/?format=clash` to get the subscribe content with `uuid1` path and `clash` format.(only support first uuid in multiple uuid set)
-
-## subscribe Cloudflare bestip(pure ip) link
-
-1. visit `https://edtunnel.pages.dev/bestip/uuid_your_set` to get subscribe info.
-
-2. cpoy subscribe url link `https://edtunnel.pages.dev/bestip/uuid_your_set` to any clients(clash/v2rayN/v2rayNG) you want to use.
-
-3. done. if have any questions please join [@edtunnel](https://t.me/edtunnel)
-
-## multiple port support (Optional)
-
-   <!-- let portArray_http = [80, 8080, 8880, 2052, 2086, 2095];
-	let portArray_https = [443, 8443, 2053, 2096, 2087, 2083]; -->
-
-For a list of Cloudflare supported ports, please refer to the [official documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/ports).
-
-By default, the port is 80 and 443. If you want to add more ports, you can use the following ports:
-
-```text
-80, 8080, 8880, 2052, 2086, 2095, 443, 8443, 2053, 2096, 2087, 2083
-http port: 80, 8080, 8880, 2052, 2086, 2095
-https port: 443, 8443, 2053, 2096, 2087, 2083
+# 带认证格式 | With authentication
+SOCKS5=user:pass@192.168.1.1:1080
 ```
 
-if you deploy in cloudflare pages, https port is not supported. Simply add multiple ports node drictly use subscribe link, subscribe content will return all Cloudflare supported ports.
+2. 多个代理（使用英文逗号分隔）| Multiple Proxies (separated by English comma):
+```bash
+# 多个基础代理 | Multiple basic proxies
+SOCKS5=192.168.1.1:1080,192.168.1.2:1080,192.168.1.3:1080
 
-## proxyIP (Optional)
+# 多个带认证代理 | Multiple proxies with authentication
+SOCKS5=user1:pass1@host1:port1,user2:pass2@host2:port2
 
-1. When deploy in cloudflare pages, you can set proxyIP in `wrangler.toml` file. variable name is `PROXYIP`.
+# 混合格式 | Mixed format
+SOCKS5=192.168.1.1:1080,user:pass@192.168.1.2:1080,192.168.1.3:1080
+```
 
-2. When deploy in worker.dev, you can set proxyIP in `_worker.js` file. variable name is `proxyIP`.
+#### SOCKS5 代理负载均衡 | SOCKS5 Proxy Load Balancing
 
-3. You can now set multiple proxy IPs by separating them with commas. For example:
-   ```
-   PROXYIP = "1.1.1.1:443,2.2.2.2:8443,example.com:443"
-   ```
-   The system will randomly select one of these proxy addresses for each request, providing basic load balancing.
+当配置多个代理时，系统会自动进行负载均衡：
+When multiple proxies are configured, the system will automatically perform load balancing:
 
-Note: `proxyIP` is the ip or domain you want to set. This means that the proxyIP is used to route traffic through a proxy rather than directly to a website that is using Cloudflare's (CDN). If you don't set this variable, connection to the Cloudflare IP will be cancelled (or blocked).
+- 随机选择 | Random selection
+- 自动故障转移 | Automatic failover
+- 支持混合认证方式 | Support mixed authentication methods
 
-Reasons: Outbound TCP sockets to Cloudflare IP ranges are temporarily blocked, please refer to the [tcp-sockets documentation](https://developers.cloudflare.com/workers/runtime-apis/tcp-sockets/#considerations)
+#### SOCKS5_RELAY 设置 | SOCKS5_RELAY Settings
 
-## Usage
+启用 SOCKS5 全局转发 | Enable SOCKS5 global relay:
+```bash
+SOCKS5_RELAY=true
+```
 
-frist, open your pages.dev domain `https://edtunnel.pages.dev/` in your browser, then you can see the following page:
-The path `/uuid_your_set` to get the clash config and vless:// link.
-you will see the following page:
+注意事项 | Notes:
+- 确保代理服务器稳定可用 | Ensure proxy servers are stable and available
+- 建议使用私有代理以提高安全性 | Recommend using private proxies for better security
+- 多代理配置时使用英文逗号分隔 | Use commas to separate multiple proxies
+- 支持动态添加和移除代理 | Support dynamic proxy addition and removal
 
-![alt text](/image/image-3.png)
+## 🚨 注意事项 | Notes
+
+- 带端口的代理IP可能在某些仅HTTP的Cloudflare站点上无效
+- 多UUID配置时使用英文逗号分隔
+- 建议通过环境变量设置敏感信息
+- 定期更新以获取最新功能和安全修复
+
+- Proxy IPs with ports may not work on HTTP-only Cloudflare sites
+- Use commas to separate multiple UUIDs
+- Recommend setting sensitive information via environment variables
+- Update regularly for latest features and security fixes
+
+## 🔧 环境变量设置 | Environment Variable Settings
+
+### Workers.dev 设置 | Workers.dev Settings
+在 Workers 设置页面配置环境变量 | Configure environment variables in Workers settings page
+![workers](image/image-1.png)
+
+### Pages.dev 设置 | Pages.dev Settings
+在 Pages 设置页面配置环境变量 | Configure environment variables in Pages settings page
+![pages](image/image-2.png)
+
+## 💬 获取帮助 | Get Help
+
+- Telegram 群组 | Telegram Group: [EDtunnel](https://t.me/edtunnel)
+- GitHub 仓库 | Repository: [edgetunnel](https://github.com/zizifn/edgetunnel)
+- 问题反馈 | Issue Report: [创建新问题 | Create New Issue](https://github.com/zizifn/edgetunnel/issues)
+- 功能建议 | Feature Request: [提交建议 | Submit Request](https://github.com/zizifn/edgetunnel/discussions)
+
+## 📝 贡献指南 | Contributing
+
+欢迎提交 Pull Request 来改进项目！请确保：
+Welcome Pull Requests to improve the project! Please ensure:
+
+1. 代码符合项目规范 | Code follows project standards
+2. 添加必要的测试 | Add necessary tests
+3. 更新相关文档 | Update relevant documentation
+4. 描述清楚改动原因 | Clearly describe the reasons for changes
+
+## 📜 许可证 | License
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Star History
 
