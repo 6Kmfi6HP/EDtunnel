@@ -32,6 +32,8 @@ jobs:
           --control-flow-flattening-threshold 1 \
           --dead-code-injection true \
           --dead-code-injection-threshold 1 \
+          --identifier-names-generator hexadecimal \
+          --rename-globals true \
           --string-array true \
           --string-array-encoding 'rc4' \
           --string-array-threshold 1 \
