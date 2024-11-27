@@ -22,10 +22,13 @@ jobs:
           node-version: "16"
 
       - name: Install dependencies
-        run: npm install -g javascript-obfuscator
+        run: npm install -g javascript-obfuscator wrangler
 
       - name: Obfuscate code
         run: |
+          npx wrangler deploy --minify --outdir dist &&
+          mv dist/index.js index.js &&
+          rm -rf dist &&
           javascript-obfuscator index.js --output _worker.js \
           --compact true \
           --control-flow-flattening true \
