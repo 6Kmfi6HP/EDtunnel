@@ -3,22 +3,22 @@ main = "_worker.js"
 compatibility_date = "2023-05-26"
 
 [[routes]]
-pattern = "vless.bugedebug.my.id", 
+pattern = "vless.bugedebug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "quiz.int.vidio.com.bugedebug.my.id", 
+pattern = "quiz.int.vidio.com.vless.bugedebug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "img.email1.vidio.com.bugedebug.my.id", 
+pattern = "img.email1.vidio.com.vless.bugedebug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "quiz.vidio.com.bugedebug.my.id", 
+pattern = "quiz.vidio.com.vless.bugedebug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "img.email2.vidio.com.bugedebug.my.id", 
+pattern = "img.email2.vidio.com.vless.bugedebug.my.id"
 custom_domain = true
 [[routes]]
-pattern = "img.email3.vidio.com.bugedebug.my.id", 
+pattern = "img.email3.vidio.com.vless.bugedebug.my.id"
 custom_domain = true
 # node_compat = true
 workers_dev = true
