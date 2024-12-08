@@ -86,19 +86,18 @@ export default {
 				}
 			}
 
-			const userIDs = userID.split(',').map(id => id.trim());
+			const userIDs = userID.includes(',') ? userID.split(',').map(id => id.trim()) : [userID];
 			const url = new URL(request.url);
 			const host = request.headers.get('Host');
 			const requestedPath = url.pathname.substring(1); // Remove leading slash
-			const matchingUserID = userIDs.find(id => {
-				// Check if the path starts with the UUID or sub/UUID or bestip/UUID
-				const patterns = [
-					id,
-					`sub/${id}`,
-					`bestip/${id}`
-				];
-				return patterns.some(pattern => requestedPath.startsWith(pattern));
-			});
+			const matchingUserID = userIDs.length === 1 ?
+				(requestedPath === userIDs[0] || 
+				 requestedPath === `sub/${userIDs[0]}` || 
+				 requestedPath === `bestip/${userIDs[0]}` ? userIDs[0] : null) :
+				userIDs.find(id => {
+					const patterns = [id, `sub/${id}`, `bestip/${id}`];
+					return patterns.some(pattern => requestedPath.startsWith(pattern));
+				});
 
 			if (request.headers.get('Upgrade') !== 'websocket') {
 				if (url.pathname === '/cf') {
@@ -1238,7 +1237,9 @@ function getConfig(userIDs, hostName, proxyIP) {
         <h3>Best IP Configuration</h3>
         <div class="input-group mb-3">
           <select class="form-select" id="proxySelect" onchange="updateProxyConfig()">
-            ${Array.from(proxyIP).map(proxy => `<option value="${proxy}">${proxy}</option>`).join('')}
+            ${typeof proxyIP === 'string' ? 
+              `<option value="${proxyIP}">${proxyIP}</option>` : 
+              Array.from(proxyIP).map(proxy => `<option value="${proxy}">${proxy}</option>`).join('')}
           </select>
         </div>
 		<br>
@@ -1338,7 +1339,7 @@ function GenSub(userID_path, hostname, proxyIP) {
 	const proxyIPArray = Array.isArray(proxyIP) ? proxyIP : (proxyIP ? (proxyIP.includes(',') ? proxyIP.split(',') : [proxyIP]) : proxyIPs);
 	const randomPath = () => '/' + Math.random().toString(36).substring(2, 15) + '?ed=2048';
 	const commonUrlPartHttp = `?encryption=none&security=none&fp=random&type=ws&host=${hostname}&path=${encodeURIComponent(randomPath())}#`;
-	const commonUrlPartHttps = `?encryption=none&security=tls&sni=${hostname}&fp=random&type=ws&host=${hostname}&path=%2F%3Fed%3D2048#${hostname}`;
+	const commonUrlPartHttps = `?encryption=none&security=tls&sni=${hostname}&fp=random&type=ws&host=${hostname}&path=%2F%3Fed%3D2048#`;
 
 	const result = userIDArray.flatMap((userID) => {
 		let allUrls = [];
@@ -1346,7 +1347,7 @@ function GenSub(userID_path, hostname, proxyIP) {
 		if (!hostname.includes('pages.dev')) {
 			mainDomains.forEach(domain => {
 				Array.from(HttpPort).forEach((port) => {
-					const urlPart = `${hostname.split('.')[0]}-HTTP-${port}`;
+					const urlPart = `${hostname.split('.')[0]}-${domain}-HTTP-${port}`;
 					const mainProtocolHttp = atob(pt) + '://' + userID + atob(at) + domain + ':' + port + commonUrlPartHttp + urlPart;
 					allUrls.push(mainProtocolHttp);
 				});
@@ -1356,7 +1357,7 @@ function GenSub(userID_path, hostname, proxyIP) {
 		// Generate main HTTPS URLs for all domains
 		mainDomains.forEach(domain => {
 			Array.from(HttpsPort).forEach((port) => {
-				const urlPart = `${hostname.split('.')[0]}-HTTPS-${port}`;
+				const urlPart = `${hostname.split('.')[0]}-${domain}-HTTPS-${port}`;
 				const mainProtocolHttps = atob(pt) + '://' + userID + atob(at) + domain + ':' + port + commonUrlPartHttps + urlPart;
 				allUrls.push(mainProtocolHttps);
 			});
@@ -1364,18 +1365,17 @@ function GenSub(userID_path, hostname, proxyIP) {
 
 		// Generate proxy HTTPS URLs
 		proxyIPArray.forEach((proxyAddr) => {
-			const [proxyHost, proxyPort] = proxyAddr.split(':');
-			Array.from(HttpsPort).forEach((port) => {
-				const urlPart = `${hostname.split('.')[0]}-HTTPS-${port}`;
-				const secondaryProtocolHttps = atob(pt) + '://' + userID + atob(at) + proxyHost + ':' + proxyPort + commonUrlPartHttps + urlPart + '-' + proxyAddr + '-' + atob(ed);
-				allUrls.push(secondaryProtocolHttps);
-			});
+			const [proxyHost, proxyPort = '443'] = proxyAddr.split(':');
+			const urlPart = `${hostname.split('.')[0]}-${proxyHost}-HTTPS-${proxyPort}`;
+			const secondaryProtocolHttps = atob(pt) + '://' + userID + atob(at) + proxyHost + ':' + proxyPort + commonUrlPartHttps + urlPart + '-' + atob(ed);
+			allUrls.push(secondaryProtocolHttps);
 		});
 
 		return allUrls;
 	});
 
-	return btoa(result.join('\n'));
+	// return btoa(result.join('\n'));
+	return result.join('\n');
 }
 
 /**
