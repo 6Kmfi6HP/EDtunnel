@@ -3,9 +3,18 @@ main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "sg1.dimnpid.my.id"
+custom_domain = true
+[[routes]]
+pattern = "io.ruangguru.com.sg1.dimnpid.my.id"
+custom_domain = true
+[[routes]]
+pattern = "bayar.ruangguru.com.sg1.dimnpid.my.id"
+custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "00c76e67-c42e-46a5-be29-ac96df78336d"
+UUID = "d16f0296-8c81-4d89-9594-9793f9e65858"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
