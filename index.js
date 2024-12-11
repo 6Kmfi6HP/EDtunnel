@@ -1374,8 +1374,8 @@ function GenSub(userID_path, hostname, proxyIP) {
 		return allUrls;
 	});
 
-	// return btoa(result.join('\n'));
-	return result.join('\n');
+	return btoa(result.join('\n'));
+	// return result.join('\n');
 }
 
 /**
