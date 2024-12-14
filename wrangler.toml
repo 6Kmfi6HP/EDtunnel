@@ -10,7 +10,7 @@ custom_domain = true
 pattern = "quiz.vidio.com.sg1.udaj.my.id"
 custom_domain = true
 [[routes]]
-pattern = "img.email1.vidio.com.sg1.udaj.my.id"
+pattern = "quiz.staging.vidio.com.sg1.udaj.my.id"
 custom_domain = true
 
 [vars]
