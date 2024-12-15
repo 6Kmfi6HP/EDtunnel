@@ -1,6 +1,15 @@
-name = "cf-worker-ws-dev"
+name = "server-sg"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+[[routes]]
+pattern = "sg1.vpntimur.site"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.sg1.vpntimur.site"
+custom_domain = true
+[[routes]]
+pattern = "quiz.vidio.com.sg1.vpntimur.site"
+custom_domain = true
 # node_compat = true
 workers_dev = true
 
