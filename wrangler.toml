@@ -8,9 +8,6 @@ compatibility_date = "2023-05-26"
 pattern = "sg1.apilyolanda.my.id"
 custom_domain = true
 [[routes]]
-pattern = "althaf.apilyolanda.my.id"
-custom_domain = true
-[[routes]]
 pattern = "quiz.int.vidio.com.sg1.apilyolanda.my.id"
 custom_domain = true
 [[routes]]
