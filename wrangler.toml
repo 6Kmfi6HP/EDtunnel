@@ -7,7 +7,7 @@ workers_dev = true
 pattern = "id.noobzvpn.my.id"
 custom_domain = true
 [[routes]]
-pattern = "id.noobzvpn.my.id"
+pattern = "quz.vidio.com.id.noobzvpn.my.id"
 custom_domain = true
 
 [vars]
