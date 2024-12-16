@@ -1,11 +1,19 @@
-name = "cf-worker-ws-dev"
+name = "suyadi"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
-
+[[ routers ]]
+pattern = "vpn.suyadi.live"
+custom_domain = true
+[[ routers ]]
+pattern = "quiz.int.vidio.com.vpn.suyadi.live"
+custom_domain = true
+[[ routers ]]
+pattern = "quiz.vidio.com.vpn.suyadi.live"
+custom_domain = true
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "4aac89d3-38fd-4e02-b150-f3e4c4f3e47a"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
