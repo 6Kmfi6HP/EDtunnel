@@ -11,7 +11,7 @@ pattern = "quz.vidio.com.id.noobzvpn.my.id"
 custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
+PROXYIP = "103.168.146.169:20132"
 UUID = "bde23f67-4960-4098-89a2-cecd174263bc"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
