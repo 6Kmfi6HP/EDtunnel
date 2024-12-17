@@ -1,4 +1,4 @@
-name = "aldibhldr666.pages-dev"
+name = "id.aldibhldr.pages-dev"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
