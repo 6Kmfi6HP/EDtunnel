@@ -1,8 +1,9 @@
-name = "cf-worker-ws-dev"
+name = "server-sg" # todo
+#name = "cf-worker-connect-test" # todo
+#main = "test/worker/cf-cdn-cgi-trace2.js"
+#main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-# node_compat = true
-workers_dev = true
 [[routes]]
 pattern = "sg1.apilyolanda.my.id"
 custom_domain = true
@@ -10,9 +11,14 @@ custom_domain = true
 pattern = "quiz.int.vidio.com.sg1.apilyolanda.my.id"
 custom_domain = true
 [[routes]]
+pattern = "quiz.vidio.com.sg1.apilyolanda.my.id"
+custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "772626dd-5eb5-4cf2-89d9-004902cb4867"
-# SOCKS5 = "127.0.0.1:1080"
-# SOCKS5_RELAY = "true"
+# UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
+# PROXYIP = "1.2.3.4"
+# DNS_RESOLVER_URL = "https://cloudflare-dns.com/dns-query"
+# NODE_ID = "1"
+# API_TOKEN = "example_dev_token"
+# API_HOST = "api.v2board.com"
+UUID = "93ebdc46-5a3d-4377-9107-94f208ca04a7"
