@@ -1,11 +1,17 @@
-name = "cf-worker-ws-dev"
+name = "id"
 main = "_worker.js"
-compatibility_date = "2023-05-26"
-# node_compat = true
+compatibility_date = "2023-05-26
+node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "id.noobzvpn.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.vidio.com.id.noobzvpn.my.id"
+custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
-# SOCKS5 = "127.0.0.1:1080"
-# SOCKS5_RELAY = "true"
+PROXYIP = "103.168.146.169:20132"
+UUID = "bde23f67-4960-4098-89a2-cecd174263bc"
+SOCKS5 = "127.0.0.1:1080"
+SOCKS5_RELAY = "true"
