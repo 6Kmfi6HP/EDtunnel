@@ -4,6 +4,28 @@ name = "Alipastore" # todo
 #main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+l[routes]l]
+pattern ="indo.alipavip.us.kg"
+custom_domain = true
+[routesl
+pattern ='shopee.co.id.indo.alipavip.us.kg"
+custom_domain = true
+[routesl]
+pattern =
+"cf.shopee.co.id.indo.alipavip.us.kg"
+custom_domain = true
+[routesl]
+pattern=
+"cv.shopee.sg.indo.alipavip.us.kg"
+custom_domain = true
+[[routesl]
+pattern=
+"cvs-deo.shopeemobile.com.indo.alipavi.us.kg.
+my.id"
+custom_domain= true
+
+
+
 node_compat = true
 workers_dev = true
 
