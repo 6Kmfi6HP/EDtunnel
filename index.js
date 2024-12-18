@@ -17,7 +17,7 @@ let userID = 'ce1df34d-954c-4a3f-9b1c-166bfc1de65d';
  * Format: ['hostname:port', 'hostname:port']
  */
 const proxyIPs = ['168.138.165.174'];
-let dohURL = 'https://cloudflare-dns.com/dns-query'; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
+let dohURL = 'https://dns.google/dns-query'; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
 
 // Randomly select a proxy server from the pool
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
