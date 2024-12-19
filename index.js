@@ -5,7 +5,7 @@ import { connect } from 'cloudflare:sockets';
 // ======================================
 // Configuration
 // ======================================
-
+ 
 /**
  * User configuration and settings
  * Generate UUID: [Windows] Press "Win + R", input cmd and run: Powershell -NoExit -Command "[guid]::NewGuid()"
