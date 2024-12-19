@@ -42,7 +42,7 @@ EDtunnel is a proxy tool based on Cloudflare Workers and Pages, supporting multi
 
 2. 或者点击下方按钮一键部署 | Or click the button below to deploy directly:
 
-   [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/6Kmfi6HP/EDtunnel)
+   [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/rkulu/vless/)
 
 ## ⚙️ 配置说明 | Configuration Guide
 
