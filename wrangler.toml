@@ -1,10 +1,10 @@
 name = "cf"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-# node_compat = true
-workers_dev = true
+node_compat = true
+workers_dev = false
 routes = [
-  { pattern = "sg1.tomygaiden.my.id", custom_domain = true }
+  { pattern = "sgdo.tomygaiden.my.id", custom_domain = true }
 ]
 
 [vars]
