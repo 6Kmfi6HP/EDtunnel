@@ -16,7 +16,7 @@ let userID = 'f5d09650-b154-4192-97c5-633ea7717364';
  * Array of proxy server addresses with ports
  * Format: ['hostname:port', 'hostname:port']
  */
-const proxyIPs = ['104.248.145.216,104.26.7.171'];
+const proxyIPs = ['104.248.145.216'];
 
 // Randomly select a proxy server from the pool
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
