@@ -2,13 +2,6 @@ name = "server-sgdo"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
-[[routes]]
-pattern = "sgl.gamervindo.my.id"
-custom_domain = true
-[[routes]]
-pattern = "space.byu.id.sgl.gamervindo.my.id"
-custom_domain = true
-
 workers_dev = true
 
 [vars]
