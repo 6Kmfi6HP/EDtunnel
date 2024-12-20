@@ -1,11 +1,22 @@
-name = "cf-worker-ws-dev"
+name = "indo"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+routes = [
+  { pattern = "simokasu.web.id", custom_domain = true },
+  { pattern = "ava.game.naver.com.indo.simokasu.web.id", custom_domain = true },
+  { pattern = "graph.instagram.com.indo.simokasu.web.id", custom_domain = true },
+  { pattern = "quiz.int.vidio.com.indo.simokasu.web.id", custom_domain = true },
+  { pattern = "investors.spotify.com.indo.simokasu.web.id", custom_domain = true },
+  { pattern = "zaintest.vuclip.com.indo.simokasu.web.id", custom_domain = true },
+  { pattern = "cache.netflix.com.indo.simokasu.web.id", custom_domain = true },
+  { pattern = "blog.webex.com.indo.simokasu.web.id", custom_domain = true },
+  { pattern = "support.zoom.us.indo.simokasu.web.id", custom_domain = true },
+]
 # node_compat = true
 workers_dev = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+# PROXYIP = "1.2.3.4"
+UUID = "48fd3500-419d-4b82-8a5e-4c30c7f3b421"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
