@@ -3,12 +3,6 @@ main = "_worker.js"
 compatibility_date = "2024-12-18"
 node_compat = true
 workers_dev = true
-[[routes]]
-pattern = "kawap36218.mooo.com"
-custom_domain = true
-[[routes]]
-pattern = "nontontv.vidio.com.kawap36218.mooo.com"
-custom_domain = true
 
 [vars]
 PROXYIP = "103.168.146.169:20132"
