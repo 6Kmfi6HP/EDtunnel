@@ -10,9 +10,6 @@ custom_domain = true
 [[routes]]
 pattern = "quiz.vidio.com.sg1.sempak-host.my.id"
 custom_domain = true
-# node_compat = true
-workers_dev = true
-
 [vars]
 # PROXYIP = "211.230.110.231:50008"
 UUID = "3002cb79-a42a-4e72-972d-9fb4f78d1d5a"
