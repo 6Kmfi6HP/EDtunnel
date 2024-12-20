@@ -16,7 +16,7 @@ routes = [
 workers_dev = true
 
 [vars]
-# PROXYIP = "206.237.98.76:587"
+# PROXYIP = "1.2.3.4"
 UUID = "48fd3500-419d-4b82-8a5e-4c30c7f3b421"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
