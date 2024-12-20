@@ -1,13 +1,13 @@
 name = "server-sg"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-[[routes]] =
+[[routes]] 
 pattern = "sg1.sempak-host.my.id"
 custom_domain = true
-[[routes]] =
+[[routes]] 
 pattern = "quiz.int.vidio.com.sg1.sempak-host.my.id"
 custom_domain = true
-[[routes]] =
+[[routes]] 
 pattern = "quiz.vidio.com.sg1.sempak-host.my.id"
 custom_domain = true
 
