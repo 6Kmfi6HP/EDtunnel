@@ -1,13 +1,13 @@
-name = "id"
+name = "vless"
 main = "_worker.js"
 compatibility_date = "2024-12-18"
 node_compat = true
 workers_dev = true
 [[routes]]
-pattern = "noobz.us.kg"
+pattern = "kawap36218.mooo.com"
 custom_domain = true
 [[routes]]
-pattern = "xl.noobz.us.kg"
+pattern = "nontontv.vidio.com.kawap36218.mooo.com"
 custom_domain = true
 
 [vars]
