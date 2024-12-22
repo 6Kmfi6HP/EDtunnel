@@ -12,7 +12,10 @@ pattern = "quiz.stagging.vidio.com.sg1.rachdik.my.id"
 custom_domain = true 
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "4259afce-1e70-44d8-987a-69fd4be93312"
-# SOCKS5 = "127.0.0.1:1080"
-# SOCKS5_RELAY = "true"
+# UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
+# PROXYIP = "1.2.3.4"
+# DNS_RESOLVER_URL = "https://cloudflare-dns.com/dns-query"
+# NODE_ID = "1"
+# API_TOKEN = "example_dev_token"
+# API_HOST = "api.v2board.com"
+UUID = "40fb479b-cbbe-4e12-a4a9-dbe2f2dccc6d"
