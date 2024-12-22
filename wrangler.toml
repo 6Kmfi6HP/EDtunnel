@@ -4,9 +4,6 @@ compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
 [[routes]]
-pattern = "apilyolanda.my.id"
-custom_domain = true
-[[routes]]
 pattern = "sg1.apilyolanda.my.id"
 custom_domain = true
 [[routes]]
