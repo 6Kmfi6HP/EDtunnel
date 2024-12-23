@@ -8,10 +8,13 @@ workers_dev = true
 pattern = "sg.arshena.my.id"
 custom_domain = true
 [[routes]] 
-pattern = "quiz.int.vidio.com.sg.arshena.my.id"
+pattern = "support.zoom.us.ok.arshena.my.id"
 custom_domain = true
 [[routes]] 
 pattern = "support.zoom.us.sg.arshena.my.id"
+custom_domain = true
+[[routes]] 
+pattern = "ok.arshena.my.id"
 custom_domain = true
 
 [vars]
