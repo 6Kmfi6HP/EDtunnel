@@ -1,18 +1,11 @@
-name = "kamarasn" # todo
-#name = "cf-worker-connect-test" # todo
-#main = "test/worker/cf-cdn-cgi-trace2.js"
-#main = "test/worker/worker-connect-test.js"
+name = "kamarasn"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-routes = [
-	{ pattern = "id1.kamarasn.eu.org", custom_domain = true }
-]
+# node_compat = true
+workers_dev = true
 
 [vars]
-# UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
-# PROXYIP = "1.2.3.4"
-# DNS_RESOLVER_URL = "https://cloudflare-dns.com/dns-query"
-# NODE_ID = "1"
-# API_TOKEN = "example_dev_token"
-# API_HOST = "api.v2board.com"
-UUID = "bb09318a-ed69-4bef-81c2-c582dce205cb"
+PROXYIP = "103.133.223.50"
+UUID = "6225bd11-c1c6-4638-bfa9-9fae9551c3ba"
+# SOCKS5 = "127.0.0.1:1080"
+# SOCKS5_RELAY = "true"
