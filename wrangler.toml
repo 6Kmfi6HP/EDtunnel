@@ -5,7 +5,7 @@ compatibility_date = "2023-05-26"
 workers_dev = true
 
 [[routes]]
-pattern = "{sg, support.zoom.us.ok, support.zoom.us.sg, ok}.arshena.my.id"
+pattern = "{sg, support.zoom.us.ok, support.zoom.us.sg,ava.game.naver.com.sg,creativeservices.netflix.com.sg,quiz.int.vidio.com.sg, ok}.arshena.my.id"
 custom_domain = true
 
 [vars]
