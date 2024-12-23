@@ -1,11 +1,21 @@
-name = "cf-worker-ws-dev"
+name = "server-donal"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
 
+[[routes]] 
+pattern = "sg.arshena.my.id"
+custom_domain = true
+[[routes]] 
+pattern = "quiz.int.vidio.com.sg.arshena.my.id"
+custom_domain = true
+[[routes]] 
+pattern = "support.zoom.us.sg.arshena.my.id"
+custom_domain = true
+
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "f25d371f-57e6-4ef3-a414-7db630d9c6b8"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
