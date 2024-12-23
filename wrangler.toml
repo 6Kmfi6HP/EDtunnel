@@ -4,17 +4,8 @@ compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
 
-[[routes]] 
-pattern = "sg.arshena.my.id"
-custom_domain = true
-[[routes]] 
-pattern = "support.zoom.us.ok.arshena.my.id"
-custom_domain = true
-[[routes]] 
-pattern = "support.zoom.us.sg.arshena.my.id"
-custom_domain = true
-[[routes]] 
-pattern = "ok.arshena.my.id"
+[[routes]]
+pattern = "{sg, support.zoom.us.ok, support.zoom.us.sg, ok}.arshena.my.id"
 custom_domain = true
 
 [vars]
