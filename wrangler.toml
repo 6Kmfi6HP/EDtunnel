@@ -5,7 +5,28 @@ compatibility_date = "2023-05-26"
 workers_dev = true
 
 [[routes]]
-pattern = "{sg, support.zoom.us.ok, support.zoom.us.sg,ava.game.naver.com.sg,creativeservices.netflix.com.sg,quiz.int.vidio.com.sg, ok}.arshena.my.id"
+pattern = "sg.arshena.my.id"
+custom_domain = true
+[[routes]]
+pattern = "support.zoom.us.sg.arshena.my.id"
+custom_domain = true
+[[routes]]
+pattern = "creativeservices.netflix.com.sg.arshena.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.sg.arshena.my.id"
+custom_domain = true
+[[routes]]
+pattern = "ok.arshena.my.id"
+custom_domain = true
+[[routes]]
+pattern = "support.zoom.us.ok.arshena.my.id"
+custom_domain = true
+[[routes]]
+pattern = "creativeservices.netflix.com.ok.arshena.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.ok.arshena.my.id"
 custom_domain = true
 
 [vars]
