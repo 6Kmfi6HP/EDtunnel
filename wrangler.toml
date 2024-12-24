@@ -1,11 +1,20 @@
-name = "cf-worker-ws-dev"
+name = "sgdo"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "sgdo.apilyolanda.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.sgdo.apilyolanda.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.vidio.com.sgdo.apilyolanda.my.id"
+custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "c41e9916-ea7c-4372-8515-09a02ce2f42a"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
