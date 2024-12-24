@@ -15,6 +15,6 @@ custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "5408ce28-a7ca-4e68-a4ab-20c9fb184d8f"
+UUID = "00758f40-a73f-48be-92c3-294aa37b293a"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
