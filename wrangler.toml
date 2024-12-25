@@ -2,7 +2,7 @@ name = "Test_SG"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
-workers_dev = true
+
 [[route]]
 pattern = "sg.lapernasi.my.id"
 custom_domain = true
