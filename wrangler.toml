@@ -4,7 +4,8 @@ compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
 routes = [
-  { pattern = "sg1.lapernasi", custom_domain = true }
+  { pattern = "
+sg1.lapernasi.my.id", custom_domain = true }
 ]
 
 [vars]
