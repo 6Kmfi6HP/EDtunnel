@@ -1,11 +1,17 @@
-name = "cf-worker-ws-dev"
+name = "vless"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "vless.wildcardindo.my.id"
+custom_domain = true
+[[routes]]
+pattern = "ava.game.naver.com.vless.wilcardindo.my.id"
+custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "f9744f5f-9b83-4b4d-a8bd-f11132b92c67"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
