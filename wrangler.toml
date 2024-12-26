@@ -5,6 +5,7 @@ compatibility_date = "2023-05-26"
 workers_dev = true
 [[routes]]
 pattern = "id.wildcardindo.my.id"
+custom_domain = true
 [[routes]]
 pattern = "ava.game.naver.com.id.wildcardindo.my.id"
 custom_domain = true
