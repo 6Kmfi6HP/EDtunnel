@@ -1,22 +1,18 @@
-name = "id2"
+name = "free-vpn"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-routes = [
-  { pattern = "simokasu.web.id", custom_domain = true },
-  { pattern = "ava.game.naver.com.id2.simokasu.web.id", custom_domain = true },
-  { pattern = "graph.instagram.com.id2.simokasu.web.id", custom_domain = true },
-  { pattern = "quiz.int.vidio.com.id2.simokasu.web.id", custom_domain = true },
-  { pattern = "investors.spotify.com.id2.simokasu.web.id", custom_domain = true },
-  { pattern = "zaintest.vuclip.com.id2.simokasu.web.id", custom_domain = true },
-  { pattern = "cache.netflix.com.id2.simokasu.web.id", custom_domain = true },
-  { pattern = "blog.webex.com.id2.simokasu.web.id", custom_domain = true },
-  { pattern = "support.zoom.us.id2.simokasu.web.id", custom_domain = true },
-]
 # node_compat = true
 workers_dev = true
 
+[[routes]]
+pattern = "simokasu.web.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.simokasu.web.id"
+custom_domain = true
+
 [vars]
-# PROXYIP = "103.168.146.169:20132"
-UUID = "48fd3500-419d-4b82-8a5e-4c30c7f3b421"
+PROXYIP = "103.168.146.169:20132"
+UUID = "f67a8d0d-4e94-4df0-bf1d-282d254cc0bd"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
