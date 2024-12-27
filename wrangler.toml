@@ -20,7 +20,7 @@ custom_domain = true
 pattern = "updates.netflix.com.vless.flywc.my.id"
 custom_domain = true
 [[routes]]
-pattern = "zaintest.vuclip.com.vless.flyws.my.id"
+pattern = "zaintest.vuclip.com.vless.flywc.my.id"
 custom_domain = true
 
 [vars]
