@@ -1,11 +1,33 @@
-name = "cf-worker-ws-dev"
+name = "vless" # todo
+#name = "cf-worker-connect-test" # todo
+#main = "test/worker/cf-cdn-cgi-trace2.js"
+#main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-# node_compat = true
-workers_dev = true
+[[routes]]
+pattern = "vless.flywc.my.id"
+custom_domain = true
+[[routes]]
+pattern = "ava.game.naver.com.id.vless.flywc.my.id"
+custom_domain = true
+[[routes]]
+pattern = "autodiscover.instagram.com.id.vless.flywc.my.id"
+custom_domain = true
+[[routes]]
+pattern = "hwvip.iflix.com.id.vless.flywc.my.id"
+custom_domain = true
+[[routes]]
+pattern = "updates.netflix.com.vless.flywc.my.id"
+custom_domain = true
+[[routes]]
+pattern = "zaintest.vuclip.com.vless.flyws.my.id"
+custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
-# SOCKS5 = "127.0.0.1:1080"
-# SOCKS5_RELAY = "true"
+# UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
+# PROXYIP = "1.2.3.4"
+# DNS_RESOLVER_URL = "https://cloudflare-dns.com/dns-query"
+# NODE_ID = "1"
+# API_TOKEN = "example_dev_token"
+# API_HOST = "api.v2board.com"
+UUID = "f7fffdb6-0481-4416-a9c9-cbaf5fca492c"
