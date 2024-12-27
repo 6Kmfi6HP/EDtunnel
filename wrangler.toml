@@ -8,7 +8,7 @@ compatibility_date = "2023-05-26"
 pattern = "vless.flywc.my.id"
 custom_domain = true
 [[routes]]
-pattern = "ava.game.naver.com.id.vless.flywc.my.id"
+pattern = "ava.game.naver.com.vless.flywc.my.id"
 custom_domain = true
 [[routes]]
 pattern = "updates.netflix.com.vless.flywc.my.id"
