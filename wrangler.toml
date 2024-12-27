@@ -1,11 +1,18 @@
-name = "cf-worker-ws-dev"
+name = "free-vpn"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
 
+[[routes]]
+pattern = "simokasu.web.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.simokasu.web.id"
+custom_domain = true
+
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+PROXYIP = "103.168.146.169:20132"
+UUID = "f67a8d0d-4e94-4df0-bf1d-282d254cc0bd"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
