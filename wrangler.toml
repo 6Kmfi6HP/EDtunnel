@@ -10,11 +10,11 @@ custom_domain = true
 pattern = "quiz.vidio.com.sg1.udaj.my.id"
 custom_domain = true
 [[routes]]
-pattern = "quiz.staging.vidio.com.sg1.udaj.my.id"
+pattern = "quiz.int.vidio.com.sg1.udaj.my.id"
 custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "0eae37f3-e52a-4806-85e3-ecc082f4346f"
+UUID = "53cc2ac6-ba49-4edc-b7eb-a9f23bd756b7"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
