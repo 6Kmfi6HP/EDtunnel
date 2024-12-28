@@ -14,7 +14,7 @@ pattern = "quiz.vidio.com.sg1.melajukita.xyz"
 custom_domain = true
 
 [vars]
-# PROXYIP = "104.248.145.216:443"
+# PROXYIP = "104.248.145.216"
 UUID = "7a6fdfa0-30eb-411e-80b8-e68e6dfd21ec"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
