@@ -11,7 +11,7 @@ pattern = "ava.game.naver.com.vless.flywc.my.id"
 custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
+PROXYIP = "35.219.50.99:443"
 UUID = "236f8bd8-c311-4461-afe3-ac4cb63f510e"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
