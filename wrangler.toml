@@ -1,11 +1,21 @@
 name = "cf-worker-ws-dev"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+[[route]] 
+pattern = "sg1.melajukita.xyz"
+custom_domain = true
+[[route]] 
+pattern = "quiz.int.vidio.com.sg1.melajukita.xyz"
+custom_domain = true
+[[route]] 
+pattern = "quiz.vidio.com.sg1.melajukita.xyz"
+custom_domain = true
+
 # node_compat = true
 workers_dev = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+# PROXYIP = "104.248.145.216"
+UUID = "7a6fdfa0-30eb-411e-80b8-e68e6dfd21ec"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
