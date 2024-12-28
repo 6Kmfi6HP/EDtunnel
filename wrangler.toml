@@ -1,13 +1,13 @@
 name = "sg-test"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-[[route]] 
+[[routes]] 
 pattern = "sg1.melajukita.xyz"
 custom_domain = true
-[[route]] 
+[[routes]] 
 pattern = "quiz.int.vidio.com.sg1.melajukita.xyz"
 custom_domain = true
-[[route]] 
+[[routes]] 
 pattern = "quiz.vidio.com.sg1.melajukita.xyz"
 custom_domain = true
 
