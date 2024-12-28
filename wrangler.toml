@@ -7,9 +7,6 @@ custom_domain = true
 [[routes]] 
 pattern = "quiz.int.vidio.com.sg1.melajukita.xyz"
 custom_domain = true
-[[routes]] 
-pattern = "quiz.vidio.com.sg1.melajukita.xyz"
-custom_domain = true
 
 # node_compat = true
 workers_dev = true
