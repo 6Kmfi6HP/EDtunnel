@@ -1,4 +1,4 @@
-name = "cf-worker-ws-dev"
+name = "sg-test"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 [[route]] 
