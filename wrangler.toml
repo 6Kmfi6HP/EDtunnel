@@ -7,7 +7,7 @@ workers_dev = true
 pattern = "vless.flywc.my.id"
 custom_domain = true
 [[routes]]
-pattern = "ava.game.naver.com.vless.flywc.my.ud"
+pattern = "ava.game.naver.com.vless.flywc.my.id"
 custom_domain = true
 
 [vars]
