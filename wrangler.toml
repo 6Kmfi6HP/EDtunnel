@@ -7,6 +7,7 @@ workers_dev = true
 [[routes]]
 pattern ="alipavip.us.kg"
 custom_domain = true
+
 [vars]
 PROXYIP = "52.74.101.26:443"
 UUID = "000d27f4-1933-4c09-a2f0-9b57aa5efae2"
