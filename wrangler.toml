@@ -1,4 +1,4 @@
-name = "Alipastore" # todo
+name = "store" # todo
 #name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker-connect-test.js"
