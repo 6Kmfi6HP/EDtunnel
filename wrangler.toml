@@ -7,12 +7,6 @@ compatibility_date = "2023-05-26"
 [[routes]]
 pattern = "sgvip1.xlaxiata.us.kg"
 custom_domain = true
-[[routes]]
-pattern = "sgvip2.xlaxiata.us.kg"
-custom_domain = true
-[[routes]]
-pattern = "sgvip3.xlaxiata.us.kg"
-custom_domain = true
 
 [vars]
 # UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
@@ -21,4 +15,4 @@ custom_domain = true
 # NODE_ID = "1"
 # API_TOKEN = "example_dev_token"
 # API_HOST = "api.v2board.com"
-UUID = "c2696cab-ff8a-4d99-ae7e-61c3a25d72c5,c849e482-bb8c-4795-aad1-b278315d202b,f9324da3-71d6-4438-a0de-7678c7de7bbb"
+UUID = "c2696cab-ff8a-4d99-ae7e-61c3a25d72c5"
