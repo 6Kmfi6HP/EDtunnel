@@ -11,7 +11,7 @@ patern = "zaintest.vuclip.com.id.3anto.biz.id"
 cuatom_domain = true
 
 [vars]
-# PROXYIP = "103.133.223.52:2096"
+PROXYIP = "103.133.223.52:2096"
 UUID = "fc175539-b532-4f35-9c30-3d227efbb9f6"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
