@@ -11,7 +11,7 @@ pattern = "zaintest.vuclip.com.indo.3anto.biz.id"
 custom_domain = true
 
 [vars]
-# PROXYIP = "103.133.223.52:2096"
+PROXYIP = "103.133.223.52:2096"
 UUID = "4a9a012d-79c3-450b-b010-c61d75e6f6f8"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
