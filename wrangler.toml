@@ -1,17 +1,17 @@
-name = "id"
+name = "indo"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
 [[routes]]
-patern = "id.3anto.biz.id"
+pattern = "indo.3anto.biz.id"
 custom_domain = true
 [[routes]]
-patern = "zaintest.vuclip.com.id.3anto.biz.id"
-cuatom_domain = true
+pattern = "zaintest.vuclip.com.indo.3anto.biz.id"
+custom_domain = true
 
 [vars]
-PROXYIP = "103.133.223.52:2096"
-UUID = "fc175539-b532-4f35-9c30-3d227efbb9f6"
+# PROXYIP = "103.133.223.52:2096"
+UUID = "4a9a012d-79c3-450b-b010-c61d75e6f6f8"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
