@@ -1,11 +1,102 @@
-name = "cf-worker-ws-dev"
+name = "costum" # todo
+#name = "cf-worker-connect-test" # todo
+#main = "test/worker/cf-cdn-cgi-trace2.js"
+#main = "test/worker/worker-connect-test.js"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
-workers_dev = true
+# workers_dev = true
+
+[[routes]]
+pattern = "costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "quiz.int.vidio.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "quiz.vidio.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "ava.game.naver.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "df.game.naver.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "quiz.vidio.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "quiz.int.vidio.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "graph.instagram.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "investors.spotify.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "cache.netflix.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "creativeservices.netflix.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "support.zoom.us.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "zaintest.vuclip.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "live.iflix.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "io.ruangguru.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "gw.ruangguru.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "data.mt.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "www.udemy.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "udemy.com.costum.firmwarecustom.my.id"
+custom_domain = true
+
+
+[[routes]]
+pattern = "beta.zoom.us.costum.firmwarecustom.my.id"
+custom_domain = true
+
+[[routes]]
+pattern = "zoomgov.costum.firmwarecustom.my.id"
+custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
-# SOCKS5 = "127.0.0.1:1080"
-# SOCKS5_RELAY = "true"
+# UUID = "d342d11e-d424-4583-b36e-524ab1f0afa4"
+# PROXYIP = "1.2.3.4"
+# DNS_RESOLVER_URL = "https://cloudflare-dns.com/dns-query"
+# NODE_ID = "1"
+# API_TOKEN = "example_dev_token"
+# API_HOST = "api.v2board.com"
+UUID = "3710adf2-3b60-4bce-86a8-0de0e6fb6cd2"
