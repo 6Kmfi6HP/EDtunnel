@@ -1,4 +1,4 @@
-name = "cf-worker-ws-dev"
+name = "test_08"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
