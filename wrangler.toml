@@ -3,7 +3,12 @@ main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
-
+[[routes]]
+pattern = "cf.haluboy.org"
+custom_domain = true
+[[routes]]
+pattern = "quiz.staging.vidio.com"
+custom_domain = true
 [vars]
 PROXYIP = "167.99.73.22"
 PROXYIP = "178.128.80.43"
