@@ -10,8 +10,8 @@ custom_domain = true
 pattern = "quiz.staging.vidio.com"
 custom_domain = true
 [vars]
-PROXYIP = "167.99.73.22"
-#PROXYIP = "'167.99.73.22', 'cdn-all.xn--b6gac.eu.org'"
+#PROXYIP = "167.99.73.22"
+PROXYIP = "167.99.73.22, cdn-all.xn--b6gac.eu.org"
 UUID = "d5ebb969-712b-4f51-93f2-4a70300e405d"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
