@@ -11,8 +11,7 @@ pattern = "quiz.staging.vidio.com"
 custom_domain = true
 [vars]
 #PROXYIP = "167.99.73.22"
-#PROXYIP = "167.99.73.22, 103.133.223.52"
-proxyListURL = 'https://raw.githubusercontent.com/halluboys/xxx/refs/heads/main/proji.txt'
+PROXYIP = "167.99.73.22, 103.133.223.52"
 UUID = "583cd05b-e13d-4980-b2ba-1f85a1461176"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
