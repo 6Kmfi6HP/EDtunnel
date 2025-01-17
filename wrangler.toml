@@ -1,4 +1,4 @@
-name = "indso"
+name = "id"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
@@ -11,7 +11,7 @@ pattern = "quiz.staging.vidio.com"
 custom_domain = true
 [vars]
 #PROXYIP = "167.99.73.22"
-PROXYIP = "143.198.213.197"
+PROXYIP = "35.219.50.99"
 UUID = "583cd05b-e13d-4980-b2ba-1f85a1461176"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
