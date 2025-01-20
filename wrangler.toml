@@ -1,4 +1,4 @@
-name = "utama"
+name = "abihuy"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
@@ -6,6 +6,6 @@ workers_dev = true
 [vars]
 PROXYIP = "167.99.73.22"
 #PROXYIP = "35.219.50.99:443,167.99.73.22:443,103.168.146.169:20132"
-UUID = "d5ebb969-712b-4f51-93f2-4a70300e405d"
+UUID = "e0198876-1f53-4d5e-9fdd-e157c3bb2977"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
