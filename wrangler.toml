@@ -6,7 +6,7 @@ workers_dev = true
 routes =[
   { pattern = "abihuy.haluboy.org", custom_domain = true },
   { pattern = "tani.haluboy.org", custom_domain = true }
-  { pattern = "soma.haluboy.org", custom_domain = true }
+  { pattern = "soma2.haluboy.org", custom_domain = true }
 ]
 [vars]
 PROXYIP = "167.99.73.22"
