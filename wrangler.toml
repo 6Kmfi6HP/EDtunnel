@@ -4,7 +4,7 @@ compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
 routes =[
-  { pattern = "abihuy.haluboy.org", custom_domain = true },
+  { pattern = "abihuy.haluboy.org,ahoka.haluboy.org", custom_domain = true }
 ]
 [vars]
 PROXYIP = "167.99.73.22"
