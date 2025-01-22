@@ -5,7 +5,10 @@ compatibility_date = "2023-05-26"
 workers_dev = true
 routes =[
   { pattern = "abihuy.haluboy.org", custom_domain = true },
-  { pattern = "abay.haluboy.org", custom_domain = true }
+  { pattern = "topa.haluboy.org", custom_domain = true },
+  { pattern = "abdul.haluboy.org", custom_domain = true },
+  { pattern = "rizal.haluboy.org", custom_domain = true },
+  { pattern = "temon.haluboy.org", custom_domain = true }
 ]
 [vars]
 PROXYIP = "167.99.73.22"
