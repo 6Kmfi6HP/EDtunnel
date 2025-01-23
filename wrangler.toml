@@ -11,6 +11,7 @@ routes =[
   { pattern = "temon.haluboy.org", custom_domain = true },
   { pattern = "gio.haluboy.org", custom_domain = true }, #23jan
   { pattern = "heri.haluboy.org", custom_domain = true },
+  { pattern = "naseh.haluboy.org", custom_domain = true }, #23jan
 ]
 [vars]
 PROXYIP = "167.99.73.22"
