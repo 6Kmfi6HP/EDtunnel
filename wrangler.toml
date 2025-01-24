@@ -1,4 +1,4 @@
-name = "server-sg"
+name = "server-sg" # todo
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 [[routes]]
