@@ -19,6 +19,7 @@ routes =[
   { pattern = "parhan.haluboy.org", custom_domain = true }, #25jan
   { pattern = "gon.haluboy.org", custom_domain = true }, #25jan
   { pattern = "latifah.haluboy.org", custom_domain = true }, #27jan
+  { pattern = "nabila.haluboy.org", custom_domain = true }, #28jan
   
 ]
 [vars]
