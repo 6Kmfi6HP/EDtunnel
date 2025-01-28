@@ -12,9 +12,6 @@ custom_domain = true
 [[routes]] 
 pattern = "helpdesk.kelaspintar.id.sg1.corona19.my.id"
 custom_domain = true
-[[routes]] 
-pattern = "rea.ruangguru.com.sg1.corona19.my.id"
-custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
