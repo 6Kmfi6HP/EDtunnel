@@ -1,0 +1,14 @@
+name = "indonesia"
+main = "_worker.js"
+compatibility_date = "2023-05-26"
+# node_compat = true
+workers_dev = true
+routes =[
+  { pattern = "indonesia.haluboy.org", custom_domain = true },
+ ]
+[vars]
+PROXYIP = "103.168.146.169:20132"
+#PROXYIP = "35.219.50.99:443,167.99.73.22:443,103.168.146.169:20132"
+UUID = "e0198876-1f53-4d5e-9fdd-e157c3bb2977,c37d6632-d9f0-49a1-b37b-9e8749626ee6,ab91ec1b-acb8-4bc8-b23e-dae8af127ab3,913ddbd9-ac0f-463d-a98c-3d5aa81337b0,be618f6c-56c6-45bd-9140-7a9bd3b4bee0,d816fa46-15f6-4c5b-be64-148322f581c8,01b19a9d-5e2d-4eac-b10c-2bc33d7d4187"
+# SOCKS5 = "127.0.0.1:1080"
+# SOCKS5_RELAY = "true"
