@@ -30,6 +30,7 @@ routes =[
   { pattern = "egha.haluboy.org", custom_domain = true }, #31jan
   { pattern = "moko.haluboy.org", custom_domain = true },
   { pattern = "testa.haluboy.org", custom_domain = true },
+  { pattern = "testa.sookeystore.com", custom_domain = true },
 ]
 
 [vars]
