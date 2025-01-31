@@ -1311,7 +1311,7 @@ function GenSub(userID_path, hostname, proxyIP) {
 		'www.whatismyip.com',
 		'www.ipget.net',
 		// 高频率更新
-		'speed.marisalnc.com',           // 1000ip/3min
+		// 'speed.marisalnc.com',           // 1000ip/3min
 		'freeyx.cloudflare88.eu.org',    // 1000ip/3min
 		'cloudflare.182682.xyz',         // 15ip/15min
 		// '115155.xyz',                    // 18ip/1小时
@@ -1322,7 +1322,7 @@ function GenSub(userID_path, hostname, proxyIP) {
 		'cf.0sm.com',                    // 手动更新
 		'cloudflare-ip.mofashi.ltd',     // 未知频率
 		'cf.090227.xyz',                 // 未知频率
-		'cname.xirancdn.us',             // 未知频率
+		// 'cname.xirancdn.us',             // 未知频率
 		// 'f3058171cad.002404.xyz',        // 未知频率
 		'cf.zhetengsha.eu.org',          // 未知频率
 		'cloudflare.9jy.cc',             // 未知频率
