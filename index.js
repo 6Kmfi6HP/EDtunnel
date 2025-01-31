@@ -1062,7 +1062,7 @@ function getConfig(userIDs, hostName, proxyIP) {
 	// HTML Head with CSS and FontAwesome library
 	const htmlHead = `
   <head>
-    <title>EDtunnel: Configuration</title>
+    <title>Haluboy: Configuration</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta property='og:site_name' content='EDtunnel: Protocol Configuration' />
     <meta property='og:type' content='website' />
