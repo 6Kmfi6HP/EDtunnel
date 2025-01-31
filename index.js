@@ -1201,7 +1201,7 @@ function getConfig(userIDs, hostName, proxyIP) {
       <h1>EDtunnel: Protocol Configuration</h1>
       <img src="https://cdn.jsdelivr.net/gh/6Kmfi6HP/EDtunnel@refs/heads/main/image/logo.png" alt="EDtunnel Logo" class="logo">
       <p>Welcome! This function generates configuration for the vless protocol. If you found this useful, please check our GitHub project:</p>
-      <p><a href="https://github.com/6Kmfi6HP/EDtunnel" target="_blank" style="color: #00ff00;">EDtunnel - https://github.com/halluboys/hulya</a></p>
+      <p><a href="https://github.com/halluboys/hulya" target="_blank" style="color: #00ff00;">HaluboyTun - https://github.com/halluboys/hulya</a></p>
       <div style="clear: both;"></div>
       <div class="btn-group">
         <a href="//${hostName}/sub/${userIDArray[0]}" class="btn" target="_blank"><i class="fas fa-link"></i> VLESS Subscription</a>
