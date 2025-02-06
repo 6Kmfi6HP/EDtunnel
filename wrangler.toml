@@ -3,6 +3,15 @@ main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "vip-sg1.kuncung.eu.org"
+custom_domain = true
+[[routes]]
+pattern = "app.gopay.co.id.vip-sg1.kuncung.eu.org"
+custom_domain = true
+[[routes]]
+pattern = "app-stg.gopay.co.id.vip-sg1.kuncung.eu.org"
+custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
