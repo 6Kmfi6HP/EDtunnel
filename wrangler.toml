@@ -1,11 +1,20 @@
-name = "cf-worker-ws-dev"
+name = "sg1-vless-gopay"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
-workers_dev = true
+# workers_dev = true
+[[routes]]
+pattern = "vip-sg1.kuncung.eu.org"
+custom_domain = true
+[[routes]]
+pattern = "app.gopay.co.id.vip-sg1.kuncung.eu.org"
+custom_domain = true
+[[routes]]
+pattern = "app-stg.gopay.co.id.vip-sg1.kuncung.eu.org"
+custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "1b41f2da-7cce-4338-ad20-f04e8ede7e6a"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
