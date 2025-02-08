@@ -1,11 +1,32 @@
-name = "cf-worker-ws-dev"
+name = "server-sg"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+{
+  [[routes]]:
+  "pattern": "sg1.belutsawah.my.id",
+      "custom_domain": true
+    }
+  ]
+}
+{
+  [[routes]]:
+  "pattern": "quiz.int.vidio.com.sg1.belutsawah.my.id",
+      "custom_domain": true
+    }
+  ]
+}
+{
+  [[routes]]:
+  "pattern": "quiz.vidio.com.sg1.belutsawah.my.id",
+      "custom_domain": true
+    }
+  ]
+}
 # node_compat = true
 workers_dev = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "159c7923-0ac3-40cd-9626-8fd3bfe6c8b2"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
