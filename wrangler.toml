@@ -1,4 +1,4 @@
-name = "cfusagis"
+name = "cfusagis1"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
@@ -17,7 +17,7 @@ routes = [
 ]
 
 [vars]
-PROXYIP = "107.172.43.162:443"
+# PROXYIP = "107.172.43.162:443"
 UUID = "1e799cae-b825-41d9-af99-1af0a8de5b97"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
