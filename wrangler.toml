@@ -8,7 +8,7 @@ routes = [
   { pattern = "id.wiratunnl.biz.id", custom_domain = true } ]
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
+PROXYIP = "172.232.239.249:587"
 UUID = "1e799cae-b825-41d9-af99-1af0a8de5b97"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
