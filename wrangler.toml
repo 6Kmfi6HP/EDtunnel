@@ -1,11 +1,37 @@
-name = "cf-worker-ws-dev"
+name = "server-ku"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+
+[[routes]]
+pattern = "ku1.susahsinyal.my.id"
+custom_domain = true 
+
+[[routes]]
+pattern = "langitmusik.co.id.ku1.susahsinyal.my.id"
+custom_domain = true 
+
+
+[[routes]]
+pattern = "poe.garena.com.ku1.susahsinyal.my.id"
+custom_domain = true 
+
+[[routes]]
+pattern = "space.byu.id.ku1.susahsinyal.my.id"
+custom_domain = true 
+
+[[routes]]
+pattern = "ruangguru.com.ku1.susahsinyal.my.id"
+custom_domain = true 
+
+[[routes]]
+pattern = "104.19.143.108.ku1.susahsinyal.my.id"
+custom_domain = true 
+
 # node_compat = true
 workers_dev = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "55e366cd-0e26-4f9d-8963-b07bdf584923"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
