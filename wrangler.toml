@@ -9,6 +9,9 @@ custom_domain = true
 [[routes]]
 pattern = "zaintest.vuclip.com.indo.3anto.biz.id"
 custom_domain = true
+[[routes]]
+pattern = "ava.game.naver.com.indo.3anto.biz.id"
+custom_domain = true
 
 [vars]
 PROXYIP = "103.133.223.52:2096"
