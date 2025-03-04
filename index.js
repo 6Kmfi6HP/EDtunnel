@@ -124,7 +124,7 @@ export default {
 							},
 						});
 					} else if (url.pathname === `/bestip/${matchingUserID}`) {
-						return fetch(`https://sub.xf.free.hr/auto?host=${host}&uuid=${matchingUserID}&path=/`, { headers: request.headers });
+						return fetch(`https://bestip.06151953.xyz/auto?host=${host}&uuid=${matchingUserID}&path=/`, { headers: request.headers });
 					}
 				}
 				return handleDefaultPath(url, request);
