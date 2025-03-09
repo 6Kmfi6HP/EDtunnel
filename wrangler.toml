@@ -12,7 +12,6 @@ pattern = "quiz.vidio.com.sg1.varsha.my.id"
 custom_domain = true
 
 # node_compat = true
-workers_dev = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
