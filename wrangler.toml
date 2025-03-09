@@ -6,7 +6,8 @@ workers_dev = true
 [[routes]] 
 pattern = "do.acheh.eu.org" 
 custom_domain = true 
-pattern "104.17.147.22.do.acheh.eu.org" custom_domain = true 
+pattern "104.17.147.22.do.acheh.eu.org" 
+custom_domain = true 
 [[routes]] 
 pattern= "104.17.147.22.do.acheh.eu.org"
 
