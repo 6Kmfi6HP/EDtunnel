@@ -1,11 +1,19 @@
-name = "cf-worker-ws-dev"
+name = "antu-do"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]] 
+pattern = "do.acheh.eu.org" 
+custom_domain = true 
+pattern "104.17.147.22.do.acheh.eu.org" custom_domain = true 
+[[routes]] 
+pattern= "104.17.147.22.do.acheh.eu.org"
+
+
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "9b8b6037-e13c-4556-9c9c-84bf127e24d4"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
