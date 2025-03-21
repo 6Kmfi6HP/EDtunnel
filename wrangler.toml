@@ -1,5 +1,5 @@
-name = "server-sg" # dev
-#name = "cf-worker-connect-test" # dev
+name = "server-sg" # todo
+#name = "cf-worker-connect-test" # todo
 #main = "test/worker/cf-cdn-cgi-trace2.js"
 #main = "test/worker/worker/connect-test.js"
 main = "_worker.js"
