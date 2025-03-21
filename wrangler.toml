@@ -8,7 +8,7 @@ compatibility_date = "2023-05-26"
 pattern = "sg1.megrun.my.id"
 custom_domain = true
 [[routes]]
-pattern = "img.email1.vidio.com.sg1.megrun.my.id"
+pattern = "quiz.int.vidio.com.sg1.megrun.my.id"
 custom_domain = true
 [[routes]]
 pattern = "quiz.vidio.com.sg1.megrun.my.id"
