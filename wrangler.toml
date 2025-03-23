@@ -1,13 +1,18 @@
-name = "sever sg"
+name = "sever-sg"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "sg1.masiki.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.vidio.com.sg1.masiki.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.sg1.masiki.my.id"
+custom_domain = true
 
-routes = [
-  { pattern = "ummusa.my.id", custom_domain = true },
-  { pattern = "quiz.vidio.ummusa.my.id", custom_domain = true }
-]
 [vars]
 # PROXYIP = "211.230.110.231:50008"
 UUID = "4713b780-fc49-11ef-a6c4-1239d0255272"
