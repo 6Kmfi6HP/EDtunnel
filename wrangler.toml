@@ -4,10 +4,10 @@ compatibility_date = "2026-05-26"
 # node_compat = true
 workers_dev = true
 [[routes]]
-pattern": "sg1.onterus.my.id" 
+pattern ="sg1.onterus.my.id" 
 custom_domain = true
 [[routes]]
-pattern": "ava.game.naver.com.sg1.onterus.my.id" 
+pattern = "ava.game.naver.com.sg1.onterus.my.id" 
 custom_domain = true
 
 
