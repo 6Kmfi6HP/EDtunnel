@@ -45,7 +45,6 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add _worker.js
-          git commit -m "Obfuscate _worker.js" || echo "No changes to commit"
 
       - name: Push changes
         uses: ad-m/github-push-action@master

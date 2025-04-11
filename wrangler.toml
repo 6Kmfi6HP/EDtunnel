@@ -1,11 +1,20 @@
-name = "cf-worker-ws-dev"
+name = "server-id"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "id.inulwin.my.id" 
+custom_domain = true
+[[routes]]
+pattern = "elb58.freshdesk.com.id.inulwin.my.id" 
+custom_domain = true
+[[routes]]
+pattern = "img.mailin.fr.id.inulwin.my.id" 
+custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "88910975-90d4-4c69-bce2-c21f92ccf0cc"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
