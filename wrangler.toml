@@ -1,5 +1,5 @@
 name = "server-id"
-main = "_worker.js"
+main = "index.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
