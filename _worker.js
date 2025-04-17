@@ -4,8 +4,8 @@ export default {
 
     // ===== UUID Whitelist check =====
     const allowUUID = [
-      "3b603fb3-4b66-459a-bdc2-b51e3fe6a345", // Ganti dengan UUID kamu sendiri
-      "12345678-1234-1234-1234-123456789000"
+      "83778298-9028-4acb-9055-2f0025c990d6", // Ganti dengan UUID kamu sendiri
+      
     ];
 
     const url = new URL(req.url);
