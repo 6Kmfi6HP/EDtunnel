@@ -1,11 +1,17 @@
-name = "cf-worker-ws-dev"
+name = "server-ID"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+pattern = "id1.phw.my.id"
+costum-domain = true
+pattern = "ava.game.naver.com.id1.phw.my.id"
+costum-domain = true
+pattern = "graph.instagram.com.id1.phw.my.id"
+costum-domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "9c2a52a5-86ea-4fe6-963a-23b93138adc9"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
