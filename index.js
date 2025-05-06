@@ -94,9 +94,11 @@ export default {
 
 			// 验证proxyip格式
 			if (urlPROXYIP) {
-				// 验证格式: domain:port 或 ip:port
+				// 验证格式: domain:port 或 ip:port，支持逗号分隔
 				const proxyPattern = /^([a-zA-Z0-9][-a-zA-Z0-9.]*(\.[a-zA-Z0-9][-a-zA-Z0-9.]*)+|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|\[[0-9a-fA-F:]+\]):\d{1,5}$/;
-				if (!proxyPattern.test(urlPROXYIP)) {
+				const proxyAddresses = urlPROXYIP.split(',').map(addr => addr.trim());
+				const isValid = proxyAddresses.every(addr => proxyPattern.test(addr));
+				if (!isValid) {
 					console.warn('无效的proxyip格式:', urlPROXYIP);
 					urlPROXYIP = null;
 				}
@@ -104,9 +106,11 @@ export default {
 
 			// 验证socks5格式
 			if (urlSOCKS5) {
-				// 基本验证 - 可以根据实际格式要求调整
+				// 基本验证 - 支持逗号分隔的多个地址
 				const socks5Pattern = /^(([^:@]+:[^:@]+@)?[a-zA-Z0-9][-a-zA-Z0-9.]*(\.[a-zA-Z0-9][-a-zA-Z0-9.]*)+|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):\d{1,5}$/;
-				if (!socks5Pattern.test(urlSOCKS5)) {
+				const socks5Addresses = urlSOCKS5.split(',').map(addr => addr.trim());
+				const isValid = socks5Addresses.every(addr => socks5Pattern.test(addr));
+				if (!isValid) {
 					console.warn('无效的socks5格式:', urlSOCKS5);
 					urlSOCKS5 = null;
 				}
