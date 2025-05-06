@@ -66,28 +66,79 @@ export default {
 	async fetch(request, env, _ctx) {
 		try {
 			const { UUID, PROXYIP, SOCKS5, SOCKS5_RELAY } = env;
-			userID = UUID || userID;
-			socks5Address = SOCKS5 || socks5Address;
-			socks5Relay = SOCKS5_RELAY || socks5Relay;
+			const url = new URL(request.url);
+			
+            // 为当前请求创建配置副本，避免修改全局变量
+            const requestConfig = {
+                userID: UUID || userID,
+                socks5Address: SOCKS5 || socks5Address,
+                socks5Relay: SOCKS5_RELAY === 'true' || socks5Relay,
+                proxyIP: null,
+                proxyPort: null,
+                enableSocks: false,
+                parsedSocks5Address: {}
+            };
 
-			// Handle proxy configuration
-			const proxyConfig = handleProxyConfig(PROXYIP);
-			proxyIP = proxyConfig.ip;
-			proxyPort = proxyConfig.port;
+			// 获取正常URL参数
+			let urlPROXYIP = url.searchParams.get('proxyip');
+			let urlSOCKS5 = url.searchParams.get('socks5');
+			let urlSOCKS5_RELAY = url.searchParams.get('socks5_relay');
 
-			if (socks5Address) {
-				try {
-					const selectedSocks5 = selectRandomAddress(socks5Address);
-					parsedSocks5Address = socks5AddressParser(selectedSocks5);
-					enableSocks = true;
-				} catch (err) {
-					console.log(err.toString());
-					enableSocks = false;
+			// 检查编码在路径中的参数
+			if (!urlPROXYIP && !urlSOCKS5 && !urlSOCKS5_RELAY) {
+				const encodedParams = parseEncodedQueryParams(url.pathname);
+				urlPROXYIP = urlPROXYIP || encodedParams.proxyip;
+				urlSOCKS5 = urlSOCKS5 || encodedParams.socks5;
+				urlSOCKS5_RELAY = urlSOCKS5_RELAY || encodedParams.socks5_relay;
+			}
+
+			// 验证proxyip格式
+			if (urlPROXYIP) {
+				// 验证格式: domain:port 或 ip:port
+				const proxyPattern = /^([a-zA-Z0-9][-a-zA-Z0-9.]*(\.[a-zA-Z0-9][-a-zA-Z0-9.]*)+|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|\[[0-9a-fA-F:]+\]):\d{1,5}$/;
+				if (!proxyPattern.test(urlPROXYIP)) {
+					console.warn('无效的proxyip格式:', urlPROXYIP);
+					urlPROXYIP = null;
 				}
 			}
 
-			const userIDs = userID.includes(',') ? userID.split(',').map(id => id.trim()) : [userID];
-			const url = new URL(request.url);
+			// 验证socks5格式
+			if (urlSOCKS5) {
+				// 基本验证 - 可以根据实际格式要求调整
+				const socks5Pattern = /^(([^:@]+:[^:@]+@)?[a-zA-Z0-9][-a-zA-Z0-9.]*(\.[a-zA-Z0-9][-a-zA-Z0-9.]*)+|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):\d{1,5}$/;
+				if (!socks5Pattern.test(urlSOCKS5)) {
+					console.warn('无效的socks5格式:', urlSOCKS5);
+					urlSOCKS5 = null;
+				}
+			}
+
+			// 应用URL参数到当前请求的配置
+			requestConfig.socks5Address = urlSOCKS5 || requestConfig.socks5Address;
+			requestConfig.socks5Relay = urlSOCKS5_RELAY === 'true' || requestConfig.socks5Relay;
+
+			// 记录参数值，用于调试
+			console.log('配置参数:', requestConfig.userID, requestConfig.socks5Address, requestConfig.socks5Relay, urlPROXYIP);
+
+			// Handle proxy configuration for the current request
+			const proxyConfig = handleProxyConfig(urlPROXYIP || PROXYIP);
+			requestConfig.proxyIP = proxyConfig.ip;
+			requestConfig.proxyPort = proxyConfig.port;
+
+			// 记录最终使用的代理设置
+			console.log('使用代理:', requestConfig.proxyIP, requestConfig.proxyPort);
+
+			if (requestConfig.socks5Address) {
+				try {
+					const selectedSocks5 = selectRandomAddress(requestConfig.socks5Address);
+					requestConfig.parsedSocks5Address = socks5AddressParser(selectedSocks5);
+					requestConfig.enableSocks = true;
+				} catch (err) {
+					console.log(err.toString());
+					requestConfig.enableSocks = false;
+				}
+			}
+
+			const userIDs = requestConfig.userID.includes(',') ? requestConfig.userID.split(',').map(id => id.trim()) : [requestConfig.userID];
 			const host = request.headers.get('Host');
 			const requestedPath = url.pathname.substring(1); // Remove leading slash
 			const matchingUserID = userIDs.length === 1 ?
@@ -110,7 +161,7 @@ export default {
 				if (matchingUserID) {
 					if (url.pathname === `/${matchingUserID}` || url.pathname === `/sub/${matchingUserID}`) {
 						const isSubscription = url.pathname.startsWith('/sub/');
-						const proxyAddresses = PROXYIP ? PROXYIP.split(',').map(addr => addr.trim()) : proxyIP;
+						const proxyAddresses = PROXYIP ? PROXYIP.split(',').map(addr => addr.trim()) : requestConfig.proxyIP;
 						const content = isSubscription ?
 							GenSub(matchingUserID, host, proxyAddresses) :
 							getConfig(matchingUserID, host, proxyAddresses);
@@ -129,7 +180,7 @@ export default {
 				}
 				return handleDefaultPath(url, request);
 			} else {
-				return await ProtocolOverWSHandler(request);
+				return await ProtocolOverWSHandler(request, requestConfig);
 			}
 		} catch (err) {
 			return new Response(err.toString());
@@ -395,9 +446,22 @@ async function handleDefaultPath(url, request) {
 /**
  * Handles protocol over WebSocket requests by creating a WebSocket pair, accepting the WebSocket connection, and processing the protocol header.
  * @param {import("@cloudflare/workers-types").Request} request - The incoming request object
+ * @param {Object} config - The configuration for this request
  * @returns {Promise<Response>} WebSocket response
  */
-async function ProtocolOverWSHandler(request) {
+async function ProtocolOverWSHandler(request, config = null) {
+    // 如果没有传入配置，使用全局配置
+    if (!config) {
+        config = {
+            userID,
+            socks5Address,
+            socks5Relay,
+            proxyIP,
+            proxyPort,
+            enableSocks,
+            parsedSocks5Address
+        };
+    }
 
 	/** @type {import("@cloudflare/workers-types").WebSocket[]} */
 	// @ts-ignore
@@ -443,7 +507,7 @@ async function ProtocolOverWSHandler(request) {
 				rawDataIndex,
 				ProtocolVersion = new Uint8Array([0, 0]),
 				isUDP,
-			} = ProcessProtocolHeader(chunk, userID);
+			} = ProcessProtocolHeader(chunk, config.userID);
 			address = addressRemote;
 			portWithRandomLog = `${portRemote}--${Math.random()} ${isUDP ? 'udp ' : 'tcp '
 				} `;
@@ -467,7 +531,7 @@ async function ProtocolOverWSHandler(request) {
 			if (isDns) {
 				return handleDNSQuery(rawClientData, webSocket, ProtocolResponseHeader, log);
 			}
-			HandleTCPOutBound(remoteSocketWapper, addressType, addressRemote, portRemote, rawClientData, webSocket, ProtocolResponseHeader, log);
+			HandleTCPOutBound(remoteSocketWapper, addressType, addressRemote, portRemote, rawClientData, webSocket, ProtocolResponseHeader, log, config);
 		},
 		close() {
 			log(`readableWebSocketStream is close`);
@@ -497,15 +561,29 @@ async function ProtocolOverWSHandler(request) {
  * @param {WebSocket} webSocket - WebSocket connection
  * @param {Uint8Array} protocolResponseHeader - Protocol response header
  * @param {Function} log - Logging function
+ * @param {Object} config - The configuration for this request
  */
-async function HandleTCPOutBound(remoteSocket, addressType, addressRemote, portRemote, rawClientData, webSocket, protocolResponseHeader, log,) {
+async function HandleTCPOutBound(remoteSocket, addressType, addressRemote, portRemote, rawClientData, webSocket, protocolResponseHeader, log, config = null) {
+    // 如果没有传入配置，使用全局配置
+    if (!config) {
+        config = {
+            userID,
+            socks5Address,
+            socks5Relay,
+            proxyIP,
+            proxyPort,
+            enableSocks,
+            parsedSocks5Address
+        };
+    }
+
 	async function connectAndWrite(address, port, socks = false) {
 		/** @type {import("@cloudflare/workers-types").Socket} */
 		let tcpSocket;
-		if (socks5Relay) {
-			tcpSocket = await socks5Connect(addressType, address, port, log)
+		if (config.socks5Relay) {
+			tcpSocket = await socks5Connect(addressType, address, port, log, config.parsedSocks5Address)
 		} else {
-			tcpSocket = socks ? await socks5Connect(addressType, address, port, log)
+			tcpSocket = socks ? await socks5Connect(addressType, address, port, log, config.parsedSocks5Address)
 				: connect({
 					hostname: address,
 					port: port,
@@ -521,10 +599,11 @@ async function HandleTCPOutBound(remoteSocket, addressType, addressRemote, portR
 
 	// if the cf connect tcp socket have no incoming data, we retry to redirect ip
 	async function retry() {
-		if (enableSocks) {
+		let tcpSocket;
+		if (config.enableSocks) {
 			tcpSocket = await connectAndWrite(addressRemote, portRemote, true);
 		} else {
-			tcpSocket = await connectAndWrite(proxyIP || addressRemote, proxyPort || portRemote, false);
+			tcpSocket = await connectAndWrite(config.proxyIP || addressRemote, config.proxyPort || portRemote, false);
 		}
 		// no matter retry success or not, close websocket
 		tcpSocket.closed.catch(error => {
@@ -871,10 +950,13 @@ async function handleDNSQuery(udpChunk, webSocket, protocolResponseHeader, log) 
  * @param {string} addressRemote - Remote address
  * @param {number} portRemote - Remote port
  * @param {Function} log - Logging function
+ * @param {Object} parsedSocks5Addr - Parsed SOCKS5 address information
  * @returns {Promise<Socket>} Connected socket
  */
-async function socks5Connect(addressType, addressRemote, portRemote, log) {
-	const { username, password, hostname, port } = parsedSocks5Address;
+async function socks5Connect(addressType, addressRemote, portRemote, log, parsedSocks5Addr = null) {
+	// 如果没有传入解析的SOCKS5地址，使用全局的
+	const { username, password, hostname, port } = parsedSocks5Addr || parsedSocks5Address;
+	
 	// Connect to the SOCKS server
 	const socket = connect({
 		hostname,
@@ -1237,9 +1319,9 @@ function getConfig(userIDs, hostName, proxyIP) {
         <h3>Best IP Configuration</h3>
         <div class="input-group mb-3">
           <select class="form-select" id="proxySelect" onchange="updateProxyConfig()">
-            ${typeof proxyIP === 'string' ? 
-              `<option value="${proxyIP}">${proxyIP}</option>` : 
-              Array.from(proxyIP).map(proxy => `<option value="${proxy}">${proxy}</option>`).join('')}
+            ${typeof proxyIP === 'string' ?
+				`<option value="${proxyIP}">${proxyIP}</option>` :
+				Array.from(proxyIP).map(proxy => `<option value="${proxy}">${proxy}</option>`).join('')}
           </select>
         </div>
 		<br>
@@ -1406,4 +1488,26 @@ function selectRandomAddress(addresses) {
 		addresses.split(',').map(addr => addr.trim()) :
 		addresses;
 	return addressArray[Math.floor(Math.random() * addressArray.length)];
+}
+
+/**
+ * 合并路径查询参数解析为通用函数
+ * @param {string} pathname - URL路径
+ * @returns {Object} 解析的参数对象
+ */
+function parseEncodedQueryParams(pathname) {
+	const params = {};
+	if (pathname.includes('%3F')) {
+		const encodedParamsMatch = pathname.match(/%3F(.+)$/);
+		if (encodedParamsMatch) {
+			const encodedParams = encodedParamsMatch[1];
+			const paramPairs = encodedParams.split('&');
+			
+			for (const pair of paramPairs) {
+				const [key, value] = pair.split('=');
+				if (value) params[key] = decodeURIComponent(value);
+			}
+		}
+	}
+	return params;
 }

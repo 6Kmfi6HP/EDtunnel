@@ -18,6 +18,7 @@ EDtunnel is a proxy tool based on Cloudflare Workers and Pages, supporting multi
 - 支持自定义代理 IP 和端口
 - 支持 SOCKS5 代理
 - 提供自动配置订阅链接
+- 支持 URL 查询参数覆盖配置
 - 简单易用的部署流程
 
 - Support for Cloudflare Workers and Pages deployment
@@ -25,6 +26,7 @@ EDtunnel is a proxy tool based on Cloudflare Workers and Pages, supporting multi
 - Custom proxy IP and port support
 - SOCKS5 proxy support
 - Automatic configuration subscription link
+- URL query parameter configuration override support
 - Simple and easy deployment process
 
 ## 🚀 快速部署 | Quick Deployment
@@ -54,6 +56,60 @@ EDtunnel is a proxy tool based on Cloudflare Workers and Pages, supporting multi
 | `PROXYIP` | 否 (No) | `1.1.1.1` 或 (or) `example.com`<br>多个 (Multiple): `1.1.1.1:9443,2.2.2.2:8443` | 自定义代理IP和端口 / Custom proxy IP and port |
 | `SOCKS5` | 否 (No) | `user:pass@host:port`<br>多个 (Multiple): `user1:pass1@host1:port1,user2:pass2@host2:port2` | SOCKS5代理配置 / SOCKS5 proxy configuration |
 | `SOCKS5_RELAY` | 否 (No) | `true` 或 (or) `false` | 启用SOCKS5流量转发 / Enable SOCKS5 traffic relay |
+
+### URL查询参数配置 | URL Query Parameter Configuration
+
+您可以使用URL查询参数直接覆盖环境变量配置，这些参数的优先级高于环境变量。出于安全考虑，UUID 不能通过 URL 查询参数设置。
+
+You can use URL query parameters to directly override environment variable configurations. These parameters have higher priority than environment variables. For security reasons, UUID cannot be set via URL query parameters.
+
+| 查询参数 (Query Parameter) | 对应环境变量 (Corresponding ENV) | 示例 (Example) | 说明 (Description) |
+|--------------------------|--------------------------------|---------------|-------------------|
+| `proxyip` | `PROXYIP` | `?proxyip=1.1.1.1:443` | 覆盖代理IP和端口 / Override proxy IP and port |
+| `socks5` | `SOCKS5` | `?socks5=user:pass@host:port` | 覆盖SOCKS5代理配置 / Override SOCKS5 proxy configuration |
+| `socks5_relay` | `SOCKS5_RELAY` | `?socks5_relay=true` | 覆盖SOCKS5转发设置 / Override SOCKS5 relay setting |
+
+> **安全说明**: UUID 必须通过环境变量或配置文件设置，不能通过 URL 参数设置，以防止未授权修改用户身份。  
+> **Security Note**: UUID must be set via environment variables or configuration files, not through URL parameters, to prevent unauthorized identity modifications.
+
+#### 使用示例 | Usage Examples:
+
+1. 临时更改代理IP | Temporarily change proxy IP:
+   ```
+   https://your-domain.workers.dev/?proxyip=another-proxy-ip:port
+   ```
+
+2. 组合多个参数 | Combine multiple parameters:
+   ```
+   https://your-domain.workers.dev/?proxyip=1.1.1.1:443&socks5_relay=true
+   ```
+
+3. 应用于特定路径 | Apply to specific paths:
+   ```
+   https://your-domain.workers.dev/sub/your-uuid?proxyip=1.1.1.1:443
+   ```
+
+#### 特性说明 | Feature Notes:
+
+- 优先级：URL参数 > 环境变量 > 默认值
+- 临时性：这些更改仅对当前请求有效，不会永久修改配置
+- 可组合：可以组合多个参数实现复杂配置调整
+- 适用场景：快速测试、临时切换配置、第三方系统动态调用
+
+- Priority: URL parameters > Environment Variables > Default Values
+- Temporary: These changes only apply to the current request and do not permanently modify configurations
+- Combinable: Multiple parameters can be combined for complex configuration adjustments
+- Use cases: Quick testing, temporary configuration switching, dynamic calls from third-party systems
+
+#### URL格式注意事项 | URL Format Notes:
+
+- 确保查询参数使用正确的格式: `?参数名=值`。问号 `?` 不应被URL编码（`%3F`）。
+- 如果您看到像 `/%3Fproxyip=value` 这样的URL，这不会正确工作，应改为 `/?proxyip=value`。
+- 本项目现已支持处理编码在路径中的查询参数，但建议使用标准格式以确保最佳兼容性。
+
+- Ensure query parameters use the correct format: `?parameter=value`. The question mark `?` should not be URL encoded (`%3F`).
+- If you see URLs like `/%3Fproxyip=value`, this won't work correctly. Use `/?proxyip=value` instead.
+- This project now supports handling query parameters encoded in the path, but using the standard format is recommended for best compatibility.
 
 ### 非443端口配置 | Non-443 Port Configuration
 
