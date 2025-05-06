@@ -1,6 +1,13 @@
-name = "cf-worker-ws-dev"
+name = "server-sg" # todo
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+[[routes]]
+pattern = "sg3.andysty84.my.id"
+custom_domain = true
+[[routes]]
+pattern = "104.26.7.171.sg3.andysty84.my.id"
+custom_domain = true
+
 # node_compat = true
 workers_dev = true
 
