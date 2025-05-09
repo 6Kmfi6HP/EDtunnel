@@ -1,11 +1,20 @@
-name = "cf-worker-ws-dev"
+name = "Server.SG"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "agilium.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.agilium.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.vidio.com.agilium.my.id"
+custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+# PROXYIP = "47.236.80.138:443"
+UUID = "0cb6fc36-d193-40bd-8773-a654514b0da6"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
