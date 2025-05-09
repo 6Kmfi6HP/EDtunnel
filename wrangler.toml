@@ -1,11 +1,14 @@
-name = "cf-worker-ws-dev"
+name = "indiwiratunnl12"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
 
+routes = [
+  { pattern = "id.wiratunnl.biz.id", custom_domain = true } ]
+
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+PROXYIP = "172.232.239.249:587"
+UUID = "1e799cae-b825-41d9-af99-1af0a8de5b97"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
