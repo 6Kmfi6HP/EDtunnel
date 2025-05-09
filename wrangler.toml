@@ -1,11 +1,18 @@
-name = "cf-worker-ws-dev"
+name = "sgpo"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+[[routes]]
+pattern ="alipapengabuan.us.kg"
+custom_domain = true
+[[routes]]
+pattern ="alipapengabuan.us.kg"
+
+
 # node_compat = true
 workers_dev = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+# PROXYIP = "52.74.101.26:443"
+UUID = "4810b53c-72da-41f5-95b1-1871ff0c09b8"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
