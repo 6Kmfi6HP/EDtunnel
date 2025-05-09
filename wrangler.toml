@@ -1,11 +1,20 @@
-name = "cf-worker-ws-dev"
+name = "loswan-sg"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+[[routes]]
+pattern = "sg1.kuntuljaran.eu.org"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.video.com.sg1.kuntuljaran.eu.org"
+custom_domain = true
+[[routes]]
+pattern = "quiz.video.com.sg1.kuntuljaran.eu.org"
+custom_domain = true
 # node_compat = true
 workers_dev = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "80f264cd-36d5-44f6-9773-a29dbc69b2d9"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
