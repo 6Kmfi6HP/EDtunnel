@@ -1,20 +1,5 @@
 {
-  "name": "edtunnel",
+  "name": "nautica",
   "version": "1.0.0",
-  "description": "A tunnel for the edgetunnel project to allow deployed applications to cloudflare pages and workers to be accessed via a custom domain.",
-  "main": "_worker.js",
-  "scripts": {
-    "deploy": "wrangler deploy",
-    "build": "wrangler deploy --dry-run",
-    "dev": "wrangler dev --remote",
-    "dev-local": "wrangler dev index.js --remote",
-    "obfuscate": "javascript-obfuscator index.js --output _worker.js --compact true --control-flow-flattening true --control-flow-flattening-threshold 1 --dead-code-injection true --dead-code-injection-threshold 1 --string-array true --string-array-encoding 'rc4' --string-array-threshold 1 --transform-object-keys true --unicode-escape-sequence true"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230710.1",
-    "javascript-obfuscator": "^4.1.1",
-    "wrangler": "^3.2.0"
-  }
+  "license": "ISC"
 }
