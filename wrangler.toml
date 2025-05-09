@@ -1,11 +1,24 @@
-name = "cf-worker-ws-dev"
+name = "indo"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
-# node_compat = true
-workers_dev = true
+[[routes]]
+pattern ="indo.alipavip.us.kg"
+custom_domain = true
+[[routes]]
+pattern ="shopee.co.id.indo.alipavip.us.kg"
+custom_domain = true
+[[routes]]
+pattern ="cf.shopee.co.id.indo.alipavip.us.kg"
+custom_domain = true
+[[routes]]
+pattern="cv.shopee.sg.indo.alipavip.us.kg"
+custom_domain = true
+[[routes]]
+pattern="cvs-deo.shopeemobile.com.indo.alipavip.us.kg"
+custom_domain= true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "c85afcf1-cac1-4a18-a07c-9f742be9ccb4"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
