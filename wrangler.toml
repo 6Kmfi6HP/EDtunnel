@@ -1,11 +1,29 @@
-name = "cf-worker-ws-dev"
+name = "ze-vpn"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "sg1-serverbest.my.id"
+custom_domain = true
+[[routes]]
+pattern = "chat.sociomile.com.sg1-serverbest.my.id"
+custom_domain = true
+[[routes]]
+pattern = "www.uii.ac.id.sg1-serverbest.my.id"
+custom_domain = true
+[[routes]]
+pattern = "quiz.int.vidio.com.sg1-serverbest.my.id"
+custom_domain = true
+[[routes]]
+pattern = "untar.ac.id.sg1-serverbest.my.id"
+custom_domain = true
+[[routes]]
+pattern = "ava.game.naver.com.sg1-serverbest.my.id"
+custom_domain = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "b650d855-6072-4a32-830e-706033243b82"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
