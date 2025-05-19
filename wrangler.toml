@@ -1,16 +1,22 @@
-name = "sg1-vless-gopay"
+name = "vip3"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 # workers_dev = true
 [[routes]]
-pattern = "vip-sg1.kuncung.eu.org"
+pattern = "vip3.lifetime01.workers.dev"
 custom_domain = true
 [[routes]]
-pattern = "app.gopay.co.id.vip-sg1.kuncung.eu.org"
+pattern = "app.gopay.co.id.vip3.lifetime01.workers.dev"
 custom_domain = true
 [[routes]]
-pattern = "app-stg.gopay.co.id.vip-sg1.kuncung.eu.org"
+pattern = "space.byu.id.vip3.lifetime01.workers.dev"
+custom_domain = true
+[[routes]]
+pattern = "ava.game.naver.com.vip3.lifetime01.workers.dev"
+custom_domain = true
+[[routes]]
+pattern = "blog.clova.line.me.vip3.lifetime01.workers.dev"
 custom_domain = true
 
 [vars]
