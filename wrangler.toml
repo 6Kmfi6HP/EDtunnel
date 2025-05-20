@@ -7,7 +7,8 @@ workers_dev = true
 pattern = "owo.dimasea.xyz"
 custom_domain = true
 [[routes]]
-pattern = "ava.game.naver.owo.dimasea.xyz"
+pattern = "
+ava.game.naver.com.owo.dimasea.xyz"
 custom_domain = true
 
 [vars]
