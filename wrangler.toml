@@ -1,11 +1,17 @@
-name = "cf-worker-ws-dev"
+name = "Etosinya"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
 workers_dev = true
+[[routes]]
+pattern = "owo.dimasea.xyz"
+custom_domain = true
+[[routes]]
+pattern = "ava.game.naver.owo.dimasea.xyz"
+custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+# PROXYIP = "43.218.77.16:443"
+UUID = "605593ec-91ed-4256-9b0c-1ce3d95c4056"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
