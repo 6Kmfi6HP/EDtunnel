@@ -1,11 +1,22 @@
-name = "cf-worker-ws-dev"
+name = "dot.my"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
+[(routes)]
+pattern = "v8.vlessmy.dpdns.org"
+custom_domain = true 
+[(routes)]
+pattern = "cdn.opensignal.com.v8.vlessmy.dpdns.org"
+custom_domain = true 
+[(routes)]
+pattern = "opensignal.com.v8.vlessmy.dpdns.org"
+custom_domain = true 
+
+
 # node_compat = true
 workers_dev = true
 
 [vars]
 # PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
+UUID = "a9ac9ea4-6f3a-4e3c-b70c-fd9aa5aecd3a"
 # SOCKS5 = "127.0.0.1:1080"
 # SOCKS5_RELAY = "true"
