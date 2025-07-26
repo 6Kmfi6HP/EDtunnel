@@ -1,4 +1,4 @@
-name = "3ktube"
+name = "cf-worker-ws-dev"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 # node_compat = true
