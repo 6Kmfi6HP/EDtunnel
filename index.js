@@ -67,17 +67,17 @@ export default {
 		try {
 			const { UUID, PROXYIP, SOCKS5, SOCKS5_RELAY } = env;
 			const url = new URL(request.url);
-			
-            // 为当前请求创建配置副本，避免修改全局变量
-            const requestConfig = {
-                userID: UUID || userID,
-                socks5Address: SOCKS5 || socks5Address,
-                socks5Relay: SOCKS5_RELAY === 'true' || socks5Relay,
-                proxyIP: null,
-                proxyPort: null,
-                enableSocks: false,
-                parsedSocks5Address: {}
-            };
+
+			// 为当前请求创建配置副本，避免修改全局变量
+			const requestConfig = {
+				userID: UUID || userID,
+				socks5Address: SOCKS5 || socks5Address,
+				socks5Relay: SOCKS5_RELAY === 'true' || socks5Relay,
+				proxyIP: null,
+				proxyPort: null,
+				enableSocks: false,
+				parsedSocks5Address: {}
+			};
 
 			// 获取正常URL参数
 			let urlPROXYIP = url.searchParams.get('proxyip');
@@ -146,9 +146,9 @@ export default {
 			const host = request.headers.get('Host');
 			const requestedPath = url.pathname.substring(1); // Remove leading slash
 			const matchingUserID = userIDs.length === 1 ?
-				(requestedPath === userIDs[0] || 
-				 requestedPath === `sub/${userIDs[0]}` || 
-				 requestedPath === `bestip/${userIDs[0]}` ? userIDs[0] : null) :
+				(requestedPath === userIDs[0] ||
+					requestedPath === `sub/${userIDs[0]}` ||
+					requestedPath === `bestip/${userIDs[0]}` ? userIDs[0] : null) :
 				userIDs.find(id => {
 					const patterns = [id, `sub/${id}`, `bestip/${id}`];
 					return patterns.some(pattern => requestedPath.startsWith(pattern));
@@ -454,18 +454,18 @@ async function handleDefaultPath(url, request) {
  * @returns {Promise<Response>} WebSocket response
  */
 async function ProtocolOverWSHandler(request, config = null) {
-    // 如果没有传入配置，使用全局配置
-    if (!config) {
-        config = {
-            userID,
-            socks5Address,
-            socks5Relay,
-            proxyIP,
-            proxyPort,
-            enableSocks,
-            parsedSocks5Address
-        };
-    }
+	// 如果没有传入配置，使用全局配置
+	if (!config) {
+		config = {
+			userID,
+			socks5Address,
+			socks5Relay,
+			proxyIP,
+			proxyPort,
+			enableSocks,
+			parsedSocks5Address
+		};
+	}
 
 	/** @type {import("@cloudflare/workers-types").WebSocket[]} */
 	// @ts-ignore
@@ -568,18 +568,18 @@ async function ProtocolOverWSHandler(request, config = null) {
  * @param {Object} config - The configuration for this request
  */
 async function HandleTCPOutBound(remoteSocket, addressType, addressRemote, portRemote, rawClientData, webSocket, protocolResponseHeader, log, config = null) {
-    // 如果没有传入配置，使用全局配置
-    if (!config) {
-        config = {
-            userID,
-            socks5Address,
-            socks5Relay,
-            proxyIP,
-            proxyPort,
-            enableSocks,
-            parsedSocks5Address
-        };
-    }
+	// 如果没有传入配置，使用全局配置
+	if (!config) {
+		config = {
+			userID,
+			socks5Address,
+			socks5Relay,
+			proxyIP,
+			proxyPort,
+			enableSocks,
+			parsedSocks5Address
+		};
+	}
 
 	async function connectAndWrite(address, port, socks = false) {
 		/** @type {import("@cloudflare/workers-types").Socket} */
@@ -960,7 +960,7 @@ async function handleDNSQuery(udpChunk, webSocket, protocolResponseHeader, log) 
 async function socks5Connect(addressType, addressRemote, portRemote, log, parsedSocks5Addr = null) {
 	// 如果没有传入解析的SOCKS5地址，使用全局的
 	const { username, password, hostname, port } = parsedSocks5Addr || parsedSocks5Address;
-	
+
 	// Connect to the SOCKS server
 	const socket = connect({
 		hostname,
@@ -1506,7 +1506,7 @@ function parseEncodedQueryParams(pathname) {
 		if (encodedParamsMatch) {
 			const encodedParams = encodedParamsMatch[1];
 			const paramPairs = encodedParams.split('&');
-			
+
 			for (const pair of paramPairs) {
 				const [key, value] = pair.split('=');
 				if (value) params[key] = decodeURIComponent(value);
