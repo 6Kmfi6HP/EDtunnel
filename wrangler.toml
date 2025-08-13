@@ -2,13 +2,13 @@ name = "server-sg"
 main = "_worker.js"
 compatibility_date = "2023-05-26"
 {{routes}}
-pattern": "sg.episode.my.id"
+pattern = "sg.episode.my.id"
 custom_domain = true
 {{routes}}
-pattern": "quiz.int.video.com.sg.episode.my.id"
+pattern = "quiz.int.video.com.sg.episode.my.id"
 custom_domain = true
 {{routes}}
-pattern": "quiz.video.com.sg.episode.my.id"
+pattern = "quiz.video.com.sg.episode.my.id"
 custom_domain = true
 # node_compat = true
 workers_dev = true
