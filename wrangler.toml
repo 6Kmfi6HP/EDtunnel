@@ -1,4 +1,4 @@
-name = "cf-worker-ws-dev"
+name = "tunnel"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
 # node_compat = true
