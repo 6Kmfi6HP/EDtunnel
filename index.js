@@ -104,7 +104,7 @@ export default {
 					return new Response(JSON.stringify(request.cf, null, 4), {
 						status: 200,
 						headers: { "Content-Type": "application/json;charset=utf-8" },
-					});
+					}); 
 				}
 
 				if (matchingUserID) {
