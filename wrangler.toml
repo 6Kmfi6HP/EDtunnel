@@ -1,12 +1,30 @@
-name = "cf-worker-ws-dev"
-main = "src/index.js"
-compatibility_date = "2024-01-01"
-# node_compat = true
-workers_dev = true
+name "indo" # todo
+#name "cf-worker-connect-test" # todo
+#main = "test/worker/cf-cdn-cgi-trace2.js" #main = "test/worker/worker-connect-test.js"
+#main = "test/worker/worker-connect-test.js"
+main_worker.js"
+compatibility_date = "2023-05-26"
+[[routes]]
+pattern = "indo.kozel37.my.id"
+custom_domain = true
+[[routes]]
+pattern "api24-normal.tiktokv.com.indo.kozel37.my.id"
+custom_domain = true
+[[routes]]
+pattern = "api24-normal.tiktokv.com.indo.kozel37.my.id"
+custom_domain = true
+[[routes]]
+pattern = "api24-normal.tiktokv.com.indo.kozel37.my.id"
+custom_domain = true
+[[routes]]
+pattern = "api24-normal.tiktokv.com.indo.kozel37.my.id"
+custom_domain = true
 
 [vars]
-# PROXYIP = "211.230.110.231:50008"
-UUID = "1b6c1745-992e-4aac-8685-266c090e50ea"
-# TROJAN_PASSWORD = "your-trojan-password"  # Optional: If not set, UUID will be used as password
-# SOCKS5 = "127.0.0.1:1080"
-# SOCKS5_RELAY = "true"
+# UUID "d342d11e-d424-4583-b36e-524ab1f0afa4"
+# PROXYIP = "1.2.3.4"
+DNS_RESOLVER_URL = "https://cloudflare-dns.com/dns-query"
+#NODE ID = "1"
+# API_TOKEN = "example_dev_token"
+# API_HOST = "api.v2board.com"
+UUID "bef3c324-2d55-4575-af15-9bff39a431e1"
