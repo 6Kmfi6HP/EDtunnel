@@ -121,7 +121,7 @@ export async function protocolOverWSHandler(request, config, connect) {
 			if (isDns) {
 				return handleDNSQuery(rawClientData, webSocket, protocolResponseHeader, log, connect);
 			}
-			handleTCPOutBound(remoteSocketWrapper, addressType, addressRemote, portRemote, rawClientData, webSocket, protocolResponseHeader, log, config, connect);
+			await handleTCPOutBound(remoteSocketWrapper, addressType, addressRemote, portRemote, rawClientData, webSocket, protocolResponseHeader, log, config, connect);
 		},
 		close() {
 			log(`readableWebSocketStream is close`);
